@@ -1,6 +1,5 @@
 const { app, BrowserWindow, Menu, dialog, shell, globalShortcut } = require('electron');
 const path = require('path');
-const { pathToFileURL } = require('url');
 const { autoUpdater } = require('electron-updater');
 
 const AUTO_UPDATE_SUPPORTED = process.platform === 'linux';
@@ -15,13 +14,6 @@ const REPO = 'gdgbaroda/gdg-apl-host-2026';
 // here as a dev fallback in case the stub file was written without a secret.
 const APL_API_BASE = process.env.APL_API_BASE || 'https://apl-api.gdgbaroda.com';
 const APL_HOST_SECRET = process.env.APL_HOST_SECRET || '';
-
-function quizUrl() {
-  if (!app.isPackaged && process.env.NODE_ENV !== 'production') {
-    return 'http://localhost:5173/';
-  }
-  return pathToFileURL(path.join(__dirname, '..', 'dist', 'index.html')).toString();
-}
 
 // Compare two semver-ish strings ("0.1.2" vs "0.1.10"). Returns >0 if a>b.
 function cmpVersion(a, b) {
@@ -152,17 +144,14 @@ function createWindow() {
   win.loadFile(path.join(__dirname, '..', 'shell.html'));
 
   win.webContents.once('did-finish-load', () => {
-    const url = quizUrl();
-    // Only inject from env if the baked script left the secret empty (dev fallback).
-    const fallbackCfg = APL_HOST_SECRET
-      ? { apiBase: APL_API_BASE, hostSecret: APL_HOST_SECRET }
-      : null;
-    const cfgStmt = fallbackCfg
-      ? `if (!window.__APL__ || !window.__APL__.hostSecret) window.__APL__ = ${JSON.stringify(fallbackCfg)};`
-      : '';
+    // Dev fallback: if the baked config script didn't include a secret (e.g.
+    // npm run dev without APL_HOST_SECRET exported), patch it in from env so
+    // the reactions overlay can still connect.
+    if (!APL_HOST_SECRET) return;
+    const fallbackCfg = { apiBase: APL_API_BASE, hostSecret: APL_HOST_SECRET };
     win.webContents.executeJavaScript(
-      cfgStmt +
-      `document.getElementById('quiz').src = ${JSON.stringify(url)};`,
+      `if (!window.__APL__ || !window.__APL__.hostSecret) ` +
+      `window.__APL__ = Object.assign(window.__APL__ || {}, ${JSON.stringify(fallbackCfg)});`,
     ).catch((e) => console.error('inject failed:', e && e.message));
   });
 
