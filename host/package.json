@@ -1,7 +1,7 @@
 {
   "name": "apl-host",
   "productName": "APL Host",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "homepage": "https://github.com/gdgbaroda/gdg-apl-2026",
   "main": "electron/main.cjs",
