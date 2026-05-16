@@ -41,6 +41,7 @@
       "electron/**/*",
       "dist/**/*",
       "shell.html",
+      "poster.jpg",
       "package.json"
     ],
     "mac": {

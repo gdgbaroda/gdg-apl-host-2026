@@ -1,16 +1,113 @@
-const { app, BrowserWindow, globalShortcut } = require('electron');
+const { app, BrowserWindow, Menu, dialog, shell, globalShortcut } = require('electron');
 const path = require('path');
 const { pathToFileURL } = require('url');
 
 const CHROME_UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
+const REPO = 'gdgbaroda/gdg-apl-host-2026';
+
 function quizUrl() {
   if (!app.isPackaged && process.env.NODE_ENV !== 'production') {
     return 'http://localhost:5173/';
   }
-  // In production, Vite builds to ./dist next to package.json (inside app.asar).
   return pathToFileURL(path.join(__dirname, '..', 'dist', 'index.html')).toString();
+}
+
+// Compare two semver-ish strings ("0.1.2" vs "0.1.10"). Returns >0 if a>b.
+function cmpVersion(a, b) {
+  const pa = a.replace(/^v/, '').split('.').map((n) => parseInt(n, 10) || 0);
+  const pb = b.replace(/^v/, '').split('.').map((n) => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const d = (pa[i] || 0) - (pb[i] || 0);
+    if (d !== 0) return d;
+  }
+  return 0;
+}
+
+async function checkForUpdates(win, { silentIfCurrent = false } = {}) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
+      headers: { Accept: 'application/vnd.github+json' },
+    });
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const data = await res.json();
+    const latest = data.tag_name || data.name || '';
+    const current = app.getVersion();
+
+    if (cmpVersion(latest, current) > 0) {
+      const r = await dialog.showMessageBox(win, {
+        type: 'info',
+        title: 'Update Available',
+        message: `APL Host ${latest} is available.`,
+        detail: `You're on ${current}. Open the download page?`,
+        buttons: ['Open Release Page', 'Later'],
+        defaultId: 0,
+        cancelId: 1,
+      });
+      if (r.response === 0) shell.openExternal(data.html_url);
+    } else if (!silentIfCurrent) {
+      await dialog.showMessageBox(win, {
+        type: 'info',
+        title: 'Up to Date',
+        message: `APL Host ${current} is the latest version.`,
+        buttons: ['OK'],
+      });
+    }
+  } catch (err) {
+    if (!silentIfCurrent) {
+      dialog.showMessageBox(win, {
+        type: 'error',
+        title: 'Update Check Failed',
+        message: 'Could not reach GitHub.',
+        detail: String(err.message || err),
+        buttons: ['OK'],
+      });
+    }
+  }
+}
+
+function buildMenu(win) {
+  const isMac = process.platform === 'darwin';
+  const template = [
+    ...(isMac ? [{
+      label: app.name,
+      submenu: [
+        { label: `About ${app.name}`, role: 'about' },
+        { type: 'separator' },
+        {
+          label: 'Check for Updates…',
+          click: () => checkForUpdates(win),
+        },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideOthers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' },
+      ],
+    }] : []),
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forceReload' },
+        { role: 'toggleDevTools' },
+        { type: 'separator' },
+        { role: 'togglefullscreen', accelerator: 'F11' },
+      ],
+    },
+    ...(!isMac ? [{
+      label: 'Help',
+      submenu: [
+        {
+          label: 'Check for Updates…',
+          click: () => checkForUpdates(win),
+        },
+      ],
+    }] : []),
+  ];
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
 function createWindow() {
@@ -41,6 +138,8 @@ function createWindow() {
   globalShortcut.register('F11', () => {
     win.setFullScreen(!win.isFullScreen());
   });
+
+  buildMenu(win);
 }
 
 app.whenReady().then(createWindow);
