@@ -48,18 +48,18 @@
     const burstCap = Math.min(n, 25); // per-message cap; visual is enough
     for (let i = 0; i < burstCap; i++) {
       if (particles.length >= MAX_PARTICLES) break;
-      const size = 28 + Math.random() * 24;
+      const size = 18 + Math.random() * 16;          // was 28-52
       particles.push({
         glyph,
         x: Math.random() * W,
         y: H + size,
-        vy: -(260 + Math.random() * 140),  // px/sec, upward (was 80-140)
+        vy: -(300 + Math.random() * 160),
         vx: (Math.random() - 0.5) * 40,
         size,
         rot: (Math.random() - 0.5) * 0.4,
         rotV: (Math.random() - 0.5) * 1.0,
         born: performance.now(),
-        life: 1800 + Math.random() * 900,  // ms (was 4000-6000)
+        life: 1100 + Math.random() * 600,            // ms (was 1800-2700)
         sway: Math.random() * Math.PI * 2,
       });
     }
