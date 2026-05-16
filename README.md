@@ -1,5 +1,7 @@
 # gdg-apl-host
 
+[![Latest release](https://img.shields.io/github/v/release/gdgbaroda/gdg-apl-host-2026?label=release&sort=semver)](https://github.com/gdgbaroda/gdg-apl-host-2026/releases/latest)
+
 Hackathon shell: Hotstar cricket on top, quiz strip on the bottom, one fullscreen window for the projector.
 
 ## Run
