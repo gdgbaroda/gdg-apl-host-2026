@@ -25,6 +25,9 @@ npm run dist:dmg
 echo "→ Building windows (x64) zip"
 npm run dist:win
 
+echo "→ Building linux (x64) AppImage + deb"
+npm run dist:linux
+
 echo "→ Pushing commit + tag"
 git push --follow-tags origin main
 
@@ -32,6 +35,8 @@ echo "→ Creating GitHub release"
 gh release create "$TAG" \
   "release/APL Host-${VERSION}-arm64.dmg" \
   "release/APL Host-${VERSION}-win.zip" \
+  "release/APL Host-${VERSION}.AppImage" \
+  "release/apl-host_${VERSION}_amd64.deb" \
   --title "$TAG" \
   --generate-notes
 

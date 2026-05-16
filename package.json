@@ -13,6 +13,7 @@
     "dist:dmg": "npm run build:web && electron-builder --mac dmg",
     "dist:zip": "npm run build:web && electron-builder --mac zip",
     "dist:win": "npm run build:web && electron-builder --win zip --x64",
+    "dist:linux": "npm run build:web && electron-builder --linux AppImage deb --x64",
     "release": "bash scripts/release.sh"
   },
   "devDependencies": {
@@ -64,6 +65,15 @@
           "target": "zip",
           "arch": "x64"
         }
+      ]
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "AudioVideo",
+      "maintainer": "GDG Baroda <hardip@anormaly.com>",
+      "target": [
+        { "target": "AppImage", "arch": "x64" },
+        { "target": "deb",      "arch": "x64" }
       ]
     }
   }
