@@ -2,15 +2,15 @@
 const CHALLENGES = [
   {
     color: "blue",
-    title: "Coaching Simulator",
+    title: "Gamified Habit Builder",
     prompt:
-      "Create a Coaching Simulator where fans make real-time decisions on field placements and bowling changes during the live IPL match. By comparing fan decisions with the captain's actual moves and using historical data to score the “tactical merit” of their choices, the platform identifies and rewards the most knowledgeable cricket minds in the country.",
+      "Design a platform that uses gamification to help users build and sustain positive habits. Focus on rewards, streaks, and progress tracking to drive engagement.",
   },
   {
     color: "yellow",
-    title: "Election Insights",
+    title: "Data & Insights",
     prompt:
-      "Build a system that transforms election-related data into simple, intuitive insights for better understanding and monitoring.",
+      "Design a solution that translates complex match and player data into intuitive and actionable insights for fans. The system should simplify advanced statistics and present them in a way that enhances understanding, decision-making, and overall engagement with the sport.",
   },
 ];
 
