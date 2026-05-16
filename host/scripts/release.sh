@@ -21,7 +21,13 @@ if git rev-parse "$TAG" >/dev/null 2>&1; then
 fi
 
 echo "→ Bumping version to $VERSION"
-npm version "$VERSION" -m "Release %s" >/dev/null
+# npm version's git auto-commit silently skips when run from a subdir of a
+# monorepo, so handle commit + tag manually.
+npm version "$VERSION" --no-git-tag-version >/dev/null
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+git -C "$REPO_ROOT" add host/package.json host/package-lock.json
+git -C "$REPO_ROOT" commit -m "Release $VERSION"
+git -C "$REPO_ROOT" tag -a "$TAG" -m "Release $VERSION"
 
 echo "→ Building mac (arm64) DMG"
 rm -rf release
