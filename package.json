@@ -7,7 +7,7 @@
   "scripts": {
     "dev:vite": "vite",
     "dev:electron": "wait-on http://localhost:5173 && electron .",
-    "dev": "concurrently -k -n vite,electron -c blue,magenta \"npm:dev:vite\" \"npm:dev:electron\"",
+    "dev": "npm run bake && concurrently -k -n vite,electron -c blue,magenta \"npm:dev:vite\" \"npm:dev:electron\"",
     "build:web": "vite build",
     "bake": "node scripts/bake-config.cjs",
     "dist": "npm run bake && npm run build:web && electron-builder --mac --dir",
@@ -79,6 +79,7 @@
       "icon": "build/icon.png",
       "category": "AudioVideo",
       "maintainer": "GDG Baroda <hardip@anormaly.com>",
+      "artifactName": "apl-host-${version}.${ext}",
       "target": [
         {
           "target": "AppImage",
