@@ -53,13 +53,13 @@
         glyph,
         x: Math.random() * W,
         y: H + size,
-        vy: -(80 + Math.random() * 60),   // px/sec, upward
-        vx: (Math.random() - 0.5) * 30,
+        vy: -(260 + Math.random() * 140),  // px/sec, upward (was 80-140)
+        vx: (Math.random() - 0.5) * 40,
         size,
         rot: (Math.random() - 0.5) * 0.4,
-        rotV: (Math.random() - 0.5) * 0.8,
+        rotV: (Math.random() - 0.5) * 1.0,
         born: performance.now(),
-        life: 4000 + Math.random() * 2000, // ms
+        life: 1800 + Math.random() * 900,  // ms (was 4000-6000)
         sway: Math.random() * Math.PI * 2,
       });
     }
