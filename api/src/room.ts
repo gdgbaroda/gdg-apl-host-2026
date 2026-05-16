@@ -15,9 +15,11 @@ const FLUSH_MS = 100;
 export class Room implements DurableObject {
   private state: DurableObjectState;
   private env: Env;
-  private ratelimit = new IpRateLimiter(2, 30);      // POST reactions
-  private wsOpenLimit = new IpRateLimiter(2, 10);    // WS connection attempts per IP
-  private wsMsgLimit = new IpRateLimiter(2, 30);     // WS inbound messages per IP
+  // Live-event override: per-IP limit treated the whole venue as one user, so
+  // bump to 10/s with the minute cap effectively disabled.
+  private ratelimit = new IpRateLimiter(10, Number.MAX_SAFE_INTEGER);   // POST reactions
+  private wsOpenLimit = new IpRateLimiter(10, Number.MAX_SAFE_INTEGER); // WS connection attempts per IP
+  private wsMsgLimit = new IpRateLimiter(10, Number.MAX_SAFE_INTEGER);  // WS inbound messages per IP
   private reactions: ReactionsState = emptyReactionsState();
   private flushScheduled = false;
 
@@ -92,7 +94,7 @@ export class Room implements DurableObject {
   }
 
   // Hibernation handlers (required when using acceptWebSocket)
-  webSocketMessage(ws: WebSocket, _msg: string | ArrayBuffer) {
+  webSocketMessage(ws: WebSocket, msg: string | ArrayBuffer) {
     const att = (ws as unknown as { deserializeAttachment(): unknown }).deserializeAttachment();
     const ip = (att && typeof att === "object" && "ip" in att && typeof (att as { ip: unknown }).ip === "string")
       ? (att as { ip: string }).ip
@@ -101,8 +103,15 @@ export class Room implements DurableObject {
       try { ws.send(JSON.stringify({ type: "error", code: "rate_limited" })); } catch {}
       return;
     }
-    // No publish-over-WS features yet; future match-operator / control
-    // messages route through here and inherit the limit.
+    let data: { type?: string } | null = null;
+    try {
+      const text = typeof msg === "string" ? msg : new TextDecoder().decode(msg);
+      data = JSON.parse(text);
+    } catch {}
+    if (data && data.type === "ping") {
+      try { ws.send(JSON.stringify({ type: "pong", t: Date.now() })); } catch {}
+    }
+    // Future match-operator / control messages route through here.
   }
   webSocketClose(ws: WebSocket) { try { ws.close(); } catch {} }
   webSocketError(ws: WebSocket) { try { ws.close(); } catch {} }

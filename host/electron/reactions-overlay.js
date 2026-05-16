@@ -104,31 +104,82 @@
   }
   requestAnimationFrame(frame);
 
-  // ---- WS with reconnect ----
+  // ---- WS with reconnect + heartbeat ----
   let ws = null;
-  let backoff = 1000;
+  let backoff = 250;
+  const BACKOFF_MAX = 5000;
+  const PING_MS = 25000;
+  const STALE_MS = 60000;
+  let pingTimer = null;
+  let lastIncomingAt = 0;
+  let reconnectScheduled = false;
+
+  function clearPing() {
+    if (pingTimer) { clearInterval(pingTimer); pingTimer = null; }
+  }
+
+  function startPing() {
+    clearPing();
+    pingTimer = setInterval(() => {
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        try { ws.send(JSON.stringify({ type: "ping", t: Date.now() })); } catch {}
+      }
+      if (Date.now() - lastIncomingAt > STALE_MS && ws) {
+        console.warn("[reactions] ws stale (no msg in", STALE_MS, "ms), reconnecting");
+        try { ws.close(); } catch {}
+      }
+    }, PING_MS);
+  }
+
   function connect() {
+    reconnectScheduled = false;
     const wsUrl = cfg.apiBase.replace(/^http/, "ws") + "/host?key=" + encodeURIComponent(cfg.hostSecret);
     try { ws = new WebSocket(wsUrl); } catch (e) { scheduleReconnect(); return; }
     ws.addEventListener("open", () => {
-      backoff = 1000;
+      backoff = 250;
+      lastIncomingAt = Date.now();
       console.log("[reactions] ws open");
+      startPing();
     });
     ws.addEventListener("message", (ev) => {
+      lastIncomingAt = Date.now();
       let msg;
       try { msg = JSON.parse(ev.data); } catch { return; }
+      if (msg.type === "pong") return; // heartbeat ack
       if (msg.type !== "reactions" || !msg.buckets) return;
       for (const [id, count] of Object.entries(msg.buckets)) {
         const glyph = GLYPHS[id];
         if (glyph) spawn(glyph, count);
       }
     });
-    ws.addEventListener("close", scheduleReconnect);
+    ws.addEventListener("close", () => {
+      clearPing();
+      scheduleReconnect();
+    });
     ws.addEventListener("error", () => { try { ws.close(); } catch {} });
   }
+
   function scheduleReconnect() {
-    setTimeout(connect, backoff);
-    backoff = Math.min(backoff * 2, 15000);
+    if (reconnectScheduled) return;
+    reconnectScheduled = true;
+    // ±20% jitter
+    const delay = backoff * (0.8 + Math.random() * 0.4);
+    setTimeout(connect, delay);
+    backoff = Math.min(backoff * 2, BACKOFF_MAX);
   }
+
+  function nudgeReconnect() {
+    if (!ws || ws.readyState === WebSocket.CLOSED || ws.readyState === WebSocket.CLOSING) {
+      backoff = 250;
+      if (!reconnectScheduled) connect();
+    }
+  }
+
+  // External triggers: network came back, window became visible.
+  window.addEventListener("online", nudgeReconnect);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) nudgeReconnect();
+  });
+
   connect();
 })();
