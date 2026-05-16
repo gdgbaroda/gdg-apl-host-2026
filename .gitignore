@@ -1,5 +1,3 @@
-node_modules
-dist
-release
 .DS_Store
-electron/build-config.js
+node_modules/
+.wrangler/

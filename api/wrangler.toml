@@ -1,0 +1,20 @@
+name = "apl-api"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+account_id = "7cc5fc82fb0bc4acc0f2e0899f462c68"
+
+routes = [
+  { pattern = "apl-api.gdgbaroda.com", custom_domain = true }
+]
+
+[[durable_objects.bindings]]
+name = "ROOM"
+class_name = "Room"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Room"]
+
+[vars]
+ALLOWED_ORIGIN = "https://apl.gdgbaroda.com"
+# HOST_SECRET set via `wrangler secret put HOST_SECRET`

@@ -43,7 +43,7 @@
     "publish": {
       "provider": "github",
       "owner": "gdgbaroda",
-      "repo": "gdg-apl-host-2026"
+      "repo": "gdg-apl-2026"
     },
     "files": [
       "electron/**/*",
