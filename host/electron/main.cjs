@@ -169,6 +169,12 @@ function createWindow() {
     ).catch(() => {});
   });
 
+  globalShortcut.register('F3', () => {
+    win.webContents.executeJavaScript(
+      "document.getElementById('results-overlay').classList.toggle('hidden')",
+    ).catch(() => {});
+  });
+
   buildMenu(win);
 
   if (AUTO_UPDATE_SUPPORTED && app.isPackaged) {

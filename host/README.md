@@ -19,6 +19,7 @@ This starts Vite (quiz strip on :5173) and Electron (the shell window with Hotst
 2. Navigate the top pane to the live match.
 3. Press `F11` to fullscreen onto the projector.
 4. Press `F2` to toggle the QR sticker (hide it temporarily during big match moments).
+5. Press `F3` to show the closing / submit-results page (form QR fullscreen). Press again to return to Hotstar.
 
 ## Files
 

@@ -10,18 +10,24 @@ const QRCode = require('qrcode');
 const secret = process.env.APL_HOST_SECRET || '';
 const apiBase = process.env.APL_API_BASE || 'https://apl-api.gdgbaroda.com';
 const webUrl = process.env.APL_WEB_URL || 'https://apl.gdgbaroda.com';
+const formUrl = process.env.APL_FORM_URL || 'https://forms.gle/pmgdS2ndkWfXu3Vf7';
 
-async function main() {
-  const qrDataUrl = await QRCode.toDataURL(webUrl, {
+async function bakeQr(url, width) {
+  return QRCode.toDataURL(url, {
     errorCorrectionLevel: 'M',
     margin: 1,
-    width: 360,
+    width,
     color: { dark: '#000000', light: '#ffffff' },
   });
+}
+
+async function main() {
+  const qrDataUrl = await bakeQr(webUrl, 360);
+  const formQrDataUrl = await bakeQr(formUrl, 720); // larger — full-screen view
 
   const cfg = secret
-    ? { apiBase, hostSecret: secret, webUrl, qrDataUrl }
-    : { webUrl, qrDataUrl };
+    ? { apiBase, hostSecret: secret, webUrl, qrDataUrl, formUrl, formQrDataUrl }
+    : { webUrl, qrDataUrl, formUrl, formQrDataUrl };
 
   const out = path.join(__dirname, '..', 'electron', 'build-config.js');
   const body =
