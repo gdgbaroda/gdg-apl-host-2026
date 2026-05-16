@@ -1,5 +1,6 @@
 {
-  "name": "gdg-apl-host",
+  "name": "apl-host",
+  "productName": "APL Host",
   "version": "0.1.0",
   "private": true,
   "main": "electron/main.cjs",
@@ -7,7 +8,11 @@
     "dev:vite": "vite",
     "dev:electron": "wait-on http://localhost:5173 && electron .",
     "dev": "concurrently -k -n vite,electron -c blue,magenta \"npm:dev:vite\" \"npm:dev:electron\"",
-    "build": "vite build"
+    "build:web": "vite build",
+    "dist": "npm run build:web && electron-builder --mac --dir",
+    "dist:dmg": "npm run build:web && electron-builder --mac dmg",
+    "dist:zip": "npm run build:web && electron-builder --mac zip",
+    "dist:win": "npm run build:web && electron-builder --win zip --x64"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
@@ -15,6 +20,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "concurrently": "^8.2.2",
     "electron": "^31.3.0",
+    "electron-builder": "^24.13.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "wait-on": "^7.2.0"
@@ -22,5 +28,39 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "build": {
+    "appId": "com.gdgbaroda.aplhost",
+    "productName": "APL Host",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "dist/**/*",
+      "shell.html",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "icon": "build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": "arm64"
+        },
+        {
+          "target": "zip",
+          "arch": "arm64"
+        }
+      ],
+      "identity": null
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        { "target": "zip", "arch": "x64" }
+      ]
+    }
   }
 }
