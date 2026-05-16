@@ -13,7 +13,7 @@
     "dist:dmg": "npm run build:web && electron-builder --mac dmg",
     "dist:zip": "npm run build:web && electron-builder --mac zip",
     "dist:win": "npm run build:web && electron-builder --win zip --x64",
-    "dist:linux": "npm run build:web && electron-builder --linux AppImage deb --x64",
+    "dist:linux": "npm run build:web && electron-builder --linux AppImage deb --x64 --publish never",
     "release": "bash scripts/release.sh"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "wait-on": "^7.2.0"
   },
   "dependencies": {
+    "electron-updater": "^6.8.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -36,6 +37,11 @@
     "productName": "APL Host",
     "directories": {
       "output": "release"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "gdgbaroda",
+      "repo": "gdg-apl-host-2026"
     },
     "files": [
       "electron/**/*",

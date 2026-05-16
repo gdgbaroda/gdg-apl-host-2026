@@ -37,6 +37,7 @@ gh release create "$TAG" \
   "release/APL Host-${VERSION}-win.zip" \
   "release/APL Host-${VERSION}.AppImage" \
   "release/apl-host_${VERSION}_amd64.deb" \
+  "release/latest-linux.yml" \
   --title "$TAG" \
   --generate-notes
 

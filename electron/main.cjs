@@ -1,6 +1,9 @@
 const { app, BrowserWindow, Menu, dialog, shell, globalShortcut } = require('electron');
 const path = require('path');
 const { pathToFileURL } = require('url');
+const { autoUpdater } = require('electron-updater');
+
+const AUTO_UPDATE_SUPPORTED = process.platform === 'linux';
 
 const CHROME_UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
@@ -26,6 +29,24 @@ function cmpVersion(a, b) {
 }
 
 async function checkForUpdates(win, { silentIfCurrent = false } = {}) {
+  // On Linux (AppImage), use electron-updater for in-place install.
+  if (AUTO_UPDATE_SUPPORTED && app.isPackaged) {
+    try {
+      autoUpdater.autoDownload = true;
+      await autoUpdater.checkForUpdates();
+    } catch (err) {
+      if (!silentIfCurrent) {
+        dialog.showMessageBox(win, {
+          type: 'error',
+          title: 'Update Check Failed',
+          message: String(err.message || err),
+          buttons: ['OK'],
+        });
+      }
+    }
+    return;
+  }
+
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
       headers: { Accept: 'application/vnd.github+json' },
@@ -140,6 +161,24 @@ function createWindow() {
   });
 
   buildMenu(win);
+
+  if (AUTO_UPDATE_SUPPORTED && app.isPackaged) {
+    autoUpdater.on('update-downloaded', async () => {
+      const r = await dialog.showMessageBox(win, {
+        type: 'info',
+        title: 'Update Ready',
+        message: 'A new version was downloaded.',
+        detail: 'Restart APL Host now to apply the update?',
+        buttons: ['Restart Now', 'Later'],
+        defaultId: 0,
+        cancelId: 1,
+      });
+      if (r.response === 0) autoUpdater.quitAndInstall();
+    });
+    autoUpdater.on('error', (e) => console.error('autoUpdater:', e.message));
+    // Background check shortly after launch.
+    setTimeout(() => checkForUpdates(win, { silentIfCurrent: true }), 4000);
+  }
 }
 
 app.whenReady().then(createWindow);
