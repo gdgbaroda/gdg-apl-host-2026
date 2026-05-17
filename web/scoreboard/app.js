@@ -4,10 +4,61 @@
   const modal = document.getElementById('modal');
   const body = document.getElementById('modal-body');
 
+  // Event window — used for the commit timeline shading.
+  const WIN_START = new Date('2026-05-16T11:00:00').getTime();
+  const WIN_END   = new Date('2026-05-17T01:00:00').getTime();
+  const TL_W = 560, TL_H = 60, TL_PAD = 24;
+
   function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
+  }
+
+  function buildTimeline(commits) {
+    if (!commits || !commits.length) return '<div class="tl-empty">No commits to plot.</div>';
+    const stamps = commits.map(c => new Date(c).getTime()).sort((a, b) => a - b);
+    // Axis range = window expanded to include any outliers, capped at ±7 days.
+    const minT = Math.min(stamps[0], WIN_START);
+    const maxT = Math.max(stamps[stamps.length - 1], WIN_END);
+    const pad = (maxT - minT) * 0.04 || 60 * 60 * 1000;
+    const lo = minT - pad, hi = maxT + pad;
+    const x = (t) => TL_PAD + ((t - lo) / (hi - lo)) * (TL_W - 2 * TL_PAD);
+
+    const winX0 = x(Math.max(WIN_START, lo));
+    const winX1 = x(Math.min(WIN_END, hi));
+
+    const ticks = stamps.map(t => {
+      const cx = x(t);
+      const inWin = t >= WIN_START && t <= WIN_END;
+      const colour = inWin ? '#34A853' : '#EA4335';
+      return `<line x1="${cx.toFixed(1)}" x2="${cx.toFixed(1)}" y1="14" y2="40" stroke="${colour}" stroke-width="2" stroke-linecap="round"/>`;
+    }).join('');
+
+    const fmt = (ms) => {
+      const d = new Date(ms);
+      return d.getUTCFullYear() < 2026
+        ? d.toISOString().slice(0, 10)
+        : `${String(d.getDate()).padStart(2,'0')}/${d.getMonth()+1} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    };
+
+    const outsideCount = stamps.filter(t => t < WIN_START || t > WIN_END).length;
+    const note = outsideCount
+      ? `<div class="tl-note">⚠️ ${outsideCount} commit${outsideCount === 1 ? '' : 's'} outside the event window (red ticks)</div>`
+      : `<div class="tl-note">✅ All commits within the event window</div>`;
+
+    return `
+      <div class="tl-wrap">
+        <svg class="tl-svg" viewBox="0 0 ${TL_W} ${TL_H}" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="${winX0}" y="14" width="${winX1 - winX0}" height="26" fill="rgba(52,168,83,0.12)" rx="3"/>
+          <line x1="${TL_PAD}" x2="${TL_W - TL_PAD}" y1="27" y2="27" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          ${ticks}
+          <text x="${TL_PAD}" y="56" fill="#9aa0a6" font-size="10">${fmt(lo)}</text>
+          <text x="${TL_W - TL_PAD}" y="56" fill="#9aa0a6" font-size="10" text-anchor="end">${fmt(hi)}</text>
+          <text x="${(winX0 + winX1) / 2}" y="10" fill="#34A853" font-size="9" text-anchor="middle" font-weight="700" letter-spacing="0.1em">EVENT WINDOW</text>
+        </svg>
+        ${note}
+      </div>`;
   }
 
   function linkify(text) {
@@ -37,11 +88,15 @@
       return `<div class="field"><div class="field-label">${escapeHtml(label)}</div><div class="field-value">${linkify(value)}</div></div>`;
     }
 
+    const penaltyHtml = (d.penalty && d.penalty < 0)
+      ? `<div class="penalty-note">Timing penalty <strong>${d.penalty}</strong> applied · raw total was ${d.original_total}</div>`
+      : '';
     body.innerHTML = `
       <div class="m-head">
         <div class="m-rank">${d.medal} #${d.rank}</div>
         <div class="m-total">${d.total}<span class="of">/50</span></div>
       </div>
+      ${penaltyHtml}
       <h2 id="modal-title">${escapeHtml(d.title)}</h2>
       <div class="m-meta">
         <span class="m-name">${escapeHtml(d.name)}</span>
@@ -68,6 +123,8 @@
         <div class="ev"><span class="ev-label">Commit timing</span> <span class="ev-val">${escapeHtml(d.commit_verdict_label || '—')}</span></div>
         ${d.n_commits != null ? `<div class="ev"><span class="ev-label">Commits</span> <span class="ev-val">${d.n_commits} commit${d.n_commits === 1 ? '' : 's'}${d.first_commit ? ` · first ${escapeHtml(d.first_commit.replace('T', ' '))}` : ''}${d.last_commit && d.last_commit !== d.first_commit ? ` · last ${escapeHtml(d.last_commit.replace('T', ' '))}` : ''}${d.span_pretty && d.span_pretty !== '—' ? ` · span ${escapeHtml(d.span_pretty)}` : ''}</span></div>` : ''}
       </div>
+
+      ${d.commits && d.commits.length ? `<h3>Commit timeline</h3>${buildTimeline(d.commits)}` : ''}
 
       <h3>From the submission</h3>
       ${field('One-line pitch', d.pitch)}

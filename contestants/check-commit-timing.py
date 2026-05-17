@@ -104,6 +104,7 @@ def analyze(slug, commits, window_start, window_end):
         'last': last.isoformat(timespec='minutes'),
         'n_commits': n, 'span_minutes': round(span, 1),
         'n_in_window': len(in_win),
+        'commits': [c.isoformat(timespec='minutes') for c in commits_sorted],
     }
 
 results = []

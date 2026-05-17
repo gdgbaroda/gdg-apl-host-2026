@@ -26,6 +26,18 @@ if timing_path.exists():
     for t in json.loads(timing_path.read_text()):
         timing_by_slug[t['slug']] = t
 
+# Penalty schema based on commit-timing verdict
+PENALTY = {
+    'PRE_EXISTING_ONLY': -5,
+    'PRE_EXISTING_THEN_TWEAKED': -5,
+    'SINGLE_COMMIT': -2,
+}
+
+def penalty_for(slug):
+    t = timing_by_slug.get(slug)
+    if not t: return 0
+    return PENALTY.get(t.get('verdict'), 0)
+
 # Honor the "Can we share your submission publicly?" consent. Anyone who
 # answered anything other than "Yes" is filtered out and the visible ranks
 # are renumbered 1..N.
@@ -35,6 +47,19 @@ def is_public(slug):
 
 withheld = [s for s in ranking_all if not is_public(s['slug'])]
 ranking = [s for s in ranking_all if is_public(s['slug'])]
+
+# Apply commit-timing penalty and recompute totals
+for s in ranking:
+    p = penalty_for(s['slug'])
+    s['original_total'] = s.get('total', 0)
+    s['penalty'] = p
+    s['total'] = s['original_total'] + p   # p is negative
+
+# Re-sort by adjusted total; tiebreak on agentic + fit then on original total
+def sort_key(s):
+    sc = s.get('scores', {})
+    return (-s['total'], -(sc.get('agentic', 0) + sc.get('fit', 0)), -s['original_total'])
+ranking.sort(key=sort_key)
 for i, s in enumerate(ranking, 1):
     s['rank'] = i  # contiguous on the public page
 
@@ -162,11 +187,13 @@ def render_card(s):
     bullets_html = '\n'.join(f'          <li>{html.escape(b)}</li>' for b in short_bullets(s))
     csum = commit_summary(s['slug'])
     commit_html = f'<div class="commits-row">{html.escape(csum)}</div>' if csum else ''
+    penalty = s.get('penalty', 0)
+    penalty_html = f'<span class="penalty">({penalty})</span>' if penalty else ''
     return f'''
       <article class="card" data-slug="{html.escape(s["slug"])}" tabindex="0" role="button" aria-label="View details for {title}">
         <div class="card-head">
           <div class="rank">{medal(rank)} #{rank}</div>
-          <div class="total">{total}<span class="of">/50</span></div>
+          <div class="total">{total}<span class="of">/50</span>{penalty_html}</div>
         </div>
         <h2>{title}</h2>
         <div class="meta">
@@ -196,6 +223,8 @@ def render_modal_data(s):
         'slug': slug,
         'rank': s['rank'],
         'total': s['total'],
+        'original_total': s.get('original_total'),
+        'penalty': s.get('penalty', 0),
         'medal': medal(s['rank']),
         'name': s.get('name') or '',
         'title': s.get('title') or '',
@@ -217,6 +246,7 @@ def render_modal_data(s):
         'last_commit': t.get('last'),
         'span_minutes': t.get('span_minutes'),
         'span_pretty': fmt_span(t.get('span_minutes')),
+        'commits': t.get('commits') or [],
     }
 
 cards_html = '\n'.join(render_card(s) for s in ranking)
