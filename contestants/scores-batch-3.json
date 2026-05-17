@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "ashutosh-bhagat__apl-analytics",
+    "name": "Ashutosh Bhagat",
+    "title": "APL-Analytics",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 4,
+      "fit": 5,
+      "originality": 3
+    },
+    "total": 15,
+    "reason": "Vite/React shell with a Node server (server/index.js) that proxies cricapi.com and serves mock standings/live-match data. Critically, src/ is empty — only the prebuilt dist/ bundle exists, so source review is impossible. No AI library is imported anywhere; the only 'AI' artifact is .claude/settings.local.json showing they used Claude Code as an IDE. Form admits AI was used 'for creating UI and statistical insights' (i.e., coding assistant, not in-app). No live demo URL, no README. Reasonable cricket-data scaffolding but the runtime app cannot be verified and there is zero agentic content.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; only .claude/settings.local.json (Claude Code IDE config)"
+  },
+  {
+    "slug": "darshit-kotecha__habit-quest-epicdaily",
+    "name": "Darshit Kotecha",
+    "title": "Habit Quest / EpicDaily",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 6,
+      "demo": 5,
+      "quality": 7,
+      "fit": 8,
+      "originality": 7
+    },
+    "total": 33,
+    "reason": "Cricket-themed habit tracker built with Vite/React + Express. server.ts:4 imports @google/genai and exposes /api/habit-tips that calls gemini-flash-latest for daily motivational tips (real single LLM call with caching + fallback). App.tsx is 1163 lines with real screens (Nets dashboard, Coach Academy, Career Path, Stadium). README is polished with screenshots and two AI Studio Cloud Run URLs (preview returns 302). Themed gamification (cricket form, debut→legend) is creative. AI is light (one tips endpoint) rather than truly agentic, but the build itself is substantial.",
+    "demo_check": "2xx",
+    "ai_evidence": "@google/genai in package.json; gemini-flash-latest call in server.ts:22"
+  },
+  {
+    "slug": "hadin-tai__crickintel-ai",
+    "name": "Hadin Tai",
+    "title": "CrickIntel AI",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 10,
+      "demo": 1,
+      "quality": 9,
+      "fit": 10,
+      "originality": 9
+    },
+    "total": 39,
+    "reason": "Genuinely agentic submission. backend/requirements.txt declares crewai, langchain-google-genai, langchain-groq, chromadb. backend/agents/ has insight_agent.py, commentary_agent.py, chatbot_agent.py — each instantiating CrewAI Agents with distinct roles (Match Analyst, Fan Engagement, etc.) on Gemini 1.5 Flash and Groq Llama. backend/analytics/ does deterministic ball-by-ball stats first, then hands off to LLMs (hybrid architecture as claimed). FastAPI backend + React/Vite frontend with Recharts; 76 files, clean README with setup. Only weakness is no hosted demo URL — but the architecture is clearly the strongest in the batch.",
+    "demo_check": "no-url",
+    "ai_evidence": "crewai + langchain-google-genai + langchain-groq in requirements.txt; multi-agent CrewAI definitions in backend/agents/insight_agent.py, commentary_agent.py, chatbot_agent.py"
+  },
+  {
+    "slug": "kuldeepsinh-jhala__levelup-ai",
+    "name": "Kuldeepsinh Jhala",
+    "title": "Levelup AI",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 7,
+      "demo": 1,
+      "quality": 8,
+      "fit": 8,
+      "originality": 7
+    },
+    "total": 31,
+    "reason": "Three-service layout: BE (Express/SQLite habits API), BE-AI (separate Express AI proxy), FE (React+Vite+TS). BE-AI/ai/gemini.js calls @google/generative-ai with a multi-key rotation pool (up to 50 keys) for quota handling — production-minded touch. BE proxies via services/aiProxy.js to BE-AI for /ask-gemini. Real controllers (auth, habits, onboarding, ai, motivation), Mongoose/SQLite models, schemas, prompts/ folder. 121 files total. AI generates habit suggestions and a 'lifespan pending' dashboard from user data — creative framing. No live demo URL and no top-level README; AI flow is single-call rather than multi-agent.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/generative-ai used in BE-AI/ai/gemini.js (multi-key Gemini 2.0 Flash); proxied via BE/src/services/aiProxy.js"
+  },
+  {
+    "slug": "pratham-raval__criq",
+    "name": "Pratham Raval",
+    "title": "CRIQ",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 6,
+      "demo": 1,
+      "quality": 8,
+      "fit": 9,
+      "originality": 6
+    },
+    "total": 30,
+    "reason": "FastAPI backend (main.py + data.py over ball-by-ball CSV/JSON) and React+TS+Vite frontend with thoughtful pages (Home, MatchSummary, MatchAnalysis, Momentum, Team, Player, FanTools). frontend/src/utils/ai.ts calls Gemini 2.0 Flash directly with caching and a getMockResponse fallback when no key is set — used for AI match story, stat-explainer drawer, and FanIQ quiz generation. README is rich with screenshots and feature matrix. AI is a single-shot generative layer rather than agentic, and key is exposed via VITE_ env (client-side). No hosted demo. Strong analytics fit but originality is moderate — competent dashboard with AI narration.",
+    "demo_check": "no-url",
+    "ai_evidence": "Gemini 2.0 Flash via REST in frontend/src/utils/ai.ts; VITE_GEMINI_API_KEY in frontend/.env.example"
+  },
+  {
+    "slug": "shlok-tilokani__ipl-dashboard",
+    "name": "Shlok Tilokani",
+    "title": "IPL Dashboard",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 4,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 17,
+    "reason": "Three-tier Flask app: data_generator/generator.py simulates ball-by-ball feed, middle_layer/app.py (224 lines) computes pace/aggression metrics, frontend uses vanilla HTML/CSS/Highcharts. No AI library imported anywhere — submitter explicitly says the .ai/ folder (memory.md, skills.md, implementationplan.json) was for the coding agent that wrote the app, not in-app AI. So 'agentic' here means 'built with AI', not 'is AI'. README is detailed and the analytical framing (Pace of Play, Scoring Strategy) is decent, but the codebase is small (~487 LOC) and no live demo. Misses the AI/agentic theme almost entirely.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; .ai/ folder is coding-agent context, not runtime AI"
+  },
+  {
+    "slug": "yash-patel__habitquest",
+    "name": "Yash Patel",
+    "title": "Habitquest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 8,
+      "demo": 1,
+      "quality": 8,
+      "fit": 8,
+      "originality": 7
+    },
+    "total": 32,
+    "reason": "MERN-ish backend (Express + Mongoose) with a real tool-calling agent in backend/controllers/aiController.js (230 lines): uses groq-sdk with a tools array (get_active_habits, create_habit, etc.) and a while-loop over response.tool_calls — genuinely agentic flow letting the chatbot create/edit/complete habits via function calling. Frontend (Vite+React) has Dashboard, HabitManagement, Focus, Leaderboard, Achievements, AICoach component, and ranks utility (gamification). 77 files, auth context, JWT middleware. No live demo URL and no top-level README, but the Groq tool-calling agent is the most legitimately agentic gamified-habit entry in the batch.",
+    "demo_check": "no-url",
+    "ai_evidence": "groq-sdk in backend/package.json; tool-calling loop with multi-tool definitions in backend/controllers/aiController.js"
+  },
+  {
+    "slug": "hasit-solanki__vibequest",
+    "name": "Hasit Solanki",
+    "title": "VibeQuest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 3,
+      "originality": 2
+    },
+    "total": 8,
+    "reason": "_clone_status is bad-url ('cant deploy' as Source code URL); no repo exists to review. Submitter also chose 'No' for public sharing. Form lists 'Used antigravity for vibe coding' as the AI usage and 'Nextjs + tailwind' as stack — no concrete agentic behavior described. No live demo URL, no code, no README, no evidence of anything beyond the project name. Scored on form fields only with major no-code penalty across all categories.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only; 'antigravity vibe coding' (coding-assistant usage, not runtime AI)"
+  },
+  {
+    "slug": "naiteek__solo-leveling-habit-tracker",
+    "name": "Naiteek",
+    "title": "Solo leveling habit tracker",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 1,
+      "fit": 4,
+      "originality": 5
+    },
+    "total": 13,
+    "reason": "_clone_status is bad-url — 'Source code URL' was Sololeveling.Naiteekchoksi.com (a domain, not a repo), and curl on both http/https returns 000 (DNS/connection fails). No code to review. Form says AI is 'using n8n' and stack is 'Cursor, claude' — n8n could enable an agentic workflow but there is zero artifact to verify. The Solo Leveling anime theming is the only originality hook. Scored on form-only with heavy no-code/no-demo penalty.",
+    "demo_check": "timeout",
+    "ai_evidence": "form-only; 'n8n' workflow claimed but no repo to inspect"
+  },
+  {
+    "slug": "sara-bhuva__habitquest",
+    "name": "Sara Bhuva",
+    "title": "HabitQuest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 1,
+      "fit": 3,
+      "originality": 3
+    },
+    "total": 10,
+    "reason": "_clone_status is bad-url — 'couldn't generate git link due to some issues' submitted as Source code URL. No repo, no live demo, no evidence of any code. Form claims gemini for prompts + Stitch + Antigravity for app development, but all of that is build-time AI-coding-assistant usage, not in-app agentic behavior. Pitch is a one-liner ('maintain streak.maintain habit'). Scored on form-only with full no-code penalty.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only; gemini/stitch/antigravity cited as build-time coding tools, no repo"
+  }
+]

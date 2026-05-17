@@ -32,3 +32,10 @@ latest-linux.yml
 latest-win.yml
 builder-debug.yml
 builder-effective-config.yaml
+
+# APL contestant data — PII (emails/phone) stays local-only
+contestants/submissions.json
+contestants/batch-*.json
+contestants/_clone-log.json
+# Cloned contestant repos — not ours to track, huge, may contain secrets
+contestants/*/

@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "aarya-patel__cricbrain",
+    "name": "Aarya Patel",
+    "title": "CricBrain",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 7,
+      "demo": 3,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 34,
+    "reason": "Solid fullstack MERN with a real Gemini 3.1 Flash-Lite integration in server/controllers/aiController.js — three distinct endpoints (commentary, insights, ELI5 explanation), persona-switching prompts, JSON-mode for structured outputs, and graceful mock-data fallbacks. Client/server split is clean (routes, controllers, data). 'Sledge Mode' (Analyst vs Fanatic personas) and Beginner Mode tooltips are genuinely fan-friendly framings. No live demo URL is the main weakness, and the AI flow is essentially one-shot calls rather than an agent loop. README is good and run instructions are clear.",
+    "demo_check": "no-url",
+    "ai_evidence": "Gemini 3.1 Flash-Lite via @google/generative-ai in server/controllers/aiController.js — generateCommentary, generateInsights (JSON mode), generateExplanation; gemini config in server/config/gemini.js"
+  },
+  {
+    "slug": "daksh-thakurani__streaksmith",
+    "name": "Daksh Thakurani",
+    "title": "Streaksmith",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 4,
+      "quality": 9,
+      "fit": 9,
+      "originality": 6
+    },
+    "total": 29,
+    "reason": "Easily the most polished engineering in the batch — Next.js 16 + Prisma 7 + Postgres (Neon) + Bun, with proper auth (sessions, password lib), and well-isolated lib/ modules for streak, coins, badges, missions, habit-completion, dashboard, catalog. Habits/streaks/coins/badges/rewards all present — perfect Gamified-Habit-Builder fit. Demo-user bypass for evaluators is a thoughtful touch. The fatal weakness for an Agentic-AI hackathon: zero AI in the codebase, and the form admits AI was only used for architecting. No live URL, only docs.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; form states 'used open code for architecture' only"
+  },
+  {
+    "slug": "farhaanali-vohra__apple",
+    "name": "FarhaanAli Vohra",
+    "title": "Apple",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 6,
+      "demo": 3,
+      "quality": 7,
+      "fit": 7,
+      "originality": 7
+    },
+    "total": 30,
+    "reason": "Backend-heavy MERN with a real Nebius (DeepSeek V3.2) call in src/services/nlpService.js — parses free-text habit logs into structured {sentiment, effort, durationMinutes, focus, obstacles, tags} JSON, with a heuristic fallback if the API key is missing. Medallion architecture (Bronze/Silver/Gold log tiers) via Mongoose models is an unusual, mature touch. Repo only appears to contain the server (no client UI in the snapshot), which weakens the gamification claim — the XP/level mechanic referenced in the form is not visible in code. No demo URL.",
+    "demo_check": "no-url",
+    "ai_evidence": "Nebius DeepSeek V3.2 fetch call in src/services/nlpService.js (chat/completions endpoint, JSON-only system prompt); config in src/config.js"
+  },
+  {
+    "slug": "kalpya-shah__habitforge",
+    "name": "Kalpya Shah",
+    "title": "habitforge",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 8,
+      "quality": 5,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 25,
+    "reason": "Live Vercel demo (https://habitforges-red.vercel.app, 200 OK) is the strongest asset. Codebase has ~15 React components (Login, TopHUD, HabitCard, Vault, AddHabitModal, HeroProfile, Analytics, RightCanvas with a canvasEngine util) and uses localStorage for persistence — a real attempt at gamified UI, not a template. However: AI was only used at authoring time (Gemini for prompts, Antigravity as editor) with no runtime AI integration, and the README is the unmodified Vite+React starter. Originality is low — generic XP/vault/hero framing without a distinct hook.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI runtime code; form mentions AI only as coding assistant (Gemini for brainstorming, Antigravity as editor)"
+  },
+  {
+    "slug": "patel-jaykumar-mahendrabhai__neurosport",
+    "name": "Patel Jaykumar Mahendrabhai",
+    "title": "NeuroSport",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 8,
+      "demo": 3,
+      "quality": 8,
+      "fit": 9,
+      "originality": 8
+    },
+    "total": 36,
+    "reason": "Highest-scoring entry in the batch. Flutter app (web + android + ios + desktop) with a substantial Gemini 2.5 Flash integration in lib/ai/gemini_service.dart — streaming commentary (typewriter effect), win-probability estimation, fan-reaction roasting, prediction rating, plus a scenario simulator and fantasy assistant screen. Uses google_generative_ai SDK with structured prompt builders, integrates Cricbuzz API for live data. Multi-screen architecture (match_analysis, scenario_simulator, fan_zone, fantasy_assistant) shows breadth. README is thoughtful and problem-framed. No live URL and the form admits the AI 'may not work as the limit is reached'.",
+    "demo_check": "no-url",
+    "ai_evidence": "google_generative_ai (Gemini 2.5 Flash) in lib/ai/gemini_service.dart — generateContent + generateContentStream; secrets in lib/core/secrets.dart; used across match_analysis, scenario_simulator, fan_zone, live_commentary_ticker, app_providers"
+  },
+  {
+    "slug": "shivansh-darji__habit-warrior",
+    "name": "Shivansh Darji",
+    "title": "Habit Warrior",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 9,
+      "quality": 7,
+      "fit": 9,
+      "originality": 8
+    },
+    "total": 34,
+    "reason": "Genuinely creative angle — every habit is summoned as a 3D monster (slime/orc/dragon), and completing a habit literally strikes the enemy in a Three.js arena. Live GitHub Pages demo loads (200). Vanilla JS but well-decomposed (HabitStore / Game / UI layers across game.js, habits.js, ui.js, tracker.js, analytics.js, charts.js, sound.js), with transparent combat math, achievements, streak combo bonuses, and a WebAudio SFX synth. README is exceptional. The killer flaw for an Agentic-AI hackathon: no AI at all — 'as builder' just means Cursor authored it. Pure originality + execution carry the score.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code found; Cursor was used as code editor only"
+  },
+  {
+    "slug": "yash-dave__statesense",
+    "name": "Yash Dave",
+    "title": "Statesense",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 7,
+      "demo": 3,
+      "quality": 7,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 33,
+    "reason": "React+Vite IPL dashboard with a real Groq integration (openai/gpt-oss-120b) in src/services/groqService.js — well-engineered system prompt that encodes IPL-specific knowledge (powerplay/death overs, NRR, DLS, dot-ball %), and multiple AI features (match narration, 'Why Lost' explainer, prediction). Graceful static fallback when the API key is missing. Good component structure (Match, Player, Prediction, WhyLost, WormChart, PointsTable, ShareCard). README is the default Vite template — biggest weakness alongside no live demo URL.",
+    "demo_check": "no-url",
+    "ai_evidence": "Groq API (openai/gpt-oss-120b) fetch in src/services/groqService.js — getMatchNarration, getWhyLost, plus referenced in WhyLostExplainer.jsx, PredictionCard.jsx, MatchDashboard.jsx, PointsTable.jsx, PlayerProfile.jsx"
+  },
+  {
+    "slug": "harsh-soni__habitquest",
+    "name": "Harsh Soni",
+    "title": "Habitquest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 3,
+      "demo": 8,
+      "quality": 2,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 22,
+    "reason": "Major penalty: 'Source code URL' is the same Lovable demo link, not a code repo — _clone_status is bad-url, so there is nothing to inspect. The Lovable demo (https://your-habit-ai.lovable.app/) does return 200 OK. Form description is extensive and lists AI Habit Coach features (adaptive recovery, contextual nudges, burnout detection) plus Gemini/OpenAI in the stack, but with no code we cannot verify any AI integration — likely a Lovable-generated MVP. Fit description aligns with the brief on paper but is unverifiable.",
+    "demo_check": "2xx",
+    "ai_evidence": "form-only — claims Gemini/OpenAI in stack; no repo available to verify"
+  },
+  {
+    "slug": "khushi-kachhadiya__lifequest",
+    "name": "Khushi Kachhadiya",
+    "title": "Lifequest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 3,
+      "originality": 2
+    },
+    "total": 8,
+    "reason": "No submission to evaluate: source code URL is literally 'Can't commit', no live demo URL, and the participant indicated their submission cannot be shared publicly. Stack listed only as 'Cloud'. The one-line pitch mentions streaks and avatar levels which would map to the brief, but with no code, no demo, and a minimal description, there is essentially nothing to score above floor. Antigravity/Claude were used as authoring tools per the form, not as runtime AI.",
+    "demo_check": "no-url",
+    "ai_evidence": "no repo; form mentions Antigravity/Claude only as authoring tools"
+  },
+  {
+    "slug": "roshan-variya__clash-battle",
+    "name": "Roshan Variya",
+    "title": "Clash_battle",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 2,
+      "originality": 1
+    },
+    "total": 6,
+    "reason": "Effectively a non-submission. Source code URL says 'Couldn't deploy due to technical error', no live demo, no description of what the project does, stack is just 'Antigravity', and the participant declined public sharing. One-line pitch is 'Amazing experience'. With no code, no demo, no functional description, and challenge-fit being entirely unverifiable for the Data & Insights track, this scores at the floor across every criterion.",
+    "demo_check": "no-url",
+    "ai_evidence": "no repo; form mentions 'vibe coding' with Antigravity only"
+  }
+]

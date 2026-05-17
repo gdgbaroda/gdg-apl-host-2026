@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "atharva-rathod__realmforge",
+    "name": "Atharva Rathod",
+    "title": "REALMFORGE",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 4,
+      "fit": 6,
+      "originality": 7
+    },
+    "total": 20,
+    "reason": "The only repo content is realmforge_backup.zip (single 'Add files via upload' commit), so the live code never made it into git. Extracted contents show a Next.js 16 boilerplate with hand-coded pages (companion, dashboard, feed, habits, persona, map) but package.json has zero AI dependencies — no openai, gemini, anthropic, etc., despite the form claiming OpenAI/Supabase. Hardcoded mock profiles in companion/page.tsx. Submitter explicitly said 'Not yet live'. README is the default create-next-app stub. Concept (fantasy realm + companion attraction system tied to streaks) is genuinely creative, hence the originality bump, but execution is incomplete.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found (claimed OpenAI in form, but no SDK in package.json or grep hits)"
+  },
+  {
+    "slug": "deep-vadher__lifequest-ai",
+    "name": "Deep Vadher",
+    "title": "LifeQuest AI",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 9,
+      "quality": 7,
+      "fit": 7,
+      "originality": 7
+    },
+    "total": 32,
+    "reason": "Live demo at lifequestai.netlify.app/login returns 200. Project is visually polished — many pages (quests, world, boss, coach, skilltree, futureself, domain, stats, shadow mode, cinematic intro), heavy framer-motion, clean app-router structure. But the 'AI' is fake: app/coach/page.js ships a hardcoded aiResponses object keyed by intent (procrastination/motivation/habits/...), and `grep -rn 'fetch\\|axios'` across the entire app/ folder returns zero hits. No openai/gemini/anthropic SDK in package.json. So all 'AI narration' is canned strings. Strong cinematic UX and habit framing earn it solid fit + originality, but agentic score has to be near 1.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code — aiResponses object in app/coach/page.js is hardcoded literal strings, zero fetch/axios calls in app/"
+  },
+  {
+    "slug": "harsh-kaptan__cricketiq-ai-cricket-intelligence-platform",
+    "name": "Harsh Kaptan",
+    "title": "CricketIQ AI Cricket Intelligence Platform",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 3,
+      "demo": 1,
+      "quality": 1,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 14,
+    "reason": "Clone status says 'ok' but the GitHub repo is actually empty — `git log --all` returns nothing, only .git/ exists on disk. No live demo URL provided. Form claims Groq API + Llama 3.3 70B Versatile and a Next.js/shadcn/Recharts frontend, but there is literally no code to verify any of it. The pitch (explaining momentum shifts and tactical decisions instead of raw stats) is reasonable and fits Data & Insights, but it overlaps heavily with multiple other batch-4 submissions (Trushil, Riyank) and there's nothing to differentiate.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only (Groq + Llama 3.3 70B claimed; empty repo, no code)"
+  },
+  {
+    "slug": "modi-krish__produx",
+    "name": "Modi Krish",
+    "title": "ProduX",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 9,
+      "quality": 9,
+      "fit": 8,
+      "originality": 7
+    },
+    "total": 35,
+    "reason": "Live demo at produx-orcin.vercel.app returns 200. Most substantial codebase in the batch: full MERN with Socket.io realtime, Mongoose models (User, Habit, Task, Friendship, Hobby, Message), separate controllers/routes for auth/habit/dashboard/gamification/social, JWT cookies, plus a manifest-v3 Chrome extension for 'Focus Guard'. Habit tracking, XP/levels, 21-day challenges, badges — squarely on-brief. But zero AI in product: no openai/anthropic/gemini/groq/genai in either client or server package.json, and the form itself admits AI was only used to 'translate vision to architecture' during dev. The Chrome-extension-as-accountability angle is a genuinely unusual axis.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code in product — server/client package.json contain no LLM SDK; AI claimed only as a dev-time architecture aid"
+  },
+  {
+    "slug": "riyank-singh__ipl-ground-intelligence",
+    "name": "Riyank Singh",
+    "title": "IPL GROUND INTELLIGENCE",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 5,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 31,
+    "reason": "Best Data & Insights fit in the batch — real Cricsheet ball-by-ball ingestion via backend/app/parser.py building venue_intelligence (powerplay runs/wickets, toss→win correlation) served by FastAPI through backend/app/api/routes.py and backend/app/services/analytics_service.py to a React/Tailwind frontend. Clean separation (core/datastore, utils/loader, services). requirements.txt is FastAPI+pydantic only, no LLM libs. Form is refreshingly honest: AI was used as a 'syntax compiler / vibe coding' during dev, not at runtime — so the agentic score has to reflect that. Demo is a Google Drive video (200). Ground-bias angle is a less-trodden cricket-analytics axis.",
+    "demo_check": "video",
+    "ai_evidence": "no AI runtime — only FastAPI/pydantic/uvicorn in requirements.txt; submitter explicitly states AI was a dev-time tool"
+  },
+  {
+    "slug": "trushil-patel__cric-insight",
+    "name": "Trushil Patel",
+    "title": "Cric Insight",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 1,
+      "fit": 5,
+      "originality": 3
+    },
+    "total": 12,
+    "reason": "Empty repo — `git log --all` returns nothing despite clone marked 'ok' (the source URL itself is a /settings/access link, which is a private GitHub settings page and not a public repo). No demo URL. Form fields are nearly empty: 'What does it do?' is null, 'Anything else?' is null. Stack listed is generic React/Spring Boot/MySQL/AI APIs. Nothing here to evaluate beyond the one-line pitch, which is also essentially the same as CricketIQ.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only ('AI APIs' generic mention; empty repo, no code)"
+  },
+  {
+    "slug": "zels-sorathiya__habitforge",
+    "name": "Zels Sorathiya",
+    "title": "HabitForge",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 7,
+      "demo": 4,
+      "quality": 7,
+      "fit": 9,
+      "originality": 6
+    },
+    "total": 33,
+    "reason": "One of only two repos in the batch with real AI integration: package.json declares @google/generative-ai ^0.24.1 and src/app/coach/page.tsx:87 instantiates `new GoogleGenerativeAI(GEMINI_KEY)` with `model.getGenerativeModel({ model: 'gemini-1.5-flash' })` and `model.startChat(...)`, feeding a system prompt built from the user's habits/streaks/XP. Full Next.js 14 app with dashboard, leaderboard, social, analytics, coach, design pages, Firebase backend, MUI/framer-motion. Has streaks (lib/streak.ts), XP (lib/xp.ts), AddHabitModal, Celebrations — every Gamified-Habit-Builder element on the brief is present. Knock on demo (no URL) and on quality (tsc_errors.log and build_output.log in repo hint at unresolved build issues), but the engineering is real.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/generative-ai in package.json; GoogleGenerativeAI + gemini-1.5-flash chat in src/app/coach/page.tsx:87-95"
+  },
+  {
+    "slug": "ishan-chavda__habitquest",
+    "name": "Ishan Chavda",
+    "title": "HabitQuest",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 5,
+      "quality": 1,
+      "fit": 4,
+      "originality": 2
+    },
+    "total": 14,
+    "reason": "Submitter put the deployed URL 'HabitQuest.netlify.app' in the Source code URL field and left the Live demo field null — hence clone_status: bad-url, no repo on disk. The netlify URL itself does return 200, so something is deployed. Form is bare-bones: one-line pitch 'It is good', stack 'MERN', AI usage 'I useda for Q&A'. Nothing to inspect beyond that. Credit only for the deployment existing.",
+    "demo_check": "2xx",
+    "ai_evidence": "form-only ('used a for Q&A'); no repo, can't verify"
+  },
+  {
+    "slug": "nirav-lad__momentum-ai",
+    "name": "Nirav Lad",
+    "title": "Momentum AI",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 3,
+      "demo": 1,
+      "quality": 1,
+      "fit": 4,
+      "originality": 3
+    },
+    "total": 12,
+    "reason": "Clone status: fail (GitHub URL didn't resolve at clone time). No live demo URL. Form claims Next.js + Hugging Face free LLM + Firebase for AI-generated custom habits, which would be a legitimate agentic angle if there were any code to back it up. Submitter also opted out of public sharing ('Can we share your submission publicly?: No'). Scoring on form alone.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only (Hugging Face free LLM claimed; clone failed, no code)"
+  },
+  {
+    "slug": "soni-jeet__habitforge",
+    "name": "Soni Jeet",
+    "title": "HabitForge",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 1,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 13,
+    "reason": "Source code URL field literally says 'Can't deploy' — so clone_status: bad-url, nothing on disk. No live demo. Stack listed as just 'Node js'. 'How agentic' answer is the single word 'Antigravity' (a dev IDE, not a runtime AI integration). Pitch — Snapchat-streak-inspired dopamine loop with ambient-glass UI and real-world rewards — is the only thing with any spark, hence a small originality nudge. Otherwise no evidence of anything built.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only ('Antigravity' is a dev tool, not product AI); no repo"
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "ayush-makwana__askcricket",
+    "name": "Ayush Makwana",
+    "title": "AskCricket",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 9,
+      "demo": 9,
+      "quality": 9,
+      "fit": 10,
+      "originality": 8
+    },
+    "total": 45,
+    "reason": "Genuinely agentic: src/agent.js implements a multi-round (MAX_ROUNDS=5) async-generator loop that calls Azure OpenAI gpt-5.4-mini Responses API with six well-defined tools (get_player_stats, compare_players, find_matches, match_context, clutch_index, head_to_head) over a 34k-delivery IPL dataset, with tool_choice='required' on round 0 to force grounding. Cloudflare Worker streams responses via SSE. README is thorough (architecture diagram, tools table, setup). Demo at askcricket.ayushmakwana.com returns 200. Custom domain, structured JSON answer card with chart hints. Cleanly fits Data & Insights brief and the originality is real (clutch_index composite, phase-aware splits). One of the strongest batch-5 entries.",
+    "demo_check": "2xx",
+    "ai_evidence": "Azure OpenAI Responses API agent loop in src/agent.js with 6 function-calling tools in src/tools.js; src/azure.js wraps callAzureChat"
+  },
+  {
+    "slug": "dhruv-mahant__data-insights",
+    "name": "Dhruv Mahant",
+    "title": "Data & Insights",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 6,
+      "demo": 3,
+      "quality": 7,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 26,
+    "reason": "Solid Express/TypeScript backend (sportlens-ai) with auth, models (Match/Player/Team/User/Analytics), controllers, services (ai, cache, impact, insight, momentum, prediction) and Dockerfile/docker-compose. Real OpenAI integration in src/services/ai.service.ts calling gpt-4o-mini, invoked from insight.service.ts with prompt-hash caching. No live demo URL submitted and form pitch is one bland line ('A stop solution for easy analysis of data'). Pure backend with no UI shown, so the user-facing 'insights' story is unproven. Architecture is professional but the AI usage is a single chat-completion call, not multi-step agentic.",
+    "demo_check": "no-url",
+    "ai_evidence": "openai SDK in src/config/openai.ts; chat.completions.create with gpt-4o-mini in src/services/ai.service.ts; called from insight.service.ts:64 and :102"
+  },
+  {
+    "slug": "harsh-mehta__cricketiq",
+    "name": "Harsh Mehta",
+    "title": "CricketIQ",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 3,
+      "quality": 5,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 19,
+    "reason": "Form claims a RAG pipeline, but src/utils/ragEngine.js is a fake/simulated 'agent' — keyword-overlap 'cosine similarity', hardcoded if/else routing (live_match/prediction/player_stats), and pre-baked answer strings with simulated 800-1400ms latency. @google/generative-ai is listed in package.json but never imported anywhere in src/. All match data is static mock JSON. UI exists (Dashboard, PlayerAnalytics, FloatingChat) and looks polished, but the 'AI analyst' is a sham. No live demo URL.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/generative-ai in package.json but no GoogleGenerativeAI import in src/; ragEngine.js is keyword matching + hardcoded responses"
+  },
+  {
+    "slug": "nipun-kulshrestha__andren",
+    "name": "Nipun Kulshrestha",
+    "title": "Andren",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 2,
+      "quality": 4,
+      "fit": 5,
+      "originality": 3
+    },
+    "total": 15,
+    "reason": "Next.js 16 + Supabase + zustand scaffold with habits/dashboard/avatar/onboarding/profile/stats pages, but no AI usage anywhere in src/. README is the default create-next-app boilerplate. No OpenAI/Gemini/Anthropic imports, no fetch to any LLM endpoint, no /api routes at all. Form-text claims 'uses AI to gain knowledge about your information' but code shows none. Habit-tracker structure is there but feels incomplete and unpolished. No live demo URL.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; deps are @supabase/supabase-js and zustand only"
+  },
+  {
+    "slug": "sarvesh-verma__gamified-habits",
+    "name": "Sarvesh Verma",
+    "title": "Gamified habits",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 8,
+      "quality": 5,
+      "fit": 8,
+      "originality": 4
+    },
+    "total": 26,
+    "reason": "Polished vanilla React + Tailwind v4 habit tracker ('Protocol'): XP, levels, all-or-nothing daily streak, 30-day GitHub-style consistency map, Arena leaderboard, confetti, audio. Storage is localStorage only. Deployed live at habittracker-eta-eight.vercel.app (200 OK), README is well-written with a clear pitch. Zero AI in code — only canvas-confetti and react. Honest about it in the form ('vibe coding to create the project'). Strong fit for Gamified Habit Builder mechanics, but the 'agentic' theme is essentially absent.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code found; deps are react + canvas-confetti only"
+  },
+  {
+    "slug": "vansh-shah__data-insight",
+    "name": "Vansh Shah",
+    "title": "Data & Insight",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 7,
+      "quality": 6,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 24,
+    "reason": "Lovable-generated TanStack Start app with full UI shell (live, matchups, players, fantasy, community, studio, grassroots routes) — 74 files. Backend talks to Cricbuzz via RapidAPI (src/lib/cricbuzz.functions.ts) for real cricket data, but there is no LLM call anywhere in the code. Marketing copy on stadium-scope-pro.lovable.app (200 OK) advertises '5,200+ AI Insights/Day' and '98% Prediction Accuracy', neither of which is backed by the codebase. Form 'agentic' answer ('To Get and to Give Efficient prompt') is itself near-empty. Visually impressive, technically not agentic.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code found; only RAPIDAPI_CRICBUZZ_KEY fetch in src/lib/cricbuzz.functions.ts"
+  },
+  {
+    "slug": "zishan-vhora__lockin",
+    "name": "Zishan Vhora",
+    "title": "Lockin",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 4,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 30,
+    "reason": "By far the most product-complete habit builder in the batch: React + TanStack Start + Supabase (Auth/RLS/migrations), Radix UI, doodle aesthetic, Counter & Timer habit types, Shield system to protect streaks, Battleground 1v1 duels, achievements, friends, profile pages — 75 src files plus three SQL migrations. Strong README with clear setup. No live demo URL submitted, which hurts. Importantly, no LLM/agentic code exists — the 'agentic' claim refers solely to using AI (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit. Great Gamified Habit Builder fit, weak Agentic-theme fit.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; @supabase/supabase-js is the only external service; 'Vibe Coding' was used as the build methodology, not a runtime feature"
+  },
+  {
+    "slug": "jaimin-suthar__gamified-habit-builder",
+    "name": "Jaimin Suthar",
+    "title": "Gamified habit builder",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 3,
+      "quality": 1,
+      "fit": 3,
+      "originality": 2
+    },
+    "total": 10,
+    "reason": "Clone failed (_clone_status=fail) so no code to review. Live demo at gamified-habit-builder.vercel.app returns 200 but the rendered page is essentially empty — only the title 'HabitForge | Gamified Habit Builder' with no functional UI, per fetch. Form answers are one-word ('Antigravity', 'Vercel, next js') and the pitch ('Solution find from shreemad bhagvat Geeta') doesn't explain the product. Major code-missing penalty applies.",
+    "demo_check": "2xx",
+    "ai_evidence": "form-only (clone failed, demo page is a near-empty template)"
+  },
+  {
+    "slug": "parth-bhanushali__gdgmicrohackathon",
+    "name": "PARTH Bhanushali",
+    "title": "Gdgmicrohackathon",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "All form fields are single dots ('..', '.'). Source code URL is a Vercel deployment URL rather than a GitHub repo (clone status bad-url), and that URL returns 401 (Vercel deployment protection). Live demo field is also '..'. Marked 'No' for public sharing. No verifiable submission of any kind.",
+    "demo_check": "404",
+    "ai_evidence": "form-only and form is empty"
+  },
+  {
+    "slug": "utsav-chouhan__generate-sports-insights-for-everyone",
+    "name": "Utsav Chouhan",
+    "title": "Generate sports insights for everyone",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 3,
+      "originality": 2
+    },
+    "total": 8,
+    "reason": "Source code URL is '-' and Live demo URL is '-'. Clone status bad-url, no repo at all. Form pitch is 'Sports data through graphs' and agentic answer is 'I used claude code' (i.e. the IDE, not an in-product agent). Stack listed as Python/Next.js but nothing to verify. Major code-missing penalty.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only; 'I used claude code' refers to the dev tool, not a runtime AI feature"
+  }
+]

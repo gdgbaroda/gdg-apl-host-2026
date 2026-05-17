@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <title>Scoreboard · APL 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@500;700&family=Google+Sans+Text:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="/scoreboard/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="brand">
+        <div class="brand-row">
+          <span class="dot dot-blue"></span>
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <h1>Scoreboard</h1>
+        <p class="subtitle">APL 2026 · 50 submissions scored</p>
+        <p class="rubric">Each project scored 1–10 on Agentic AI usage, working demo, code quality, challenge fit, originality — equal weight, max 50.</p>
+      </header>
+      <section class="cards">
+        
+      <article class="card">
+        <div class="card-head">
+          <div class="rank">🥇 #1</div>
+          <div class="total">45<span class="of">/50</span></div>
+        </div>
+        <h2>AskCricket</h2>
+        <div class="meta">
+          <span class="name">Ayush Makwana</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Genuinely agentic: src/agent.js implements a multi-round (MAX_ROUNDS=5) async-generator loop that calls Azure OpenAI gpt-5.4-mini Responses API with six well-defined tools (get_player_stats, compare_players, find_matches, match_context, clutch_index, head_to_head) over a 34k-delivery IPL dataset, with tool_choice=&#x27;required&#x27; on round 0 to force grounding. Cloudflare Worker streams responses via SSE. README is thorough (architecture diagram, tools table, setup). Demo at askcricket.ayushmakwana.com returns 200. Custom domain, structured JSON answer card with chart hints. Cleanly fits Data &amp; Insights brief and the originality is real (clutch_index composite, phase-aware splits). One of the strongest batch-5 entries.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">10</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">8</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank">🥈 #2</div>
+          <div class="total">41<span class="of">/50</span></div>
+        </div>
+        <h2>Nova Habit Tracker</h2>
+        <div class="meta">
+          <span class="name">Dwij Joshi</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Most complete entry in the batch. Next.js + TypeScript + Firebase/Firestore with proper structure (src/app routes for galaxy, focus, coach, battles, achievements; components split into gamification/habits/social/ai/wellness). Real Gemini integration via @google/generative-ai SDK in src/app/api/chat/route.ts — stateful chat with user-context system prompt (level, XP, habits), conversation history, error handling. Live Vercel demo returned 200. Strong gamified-habit fit: XP/levels, focus rooms, leaderboard, habit battles, AI coach &#x27;Nova&#x27;. Cosmic-RPG framing is genuinely original. Minor knocks: README is the default create-next-app boilerplate; AI is one chat endpoint rather than multi-step agent loop.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">8</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank">🥉 #3</div>
+          <div class="total">39<span class="of">/50</span></div>
+        </div>
+        <h2>CrickIntel AI</h2>
+        <div class="meta">
+          <span class="name">Hadin Tai</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Genuinely agentic submission. backend/requirements.txt declares crewai, langchain-google-genai, langchain-groq, chromadb. backend/agents/ has insight_agent.py, commentary_agent.py, chatbot_agent.py — each instantiating CrewAI Agents with distinct roles (Match Analyst, Fan Engagement, etc.) on Gemini 1.5 Flash and Groq Llama. backend/analytics/ does deterministic ball-by-ball stats first, then hands off to LLMs (hybrid architecture as claimed). FastAPI backend + React/Vite frontend with Recharts; 76 files, clean README with setup. Only weakness is no hosted demo URL — but the architecture is clearly the strongest in the batch.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">10</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">10</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">9</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #4</div>
+          <div class="total">36<span class="of">/50</span></div>
+        </div>
+        <h2>NeuroSport</h2>
+        <div class="meta">
+          <span class="name">Patel Jaykumar Mahendrabhai</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Highest-scoring entry in the batch. Flutter app (web + android + ios + desktop) with a substantial Gemini 2.5 Flash integration in lib/ai/gemini_service.dart — streaming commentary (typewriter effect), win-probability estimation, fan-reaction roasting, prediction rating, plus a scenario simulator and fantasy assistant screen. Uses google_generative_ai SDK with structured prompt builders, integrates Cricbuzz API for live data. Multi-screen architecture (match_analysis, scenario_simulator, fan_zone, fantasy_assistant) shows breadth. README is thoughtful and problem-framed. No live URL and the form admits the AI &#x27;may not work as the limit is reached&#x27;.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">8</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #5</div>
+          <div class="total">35<span class="of">/50</span></div>
+        </div>
+        <h2>Beyond the Score</h2>
+        <div class="meta">
+          <span class="name">Aadi Shah</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Solid React+Vite cricket analytics app with real IPL/WC CSV datasets, a NodeJS preprocessing pipeline (scripts/build-ipl-matches.mjs), and ~1.5k LOC across well-organized components (MatchAnalytics, VenueStats, HeadToHead, KeyMoments). Polished README with stack, structure, and quickstart. Real Gemini 2.5 Flash integration in src/components/MatchNarration.jsx for narrative insights, plus @google/genai in package.json — but it&#x27;s a single AI call, not agentic, and the API key is hardcoded in source (security red flag). Strong fit for Data &amp; Insights brief; no live demo URL, only run instructions, so demo gets partial credit.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #6</div>
+          <div class="total">35<span class="of">/50</span></div>
+        </div>
+        <h2>CricIQ - AI</h2>
+        <div class="meta">
+          <span class="name">Jagat Jeevan Mahapatra</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">TanStack Start app generated via Lovable+Replit. Two server functions wire up Gemini 2.0 Flash: src/fns/gemini.ts (chat) and src/fns/ai-analysis.ts (match analysis), both using process.env.GEMINI_API_KEY and the v1beta REST endpoint with proper error handling and typed interfaces. Reasonable route structure (_app/dashboard, fantasy, explain, insights, matches, players, teams). Lovable demo (ball-wise-insight.lovable.app) returns 200; the Replit URL 404s. Code quality is decent but obviously scaffolded — heavy shadcn/ui component dump, mock-data.ts suggests not all features are live-data driven. Fit is good for Data &amp; Insights but pitch line (&#x27;give me one&#x27;) signals low effort on submission polish. Originality average — yet another cricket insights dashboard.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">5</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #7</div>
+          <div class="total">35<span class="of">/50</span></div>
+        </div>
+        <h2>ProduX</h2>
+        <div class="meta">
+          <span class="name">Modi Krish</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Live demo at produx-orcin.vercel.app returns 200. Most substantial codebase in the batch: full MERN with Socket.io realtime, Mongoose models (User, Habit, Task, Friendship, Hobby, Message), separate controllers/routes for auth/habit/dashboard/gamification/social, JWT cookies, plus a manifest-v3 Chrome extension for &#x27;Focus Guard&#x27;. Habit tracking, XP/levels, 21-day challenges, badges — squarely on-brief. But zero AI in product: no openai/anthropic/gemini/groq/genai in either client or server package.json, and the form itself admits AI was only used to &#x27;translate vision to architecture&#x27; during dev. The Chrome-extension-as-accountability angle is a genuinely unusual axis.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #8</div>
+          <div class="total">34<span class="of">/50</span></div>
+        </div>
+        <h2>CricBrain</h2>
+        <div class="meta">
+          <span class="name">Aarya Patel</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Solid fullstack MERN with a real Gemini 3.1 Flash-Lite integration in server/controllers/aiController.js — three distinct endpoints (commentary, insights, ELI5 explanation), persona-switching prompts, JSON-mode for structured outputs, and graceful mock-data fallbacks. Client/server split is clean (routes, controllers, data). &#x27;Sledge Mode&#x27; (Analyst vs Fanatic personas) and Beginner Mode tooltips are genuinely fan-friendly framings. No live demo URL is the main weakness, and the AI flow is essentially one-shot calls rather than an agent loop. README is good and run instructions are clear.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #9</div>
+          <div class="total">34<span class="of">/50</span></div>
+        </div>
+        <h2>Habit Warrior</h2>
+        <div class="meta">
+          <span class="name">Shivansh Darji</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Genuinely creative angle — every habit is summoned as a 3D monster (slime/orc/dragon), and completing a habit literally strikes the enemy in a Three.js arena. Live GitHub Pages demo loads (200). Vanilla JS but well-decomposed (HabitStore / Game / UI layers across game.js, habits.js, ui.js, tracker.js, analytics.js, charts.js, sound.js), with transparent combat math, achievements, streak combo bonuses, and a WebAudio SFX synth. README is exceptional. The killer flaw for an Agentic-AI hackathon: no AI at all — &#x27;as builder&#x27; just means Cursor authored it. Pure originality + execution carry the score.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">8</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #10</div>
+          <div class="total">33<span class="of">/50</span></div>
+        </div>
+        <h2>Statesense</h2>
+        <div class="meta">
+          <span class="name">Yash Dave</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">React+Vite IPL dashboard with a real Groq integration (openai/gpt-oss-120b) in src/services/groqService.js — well-engineered system prompt that encodes IPL-specific knowledge (powerplay/death overs, NRR, DLS, dot-ball %), and multiple AI features (match narration, &#x27;Why Lost&#x27; explainer, prediction). Graceful static fallback when the API key is missing. Good component structure (Match, Player, Prediction, WhyLost, WormChart, PointsTable, ShareCard). README is the default Vite template — biggest weakness alongside no live demo URL.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #11</div>
+          <div class="total">33<span class="of">/50</span></div>
+        </div>
+        <h2>HabitForge</h2>
+        <div class="meta">
+          <span class="name">Zels Sorathiya</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">One of only two repos in the batch with real AI integration: package.json declares @google/generative-ai ^0.24.1 and src/app/coach/page.tsx:87 instantiates `new GoogleGenerativeAI(GEMINI_KEY)` with `model.getGenerativeModel({ model: &#x27;gemini-1.5-flash&#x27; })` and `model.startChat(...)`, feeding a system prompt built from the user&#x27;s habits/streaks/XP. Full Next.js 14 app with dashboard, leaderboard, social, analytics, coach, design pages, Firebase backend, MUI/framer-motion. Has streaks (lib/streak.ts), XP (lib/xp.ts), AddHabitModal, Celebrations — every Gamified-Habit-Builder element on the brief is present. Knock on demo (no URL) and on quality (tsc_errors.log and build_output.log in repo hint at unresolved build issues), but the engineering is real.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">6</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #12</div>
+          <div class="total">33<span class="of">/50</span></div>
+        </div>
+        <h2>Habit Quest / EpicDaily</h2>
+        <div class="meta">
+          <span class="name">Darshit Kotecha</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Cricket-themed habit tracker built with Vite/React + Express. server.ts:4 imports @google/genai and exposes /api/habit-tips that calls gemini-flash-latest for daily motivational tips (real single LLM call with caching + fallback). App.tsx is 1163 lines with real screens (Nets dashboard, Coach Academy, Career Path, Stadium). README is polished with screenshots and two AI Studio Cloud Run URLs (preview returns 302). Themed gamification (cricket form, debut→legend) is creative. AI is light (one tips endpoint) rather than truly agentic, but the build itself is substantial.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #13</div>
+          <div class="total">32<span class="of">/50</span></div>
+        </div>
+        <h2>Habitquest</h2>
+        <div class="meta">
+          <span class="name">Yash Patel</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">MERN-ish backend (Express + Mongoose) with a real tool-calling agent in backend/controllers/aiController.js (230 lines): uses groq-sdk with a tools array (get_active_habits, create_habit, etc.) and a while-loop over response.tool_calls — genuinely agentic flow letting the chatbot create/edit/complete habits via function calling. Frontend (Vite+React) has Dashboard, HabitManagement, Focus, Leaderboard, Achievements, AICoach component, and ranks utility (gamification). 77 files, auth context, JWT middleware. No live demo URL and no top-level README, but the Groq tool-calling agent is the most legitimately agentic gamified-habit entry in the batch.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #14</div>
+          <div class="total">32<span class="of">/50</span></div>
+        </div>
+        <h2>NexPlay - Pro Analytics</h2>
+        <div class="meta">
+          <span class="name">Shaantanu Yadav</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Full MERN structure with frontend/ (React+Vite, pages for Matches, MatchDetails, Players, ComparePlayers, Profile) and backend/ (Express, controllers/routes/models split, MySQL via mysql2, JWT auth, Socket.IO). aiService.js makes a single Gemini 2.5 Flash call to summarize MatchStats rows into a fan-friendly insight — real integration but one-shot, not agentic. No live demo URL submitted; partial credit for runnable structure and clear README in frontend. Backend .env is checked in (only contains DB config, no secret keys visible). Stack overreach in the form (lists OpenAI/Gemini/Sports APIs) — only Gemini is actually wired up. Solid Data &amp; Insights fit but generic &#x27;sports dashboard&#x27; framing.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">6</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #15</div>
+          <div class="total">32<span class="of">/50</span></div>
+        </div>
+        <h2>LifeQuest AI</h2>
+        <div class="meta">
+          <span class="name">Deep Vadher</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Live demo at lifequestai.netlify.app/login returns 200. Project is visually polished — many pages (quests, world, boss, coach, skilltree, futureself, domain, stats, shadow mode, cinematic intro), heavy framer-motion, clean app-router structure. But the &#x27;AI&#x27; is fake: app/coach/page.js ships a hardcoded aiResponses object keyed by intent (procrastination/motivation/habits/...), and `grep -rn &#x27;fetch\|axios&#x27;` across the entire app/ folder returns zero hits. No openai/gemini/anthropic SDK in package.json. So all &#x27;AI narration&#x27; is canned strings. Strong cinematic UX and habit framing earn it solid fit + originality, but agentic score has to be near 1.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #16</div>
+          <div class="total">31<span class="of">/50</span></div>
+        </div>
+        <h2>Levelup AI</h2>
+        <div class="meta">
+          <span class="name">Kuldeepsinh Jhala</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Three-service layout: BE (Express/SQLite habits API), BE-AI (separate Express AI proxy), FE (React+Vite+TS). BE-AI/ai/gemini.js calls @google/generative-ai with a multi-key rotation pool (up to 50 keys) for quota handling — production-minded touch. BE proxies via services/aiProxy.js to BE-AI for /ask-gemini. Real controllers (auth, habits, onboarding, ai, motivation), Mongoose/SQLite models, schemas, prompts/ folder. 121 files total. AI generates habit suggestions and a &#x27;lifespan pending&#x27; dashboard from user data — creative framing. No live demo URL and no top-level README; AI flow is single-call rather than multi-agent.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #17</div>
+          <div class="total">31<span class="of">/50</span></div>
+        </div>
+        <h2>IPL GROUND INTELLIGENCE</h2>
+        <div class="meta">
+          <span class="name">Riyank Singh</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Best Data &amp; Insights fit in the batch — real Cricsheet ball-by-ball ingestion via backend/app/parser.py building venue_intelligence (powerplay runs/wickets, toss→win correlation) served by FastAPI through backend/app/api/routes.py and backend/app/services/analytics_service.py to a React/Tailwind frontend. Clean separation (core/datastore, utils/loader, services). requirements.txt is FastAPI+pydantic only, no LLM libs. Form is refreshingly honest: AI was used as a &#x27;syntax compiler / vibe coding&#x27; during dev, not at runtime — so the agentic score has to reflect that. Demo is a Google Drive video (200). Ground-bias angle is a less-trodden cricket-analytics axis.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #18</div>
+          <div class="total">30<span class="of">/50</span></div>
+        </div>
+        <h2>CRIQ</h2>
+        <div class="meta">
+          <span class="name">Pratham Raval</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">FastAPI backend (main.py + data.py over ball-by-ball CSV/JSON) and React+TS+Vite frontend with thoughtful pages (Home, MatchSummary, MatchAnalysis, Momentum, Team, Player, FanTools). frontend/src/utils/ai.ts calls Gemini 2.0 Flash directly with caching and a getMockResponse fallback when no key is set — used for AI match story, stat-explainer drawer, and FanIQ quiz generation. README is rich with screenshots and feature matrix. AI is a single-shot generative layer rather than agentic, and key is exposed via VITE_ env (client-side). No hosted demo. Strong analytics fit but originality is moderate — competent dashboard with AI narration.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">6</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #19</div>
+          <div class="total">30<span class="of">/50</span></div>
+        </div>
+        <h2>Apple</h2>
+        <div class="meta">
+          <span class="name">FarhaanAli Vohra</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Backend-heavy MERN with a real Nebius (DeepSeek V3.2) call in src/services/nlpService.js — parses free-text habit logs into structured {sentiment, effort, durationMinutes, focus, obstacles, tags} JSON, with a heuristic fallback if the API key is missing. Medallion architecture (Bronze/Silver/Gold log tiers) via Mongoose models is an unusual, mature touch. Repo only appears to contain the server (no client UI in the snapshot), which weakens the gamification claim — the XP/level mechanic referenced in the form is not visible in code. No demo URL.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #20</div>
+          <div class="total">30<span class="of">/50</span></div>
+        </div>
+        <h2>Lockin</h2>
+        <div class="meta">
+          <span class="name">Zishan Vhora</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">By far the most product-complete habit builder in the batch: React + TanStack Start + Supabase (Auth/RLS/migrations), Radix UI, doodle aesthetic, Counter &amp; Timer habit types, Shield system to protect streaks, Battleground 1v1 duels, achievements, friends, profile pages — 75 src files plus three SQL migrations. Strong README with clear setup. No live demo URL submitted, which hurts. Importantly, no LLM/agentic code exists — the &#x27;agentic&#x27; claim refers solely to using AI (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit. Great Gamified Habit Builder fit, weak Agentic-theme fit.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #21</div>
+          <div class="total">29<span class="of">/50</span></div>
+        </div>
+        <h2>Streaksmith</h2>
+        <div class="meta">
+          <span class="name">Daksh Thakurani</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Easily the most polished engineering in the batch — Next.js 16 + Prisma 7 + Postgres (Neon) + Bun, with proper auth (sessions, password lib), and well-isolated lib/ modules for streak, coins, badges, missions, habit-completion, dashboard, catalog. Habits/streaks/coins/badges/rewards all present — perfect Gamified-Habit-Builder fit. Demo-user bypass for evaluators is a thoughtful touch. The fatal weakness for an Agentic-AI hackathon: zero AI in the codebase, and the form admits AI was only used for architecting. No live URL, only docs.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">9</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">6</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #22</div>
+          <div class="total">26<span class="of">/50</span></div>
+        </div>
+        <h2>Data &amp; Insights</h2>
+        <div class="meta">
+          <span class="name">Dhruv Mahant</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Solid Express/TypeScript backend (sportlens-ai) with auth, models (Match/Player/Team/User/Analytics), controllers, services (ai, cache, impact, insight, momentum, prediction) and Dockerfile/docker-compose. Real OpenAI integration in src/services/ai.service.ts calling gpt-4o-mini, invoked from insight.service.ts with prompt-hash caching. No live demo URL submitted and form pitch is one bland line (&#x27;A stop solution for easy analysis of data&#x27;). Pure backend with no UI shown, so the user-facing &#x27;insights&#x27; story is unproven. Architecture is professional but the AI usage is a single chat-completion call, not multi-step agentic.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #23</div>
+          <div class="total">26<span class="of">/50</span></div>
+        </div>
+        <h2>Gamified habits</h2>
+        <div class="meta">
+          <span class="name">Sarvesh Verma</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Polished vanilla React + Tailwind v4 habit tracker (&#x27;Protocol&#x27;): XP, levels, all-or-nothing daily streak, 30-day GitHub-style consistency map, Arena leaderboard, confetti, audio. Storage is localStorage only. Deployed live at habittracker-eta-eight.vercel.app (200 OK), README is well-written with a clear pitch. Zero AI in code — only canvas-confetti and react. Honest about it in the form (&#x27;vibe coding to create the project&#x27;). Strong fit for Gamified Habit Builder mechanics, but the &#x27;agentic&#x27; theme is essentially absent.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #24</div>
+          <div class="total">25<span class="of">/50</span></div>
+        </div>
+        <h2>habitforge</h2>
+        <div class="meta">
+          <span class="name">Kalpya Shah</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Live Vercel demo (https://habitforges-red.vercel.app, 200 OK) is the strongest asset. Codebase has ~15 React components (Login, TopHUD, HabitCard, Vault, AddHabitModal, HeroProfile, Analytics, RightCanvas with a canvasEngine util) and uses localStorage for persistence — a real attempt at gamified UI, not a template. However: AI was only used at authoring time (Gemini for prompts, Antigravity as editor) with no runtime AI integration, and the README is the unmodified Vite+React starter. Originality is low — generic XP/vault/hero framing without a distinct hook.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #25</div>
+          <div class="total">24<span class="of">/50</span></div>
+        </div>
+        <h2>Data &amp; Insight</h2>
+        <div class="meta">
+          <span class="name">Vansh Shah</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Lovable-generated TanStack Start app with full UI shell (live, matchups, players, fantasy, community, studio, grassroots routes) — 74 files. Backend talks to Cricbuzz via RapidAPI (src/lib/cricbuzz.functions.ts) for real cricket data, but there is no LLM call anywhere in the code. Marketing copy on stadium-scope-pro.lovable.app (200 OK) advertises &#x27;5,200+ AI Insights/Day&#x27; and &#x27;98% Prediction Accuracy&#x27;, neither of which is backed by the codebase. Form &#x27;agentic&#x27; answer (&#x27;To Get and to Give Efficient prompt&#x27;) is itself near-empty. Visually impressive, technically not agentic.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">7</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #26</div>
+          <div class="total">22<span class="of">/50</span></div>
+        </div>
+        <h2>Habitquest</h2>
+        <div class="meta">
+          <span class="name">Harsh Soni</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Major penalty: &#x27;Source code URL&#x27; is the same Lovable demo link, not a code repo — _clone_status is bad-url, so there is nothing to inspect. The Lovable demo (https://your-habit-ai.lovable.app/) does return 200 OK. Form description is extensive and lists AI Habit Coach features (adaptive recovery, contextual nudges, burnout detection) plus Gemini/OpenAI in the stack, but with no code we cannot verify any AI integration — likely a Lovable-generated MVP. Fit description aligns with the brief on paper but is unverifiable.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">8</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #27</div>
+          <div class="total">20<span class="of">/50</span></div>
+        </div>
+        <h2>NexusHabit</h2>
+        <div class="meta">
+          <span class="name">Bhavya Shah</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Flat single-folder static site: index.html + style.css + styles.css (duplicate!) + app.js + ai-coach.js + supabase-config.js. README is one line (&#x27;Habit-tracker&#x27;). ai-coach.js wires up a Gemini 2.5 Flash fetch call, but GEMINI_API_KEY is literally the placeholder string &#x27;YOUR_GEMINI_API_KEY_PLACEHOLDER&#x27; — the AI path never executes. An `api key details.jpg` is committed (concerning if it contains real credentials). No live demo. Habit-tracker concept matches the challenge but stops at basic streak UI. Feels like a quick build.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #28</div>
+          <div class="total">20<span class="of">/50</span></div>
+        </div>
+        <h2>REALMFORGE</h2>
+        <div class="meta">
+          <span class="name">Atharva Rathod</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">The only repo content is realmforge_backup.zip (single &#x27;Add files via upload&#x27; commit), so the live code never made it into git. Extracted contents show a Next.js 16 boilerplate with hand-coded pages (companion, dashboard, feed, habits, persona, map) but package.json has zero AI dependencies — no openai, gemini, anthropic, etc., despite the form claiming OpenAI/Supabase. Hardcoded mock profiles in companion/page.tsx. Submitter explicitly said &#x27;Not yet live&#x27;. README is the default create-next-app stub. Concept (fantasy realm + companion attraction system tied to streaks) is genuinely creative, hence the originality bump, but execution is incomplete.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">7</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #29</div>
+          <div class="total">19<span class="of">/50</span></div>
+        </div>
+        <h2>CricketIQ</h2>
+        <div class="meta">
+          <span class="name">Harsh Mehta</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Form claims a RAG pipeline, but src/utils/ragEngine.js is a fake/simulated &#x27;agent&#x27; — keyword-overlap &#x27;cosine similarity&#x27;, hardcoded if/else routing (live_match/prediction/player_stats), and pre-baked answer strings with simulated 800-1400ms latency. @google/generative-ai is listed in package.json but never imported anywhere in src/. All match data is static mock JSON. UI exists (Dashboard, PlayerAnalytics, FloatingChat) and looks polished, but the &#x27;AI analyst&#x27; is a sham. No live demo URL.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #30</div>
+          <div class="total">18<span class="of">/50</span></div>
+        </div>
+        <h2>NEXUS</h2>
+        <div class="meta">
+          <span class="name">Keyur parmar</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">_clone_status=bad-url because &#x27;Source code URL&#x27; is actually a Lovable hosted app (https://nexusaiii.lovable.app), not a git repo. No source to review. The Lovable URL itself does return 200 so users can at least see a deployed UI — giving partial demo credit. Form fields are minimal: pitch &#x27;A gamified Habit Building Platform&#x27;, no description, AI usage answered as &#x27;Yes I did.&#x27; Stack listed only as &#x27;Lovable Ui.&#x27; Marked &#x27;No&#x27; for public sharing. Without inspectable code, agentic and quality stay low.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #31</div>
+          <div class="total">17<span class="of">/50</span></div>
+        </div>
+        <h2>IPL Dashboard</h2>
+        <div class="meta">
+          <span class="name">Shlok Tilokani</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Three-tier Flask app: data_generator/generator.py simulates ball-by-ball feed, middle_layer/app.py (224 lines) computes pace/aggression metrics, frontend uses vanilla HTML/CSS/Highcharts. No AI library imported anywhere — submitter explicitly says the .ai/ folder (memory.md, skills.md, implementationplan.json) was for the coding agent that wrote the app, not in-app AI. So &#x27;agentic&#x27; here means &#x27;built with AI&#x27;, not &#x27;is AI&#x27;. README is detailed and the analytical framing (Pace of Play, Scoring Strategy) is decent, but the codebase is small (~487 LOC) and no live demo. Misses the AI/agentic theme almost entirely.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #32</div>
+          <div class="total">16<span class="of">/50</span></div>
+        </div>
+        <h2>CricPulse</h2>
+        <div class="meta">
+          <span class="name">Dev Parikh</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">_clone_status=fail — no repo available to review, so quality is automatic floor. Form says NextJS + FastAPI stack with Tavily and a cricket API for live match feed and analysis; that&#x27;s an unusual choice (Tavily for search-augmented insight) and fits the Data &amp; Insights brief on paper. But no demo URL, no inspectable code, and the &#x27;how is it agentic&#x27; answer barely describes more than &#x27;fetching live match feed.&#x27; Penalizing heavily for unverifiable code; mild credit for a coherent pitch and tool choice.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">6</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #33</div>
+          <div class="total">15<span class="of">/50</span></div>
+        </div>
+        <h2>APL-Analytics</h2>
+        <div class="meta">
+          <span class="name">Ashutosh Bhagat</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Vite/React shell with a Node server (server/index.js) that proxies cricapi.com and serves mock standings/live-match data. Critically, src/ is empty — only the prebuilt dist/ bundle exists, so source review is impossible. No AI library is imported anywhere; the only &#x27;AI&#x27; artifact is .claude/settings.local.json showing they used Claude Code as an IDE. Form admits AI was used &#x27;for creating UI and statistical insights&#x27; (i.e., coding assistant, not in-app). No live demo URL, no README. Reasonable cricket-data scaffolding but the runtime app cannot be verified and there is zero agentic content.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #34</div>
+          <div class="total">15<span class="of">/50</span></div>
+        </div>
+        <h2>Andren</h2>
+        <div class="meta">
+          <span class="name">Nipun Kulshrestha</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Next.js 16 + Supabase + zustand scaffold with habits/dashboard/avatar/onboarding/profile/stats pages, but no AI usage anywhere in src/. README is the default create-next-app boilerplate. No OpenAI/Gemini/Anthropic imports, no fetch to any LLM endpoint, no /api routes at all. Form-text claims &#x27;uses AI to gain knowledge about your information&#x27; but code shows none. Habit-tracker structure is there but feels incomplete and unpolished. No live demo URL.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #35</div>
+          <div class="total">14<span class="of">/50</span></div>
+        </div>
+        <h2>CricketIQ AI Cricket Intelligence Platform</h2>
+        <div class="meta">
+          <span class="name">Harsh Kaptan</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Clone status says &#x27;ok&#x27; but the GitHub repo is actually empty — `git log --all` returns nothing, only .git/ exists on disk. No live demo URL provided. Form claims Groq API + Llama 3.3 70B Versatile and a Next.js/shadcn/Recharts frontend, but there is literally no code to verify any of it. The pitch (explaining momentum shifts and tactical decisions instead of raw stats) is reasonable and fits Data &amp; Insights, but it overlaps heavily with multiple other batch-4 submissions (Trushil, Riyank) and there&#x27;s nothing to differentiate.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #36</div>
+          <div class="total">14<span class="of">/50</span></div>
+        </div>
+        <h2>HabitQuest</h2>
+        <div class="meta">
+          <span class="name">Ishan Chavda</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Submitter put the deployed URL &#x27;HabitQuest.netlify.app&#x27; in the Source code URL field and left the Live demo field null — hence clone_status: bad-url, no repo on disk. The netlify URL itself does return 200, so something is deployed. Form is bare-bones: one-line pitch &#x27;It is good&#x27;, stack &#x27;MERN&#x27;, AI usage &#x27;I useda for Q&amp;A&#x27;. Nothing to inspect beyond that. Credit only for the deployment existing.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #37</div>
+          <div class="total">13<span class="of">/50</span></div>
+        </div>
+        <h2>HabitForge</h2>
+        <div class="meta">
+          <span class="name">Soni Jeet</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Source code URL field literally says &#x27;Can&#x27;t deploy&#x27; — so clone_status: bad-url, nothing on disk. No live demo. Stack listed as just &#x27;Node js&#x27;. &#x27;How agentic&#x27; answer is the single word &#x27;Antigravity&#x27; (a dev IDE, not a runtime AI integration). Pitch — Snapchat-streak-inspired dopamine loop with ambient-glass UI and real-world rewards — is the only thing with any spark, hence a small originality nudge. Otherwise no evidence of anything built.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #38</div>
+          <div class="total">13<span class="of">/50</span></div>
+        </div>
+        <h2>Solo leveling habit tracker</h2>
+        <div class="meta">
+          <span class="name">Naiteek</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">_clone_status is bad-url — &#x27;Source code URL&#x27; was Sololeveling.Naiteekchoksi.com (a domain, not a repo), and curl on both http/https returns 000 (DNS/connection fails). No code to review. Form says AI is &#x27;using n8n&#x27; and stack is &#x27;Cursor, claude&#x27; — n8n could enable an agentic workflow but there is zero artifact to verify. The Solo Leveling anime theming is the only originality hook. Scored on form-only with heavy no-code/no-demo penalty.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">5</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #39</div>
+          <div class="total">12<span class="of">/50</span></div>
+        </div>
+        <h2>Cric Insight</h2>
+        <div class="meta">
+          <span class="name">Trushil Patel</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Empty repo — `git log --all` returns nothing despite clone marked &#x27;ok&#x27; (the source URL itself is a /settings/access link, which is a private GitHub settings page and not a public repo). No demo URL. Form fields are nearly empty: &#x27;What does it do?&#x27; is null, &#x27;Anything else?&#x27; is null. Stack listed is generic React/Spring Boot/MySQL/AI APIs. Nothing here to evaluate beyond the one-line pitch, which is also essentially the same as CricketIQ.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">5</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #40</div>
+          <div class="total">12<span class="of">/50</span></div>
+        </div>
+        <h2>Momentum AI</h2>
+        <div class="meta">
+          <span class="name">Nirav Lad</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Clone status: fail (GitHub URL didn&#x27;t resolve at clone time). No live demo URL. Form claims Next.js + Hugging Face free LLM + Firebase for AI-generated custom habits, which would be a legitimate agentic angle if there were any code to back it up. Submitter also opted out of public sharing (&#x27;Can we share your submission publicly?: No&#x27;). Scoring on form alone.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #41</div>
+          <div class="total">11<span class="of">/50</span></div>
+        </div>
+        <h2>SportsIQ</h2>
+        <div class="meta">
+          <span class="name">Preet Bhanuprasad Patel</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">_clone_status=bad-url — &#x27;Source code URL&#x27; field literally just contains the string &#x27;SportsIQ&#x27;, not a URL. No demo URL either. Form answers are minimal: no description, no &#x27;judges should know&#x27; notes, AI usage = &#x27;Used antigravity for building and Gpt for prompting.&#x27; Title fits the Data &amp; Insights brief in concept (multi-sport analytics) but nothing is verifiable. Essentially a form-only submission.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">4</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #42</div>
+          <div class="total">10<span class="of">/50</span></div>
+        </div>
+        <h2>HabitQuest</h2>
+        <div class="meta">
+          <span class="name">Sara Bhuva</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">_clone_status is bad-url — &#x27;couldn&#x27;t generate git link due to some issues&#x27; submitted as Source code URL. No repo, no live demo, no evidence of any code. Form claims gemini for prompts + Stitch + Antigravity for app development, but all of that is build-time AI-coding-assistant usage, not in-app agentic behavior. Pitch is a one-liner (&#x27;maintain streak.maintain habit&#x27;). Scored on form-only with full no-code penalty.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">3</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #43</div>
+          <div class="total">10<span class="of">/50</span></div>
+        </div>
+        <h2>Gamified habit builder</h2>
+        <div class="meta">
+          <span class="name">Vraj Parmar</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Source URL &#x27;www.github.com/vrajce/gdghack&#x27; did clone but the repo is empty — only .git, no application code. Pitch is interesting on paper (&#x27;ZeroExcuse AI… intercepts your excuses, renegotiates daily goals, demands proof of work&#x27;) which earns a small originality bump for the idea, but there&#x27;s zero code to verify any of it. &#x27;How is it agentic&#x27; answer is literally &#x27;Used ai ide.&#x27; No demo URL. Without an implementation, this submission is effectively form-only.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">4</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #44</div>
+          <div class="total">10<span class="of">/50</span></div>
+        </div>
+        <h2>Gamified habit builder</h2>
+        <div class="meta">
+          <span class="name">Jaimin Suthar</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Clone failed (_clone_status=fail) so no code to review. Live demo at gamified-habit-builder.vercel.app returns 200 but the rendered page is essentially empty — only the title &#x27;HabitForge | Gamified Habit Builder&#x27; with no functional UI, per fetch. Form answers are one-word (&#x27;Antigravity&#x27;, &#x27;Vercel, next js&#x27;) and the pitch (&#x27;Solution find from shreemad bhagvat Geeta&#x27;) doesn&#x27;t explain the product. Major code-missing penalty applies.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #45</div>
+          <div class="total">8<span class="of">/50</span></div>
+        </div>
+        <h2>Lifequest</h2>
+        <div class="meta">
+          <span class="name">Khushi Kachhadiya</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">No submission to evaluate: source code URL is literally &#x27;Can&#x27;t commit&#x27;, no live demo URL, and the participant indicated their submission cannot be shared publicly. Stack listed only as &#x27;Cloud&#x27;. The one-line pitch mentions streaks and avatar levels which would map to the brief, but with no code, no demo, and a minimal description, there is essentially nothing to score above floor. Antigravity/Claude were used as authoring tools per the form, not as runtime AI.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #46</div>
+          <div class="total">8<span class="of">/50</span></div>
+        </div>
+        <h2>VibeQuest</h2>
+        <div class="meta">
+          <span class="name">Hasit Solanki</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">_clone_status is bad-url (&#x27;cant deploy&#x27; as Source code URL); no repo exists to review. Submitter also chose &#x27;No&#x27; for public sharing. Form lists &#x27;Used antigravity for vibe coding&#x27; as the AI usage and &#x27;Nextjs + tailwind&#x27; as stack — no concrete agentic behavior described. No live demo URL, no code, no README, no evidence of anything beyond the project name. Scored on form fields only with major no-code penalty across all categories.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #47</div>
+          <div class="total">8<span class="of">/50</span></div>
+        </div>
+        <h2>Generate sports insights for everyone</h2>
+        <div class="meta">
+          <span class="name">Utsav Chouhan</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Source code URL is &#x27;-&#x27; and Live demo URL is &#x27;-&#x27;. Clone status bad-url, no repo at all. Form pitch is &#x27;Sports data through graphs&#x27; and agentic answer is &#x27;I used claude code&#x27; (i.e. the IDE, not an in-product agent). Stack listed as Python/Next.js but nothing to verify. Major code-missing penalty.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">3</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #48</div>
+          <div class="total">7<span class="of">/50</span></div>
+        </div>
+        <h2>game</h2>
+        <div class="meta">
+          <span class="name">Pandey Anand Avdhesh</span>
+          <span class="sep">·</span>
+          <span class="challenge c-blue">Gamified Habit Builder</span>
+        </div>
+        <p class="reason">Repo is effectively empty — only a .git directory exists, no source files at all (despite _clone_status=ok). Form fields are equally thin: title &#x27;game&#x27;, pitch &#x27;gamified productivity&#x27;, no description, no demo URL, AI usage answered as &#x27;Ai as model which enhance the game by user&#x27;s interaction.&#x27; Stack lists TS/JS/React/Node/Antigravity but there is nothing in the repo to confirm any of it. Nothing to evaluate.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">2</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #49</div>
+          <div class="total">6<span class="of">/50</span></div>
+        </div>
+        <h2>Clash_battle</h2>
+        <div class="meta">
+          <span class="name">Roshan Variya</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">Effectively a non-submission. Source code URL says &#x27;Couldn&#x27;t deploy due to technical error&#x27;, no live demo, no description of what the project does, stack is just &#x27;Antigravity&#x27;, and the participant declined public sharing. One-line pitch is &#x27;Amazing experience&#x27;. With no code, no demo, no functional description, and challenge-fit being entirely unverifiable for the Data &amp; Insights track, this scores at the floor across every criterion.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">2</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">1</span></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="rank"> #50</div>
+          <div class="total">5<span class="of">/50</span></div>
+        </div>
+        <h2>Gdgmicrohackathon</h2>
+        <div class="meta">
+          <span class="name">PARTH Bhanushali</span>
+          <span class="sep">·</span>
+          <span class="challenge c-yellow">Data &amp; Insights</span>
+        </div>
+        <p class="reason">All form fields are single dots (&#x27;..&#x27;, &#x27;.&#x27;). Source code URL is a Vercel deployment URL rather than a GitHub repo (clone status bad-url), and that URL returns 401 (Vercel deployment protection). Live demo field is also &#x27;..&#x27;. Marked &#x27;No&#x27; for public sharing. No verifiable submission of any kind.</p>
+        <div class="scores">
+          <span class="score-pill"><span class="score-label">Agentic</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Demo</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Quality</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Fit</span> <span class="score-val">1</span></span>
+          <span class="score-pill"><span class="score-label">Original</span> <span class="score-val">1</span></span>
+        </div>
+      </article>
+      </section>
+      <footer class="foot">GDG Baroda · 2026</footer>
+    </main>
+  </body>
+</html>

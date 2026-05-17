@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "aadi-shah__beyond-the-score",
+    "name": "Aadi Shah",
+    "title": "Beyond the Score",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 6,
+      "demo": 5,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 35,
+    "reason": "Solid React+Vite cricket analytics app with real IPL/WC CSV datasets, a NodeJS preprocessing pipeline (scripts/build-ipl-matches.mjs), and ~1.5k LOC across well-organized components (MatchAnalytics, VenueStats, HeadToHead, KeyMoments). Polished README with stack, structure, and quickstart. Real Gemini 2.5 Flash integration in src/components/MatchNarration.jsx for narrative insights, plus @google/genai in package.json — but it's a single AI call, not agentic, and the API key is hardcoded in source (security red flag). Strong fit for Data & Insights brief; no live demo URL, only run instructions, so demo gets partial credit.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/genai in package.json; direct fetch to generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash in MatchNarration.jsx (hardcoded API key)"
+  },
+  {
+    "slug": "bhavya-shah__nexushabit",
+    "name": "Bhavya Shah",
+    "title": "NexusHabit",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 3,
+      "demo": 3,
+      "quality": 4,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 20,
+    "reason": "Flat single-folder static site: index.html + style.css + styles.css (duplicate!) + app.js + ai-coach.js + supabase-config.js. README is one line ('Habit-tracker'). ai-coach.js wires up a Gemini 2.5 Flash fetch call, but GEMINI_API_KEY is literally the placeholder string 'YOUR_GEMINI_API_KEY_PLACEHOLDER' — the AI path never executes. An `api key details.jpg` is committed (concerning if it contains real credentials). No live demo. Habit-tracker concept matches the challenge but stops at basic streak UI. Feels like a quick build.",
+    "demo_check": "no-url",
+    "ai_evidence": "Gemini fetch call in ai-coach.js, but API key is placeholder string (never actually invoked)"
+  },
+  {
+    "slug": "dwij-joshi__nova-habit-tracker",
+    "name": "Dwij Joshi",
+    "title": "Nova Habit Tracker",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 7,
+      "demo": 9,
+      "quality": 8,
+      "fit": 9,
+      "originality": 8
+    },
+    "total": 41,
+    "reason": "Most complete entry in the batch. Next.js + TypeScript + Firebase/Firestore with proper structure (src/app routes for galaxy, focus, coach, battles, achievements; components split into gamification/habits/social/ai/wellness). Real Gemini integration via @google/generative-ai SDK in src/app/api/chat/route.ts — stateful chat with user-context system prompt (level, XP, habits), conversation history, error handling. Live Vercel demo returned 200. Strong gamified-habit fit: XP/levels, focus rooms, leaderboard, habit battles, AI coach 'Nova'. Cosmic-RPG framing is genuinely original. Minor knocks: README is the default create-next-app boilerplate; AI is one chat endpoint rather than multi-step agent loop.",
+    "demo_check": "2xx",
+    "ai_evidence": "@google/generative-ai SDK; GoogleGenerativeAI + getGenerativeModel('gemini-pro') with multi-turn chat history in src/app/api/chat/route.ts"
+  },
+  {
+    "slug": "jagat-jeevan-mahapatra__criciq-ai",
+    "name": "Jagat Jeevan Mahapatra",
+    "title": "CricIQ - AI",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 7,
+      "demo": 8,
+      "quality": 7,
+      "fit": 8,
+      "originality": 5
+    },
+    "total": 35,
+    "reason": "TanStack Start app generated via Lovable+Replit. Two server functions wire up Gemini 2.0 Flash: src/fns/gemini.ts (chat) and src/fns/ai-analysis.ts (match analysis), both using process.env.GEMINI_API_KEY and the v1beta REST endpoint with proper error handling and typed interfaces. Reasonable route structure (_app/dashboard, fantasy, explain, insights, matches, players, teams). Lovable demo (ball-wise-insight.lovable.app) returns 200; the Replit URL 404s. Code quality is decent but obviously scaffolded — heavy shadcn/ui component dump, mock-data.ts suggests not all features are live-data driven. Fit is good for Data & Insights but pitch line ('give me one') signals low effort on submission polish. Originality average — yet another cricket insights dashboard.",
+    "demo_check": "2xx",
+    "ai_evidence": "process.env.GEMINI_API_KEY; fetch to generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash in src/fns/gemini.ts and src/fns/ai-analysis.ts"
+  },
+  {
+    "slug": "pandey-anand-avdhesh__game",
+    "name": "Pandey Anand Avdhesh",
+    "title": "game",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 2,
+      "originality": 2
+    },
+    "total": 7,
+    "reason": "Repo is effectively empty — only a .git directory exists, no source files at all (despite _clone_status=ok). Form fields are equally thin: title 'game', pitch 'gamified productivity', no description, no demo URL, AI usage answered as 'Ai as model which enhance the game by user's interaction.' Stack lists TS/JS/React/Node/Antigravity but there is nothing in the repo to confirm any of it. Nothing to evaluate.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found (empty repo)"
+  },
+  {
+    "slug": "shaantanu-yadav__nexplay-pro-analytics",
+    "name": "Shaantanu Yadav",
+    "title": "NexPlay - Pro Analytics",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 6,
+      "demo": 5,
+      "quality": 7,
+      "fit": 8,
+      "originality": 6
+    },
+    "total": 32,
+    "reason": "Full MERN structure with frontend/ (React+Vite, pages for Matches, MatchDetails, Players, ComparePlayers, Profile) and backend/ (Express, controllers/routes/models split, MySQL via mysql2, JWT auth, Socket.IO). aiService.js makes a single Gemini 2.5 Flash call to summarize MatchStats rows into a fan-friendly insight — real integration but one-shot, not agentic. No live demo URL submitted; partial credit for runnable structure and clear README in frontend. Backend .env is checked in (only contains DB config, no secret keys visible). Stack overreach in the form (lists OpenAI/Gemini/Sports APIs) — only Gemini is actually wired up. Solid Data & Insights fit but generic 'sports dashboard' framing.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/generative-ai used in backend/src/services/aiService.js; gemini-2.5-flash via GEMINI_API_KEY env var"
+  },
+  {
+    "slug": "vraj-parmar__gamified-habit-builder",
+    "name": "Vraj Parmar",
+    "title": "Gamified habit builder",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 3,
+      "originality": 4
+    },
+    "total": 10,
+    "reason": "Source URL 'www.github.com/vrajce/gdghack' did clone but the repo is empty — only .git, no application code. Pitch is interesting on paper ('ZeroExcuse AI… intercepts your excuses, renegotiates daily goals, demands proof of work') which earns a small originality bump for the idea, but there's zero code to verify any of it. 'How is it agentic' answer is literally 'Used ai ide.' No demo URL. Without an implementation, this submission is effectively form-only.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found (empty repo)"
+  },
+  {
+    "slug": "dev-parikh__cricpulse",
+    "name": "Dev Parikh",
+    "title": "CricPulse",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 3,
+      "demo": 1,
+      "quality": 2,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 16,
+    "reason": "_clone_status=fail — no repo available to review, so quality is automatic floor. Form says NextJS + FastAPI stack with Tavily and a cricket API for live match feed and analysis; that's an unusual choice (Tavily for search-augmented insight) and fits the Data & Insights brief on paper. But no demo URL, no inspectable code, and the 'how is it agentic' answer barely describes more than 'fetching live match feed.' Penalizing heavily for unverifiable code; mild credit for a coherent pitch and tool choice.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only (claims Tavily + cricket API; no repo to verify)"
+  },
+  {
+    "slug": "keyur-parmar__nexus",
+    "name": "Keyur parmar",
+    "title": "NEXUS",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 6,
+      "quality": 2,
+      "fit": 5,
+      "originality": 3
+    },
+    "total": 18,
+    "reason": "_clone_status=bad-url because 'Source code URL' is actually a Lovable hosted app (https://nexusaiii.lovable.app), not a git repo. No source to review. The Lovable URL itself does return 200 so users can at least see a deployed UI — giving partial demo credit. Form fields are minimal: pitch 'A gamified Habit Building Platform', no description, AI usage answered as 'Yes I did.' Stack listed only as 'Lovable Ui.' Marked 'No' for public sharing. Without inspectable code, agentic and quality stay low.",
+    "demo_check": "2xx",
+    "ai_evidence": "form-only (Lovable-generated app; no repo to inspect)"
+  },
+  {
+    "slug": "preet-bhanuprasad-patel__sportsiq",
+    "name": "Preet Bhanuprasad Patel",
+    "title": "SportsIQ",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 1,
+      "fit": 4,
+      "originality": 3
+    },
+    "total": 11,
+    "reason": "_clone_status=bad-url — 'Source code URL' field literally just contains the string 'SportsIQ', not a URL. No demo URL either. Form answers are minimal: no description, no 'judges should know' notes, AI usage = 'Used antigravity for building and Gpt for prompting.' Title fits the Data & Insights brief in concept (multi-sport analytics) but nothing is verifiable. Essentially a form-only submission.",
+    "demo_check": "no-url",
+    "ai_evidence": "form-only (no source URL provided)"
+  }
+]
