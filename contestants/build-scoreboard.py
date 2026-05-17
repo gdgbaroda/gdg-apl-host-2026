@@ -51,17 +51,17 @@ def is_public(slug):
 withheld = [s for s in ranking_all if not is_public(s['slug'])]
 ranking = [s for s in ranking_all if is_public(s['slug'])]
 
-# Apply commit-timing penalty and recompute totals
+# Totals already reflect the as-of-23:35 state (finalize-ranking.py applied
+# floor scores to empty-at-deadline repos and used the re-vet for rolled-back
+# repos). No further penalty needed.
 for s in ranking:
-    p = penalty_for(s['slug'])
     s['original_total'] = s.get('total', 0)
-    s['penalty'] = p
-    s['total'] = s['original_total'] + p   # p is negative
+    s['penalty'] = 0
 
-# Re-sort by adjusted total; tiebreak on agentic + fit then on original total
+# Re-sort across the public set; tiebreak on agentic+fit
 def sort_key(s):
     sc = s.get('scores', {})
-    return (-s['total'], -(sc.get('agentic', 0) + sc.get('fit', 0)), -s['original_total'])
+    return (-s['total'], -(sc.get('agentic', 0) + sc.get('fit', 0)))
 ranking.sort(key=sort_key)
 for i, s in enumerate(ranking, 1):
     s['rank'] = i  # contiguous on the public page
@@ -90,6 +90,14 @@ def stack(slug):
 def short_bullets(entry):
     """Generate 3-4 punchy bullets from the structured scoring data."""
     sc = entry.get('scores', {})
+    state = entry.get('rollback_state', '')
+    # Special framing for repos that were empty at the event deadline
+    if state == 'empty-at-deadline':
+        return [
+            '🚨 No code committed by 23:35 (event deadline)',
+            '— All commits in the repo arrived after the event ended',
+            '— Scored at the minimum floor',
+        ]
     bullets = []
     # 1. Theme / AI usage
     a = sc.get('agentic', 0)

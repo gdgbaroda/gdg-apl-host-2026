@@ -1,0 +1,279 @@
+[
+  {
+    "slug": "bhavya-shah__nexushabit",
+    "state": "empty-at-deadline",
+    "current_head": "96ba47ab4057",
+    "rollback_sha": null
+  },
+  {
+    "slug": "aarya-patel__cricbrain",
+    "state": "needs-rollback",
+    "current_head": "c4d859a7be05",
+    "rollback_sha": "2b4c6070459f",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "daksh-thakurani__streaksmith",
+    "state": "head-already-in-window",
+    "current_head": "11d30ecab062",
+    "rollback_sha": "11d30ecab062"
+  },
+  {
+    "slug": "darshit-kotecha__habit-quest-epicdaily",
+    "state": "head-already-in-window",
+    "current_head": "6f3d5fd8b722",
+    "rollback_sha": "6f3d5fd8b722"
+  },
+  {
+    "slug": "ayush-makwana__askcricket",
+    "state": "head-already-in-window",
+    "current_head": "834cd9513950",
+    "rollback_sha": "834cd9513950"
+  },
+  {
+    "slug": "atharva-rathod__realmforge",
+    "state": "empty-at-deadline",
+    "current_head": "b7ee5a3cc096",
+    "rollback_sha": null
+  },
+  {
+    "slug": "ashutosh-bhagat__apl-analytics",
+    "state": "head-already-in-window",
+    "current_head": "75de4b14534e",
+    "rollback_sha": "75de4b14534e"
+  },
+  {
+    "slug": "farhaanali-vohra__apple",
+    "state": "empty-at-deadline",
+    "current_head": "e9a8d36d653c",
+    "rollback_sha": null
+  },
+  {
+    "slug": "deep-vadher__lifequest-ai",
+    "state": "needs-rollback",
+    "current_head": "602a8c49a455",
+    "rollback_sha": "dedd7fb8551d",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "harsh-soni__habitquest",
+    "state": "no-repo"
+  },
+  {
+    "slug": "hasit-solanki__vibequest",
+    "state": "no-repo"
+  },
+  {
+    "slug": "ishan-chavda__habitquest",
+    "state": "no-repo"
+  },
+  {
+    "slug": "dwij-joshi__nova-habit-tracker",
+    "state": "needs-rollback",
+    "current_head": "c54609e09eb3",
+    "rollback_sha": "1c43caadd830",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "harsh-kaptan__cricketiq-ai-cricket-intelligence-platform",
+    "state": "empty-at-deadline",
+    "current_head": "HEAD",
+    "rollback_sha": null
+  },
+  {
+    "slug": "dhruv-mahant__data-insights",
+    "state": "empty-at-deadline",
+    "current_head": "7f3a4a0be3b1",
+    "rollback_sha": null
+  },
+  {
+    "slug": "keyur-parmar__nexus",
+    "state": "no-repo"
+  },
+  {
+    "slug": "khushi-kachhadiya__lifequest",
+    "state": "no-repo"
+  },
+  {
+    "slug": "hadin-tai__crickintel-ai",
+    "state": "head-already-in-window",
+    "current_head": "f9c87a254739",
+    "rollback_sha": "f9c87a254739"
+  },
+  {
+    "slug": "dev-parikh__cricpulse",
+    "state": "no-repo"
+  },
+  {
+    "slug": "naiteek__solo-leveling-habit-tracker",
+    "state": "no-repo"
+  },
+  {
+    "slug": "aadi-shah__beyond-the-score",
+    "state": "empty-at-deadline",
+    "current_head": "a37a5d4a4be7",
+    "rollback_sha": null
+  },
+  {
+    "slug": "jaimin-suthar__gamified-habit-builder",
+    "state": "no-repo"
+  },
+  {
+    "slug": "harsh-mehta__cricketiq",
+    "state": "head-already-in-window",
+    "current_head": "40ce0e9a2e04",
+    "rollback_sha": "40ce0e9a2e04"
+  },
+  {
+    "slug": "parth-bhanushali__gdgmicrohackathon",
+    "state": "no-repo"
+  },
+  {
+    "slug": "jagat-jeevan-mahapatra__criciq-ai",
+    "state": "head-already-in-window",
+    "current_head": "e680a81d8ced",
+    "rollback_sha": "e680a81d8ced"
+  },
+  {
+    "slug": "kuldeepsinh-jhala__levelup-ai",
+    "state": "head-already-in-window",
+    "current_head": "d7df5f5dadcc",
+    "rollback_sha": "d7df5f5dadcc"
+  },
+  {
+    "slug": "preet-bhanuprasad-patel__sportsiq",
+    "state": "no-repo"
+  },
+  {
+    "slug": "nirav-lad__momentum-ai",
+    "state": "no-repo"
+  },
+  {
+    "slug": "roshan-variya__clash-battle",
+    "state": "no-repo"
+  },
+  {
+    "slug": "sara-bhuva__habitquest",
+    "state": "no-repo"
+  },
+  {
+    "slug": "pandey-anand-avdhesh__game",
+    "state": "empty-at-deadline",
+    "current_head": "HEAD",
+    "rollback_sha": null
+  },
+  {
+    "slug": "kalpya-shah__habitforge",
+    "state": "head-already-in-window",
+    "current_head": "fb07d268dfdf",
+    "rollback_sha": "fb07d268dfdf"
+  },
+  {
+    "slug": "modi-krish__produx",
+    "state": "head-already-in-window",
+    "current_head": "af7d3913399d",
+    "rollback_sha": "af7d3913399d"
+  },
+  {
+    "slug": "nipun-kulshrestha__andren",
+    "state": "head-already-in-window",
+    "current_head": "be07b73f6260",
+    "rollback_sha": "be07b73f6260"
+  },
+  {
+    "slug": "soni-jeet__habitforge",
+    "state": "no-repo"
+  },
+  {
+    "slug": "patel-jaykumar-mahendrabhai__neurosport",
+    "state": "head-already-in-window",
+    "current_head": "e12b08c6f60b",
+    "rollback_sha": "e12b08c6f60b"
+  },
+  {
+    "slug": "utsav-chouhan__generate-sports-insights-for-everyone",
+    "state": "no-repo"
+  },
+  {
+    "slug": "riyank-singh__ipl-ground-intelligence",
+    "state": "head-already-in-window",
+    "current_head": "0315541a2ec9",
+    "rollback_sha": "0315541a2ec9"
+  },
+  {
+    "slug": "pratham-raval__criq",
+    "state": "empty-at-deadline",
+    "current_head": "777ce975a723",
+    "rollback_sha": null
+  },
+  {
+    "slug": "sarvesh-verma__gamified-habits",
+    "state": "needs-rollback",
+    "current_head": "6920e4eb63da",
+    "rollback_sha": "fa7a0c21657b",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "trushil-patel__cric-insight",
+    "state": "empty-at-deadline",
+    "current_head": "HEAD",
+    "rollback_sha": null
+  },
+  {
+    "slug": "shivansh-darji__habit-warrior",
+    "state": "head-already-in-window",
+    "current_head": "60badb725f4e",
+    "rollback_sha": "60badb725f4e"
+  },
+  {
+    "slug": "vraj-parmar__gamified-habit-builder",
+    "state": "empty-at-deadline",
+    "current_head": "HEAD",
+    "rollback_sha": null
+  },
+  {
+    "slug": "vansh-shah__data-insight",
+    "state": "head-already-in-window",
+    "current_head": "b1c52b4ba975",
+    "rollback_sha": "b1c52b4ba975"
+  },
+  {
+    "slug": "yash-dave__statesense",
+    "state": "empty-at-deadline",
+    "current_head": "ce8776a84697",
+    "rollback_sha": null
+  },
+  {
+    "slug": "shaantanu-yadav__nexplay-pro-analytics",
+    "state": "empty-at-deadline",
+    "current_head": "8f5f5dc4f822",
+    "rollback_sha": null
+  },
+  {
+    "slug": "zels-sorathiya__habitforge",
+    "state": "needs-rollback",
+    "current_head": "c15e35e7e219",
+    "rollback_sha": "133aa1c75c01",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "yash-patel__habitquest",
+    "state": "head-already-in-window",
+    "current_head": "6692ddf320b1",
+    "rollback_sha": "6692ddf320b1"
+  },
+  {
+    "slug": "shlok-tilokani__ipl-dashboard",
+    "state": "needs-rollback",
+    "current_head": "05a21a91210b",
+    "rollback_sha": "67f23f6be7d4",
+    "commits_dropped": 1
+  },
+  {
+    "slug": "zishan-vhora__lockin",
+    "state": "needs-rollback",
+    "current_head": "f18e4727d9c9",
+    "rollback_sha": "12e146060698",
+    "commits_dropped": 1
+  }
+]

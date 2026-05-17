@@ -15,25 +15,8 @@
     "reason": "Genuinely agentic: src/agent.js implements a multi-round (MAX_ROUNDS=5) async-generator loop that calls Azure OpenAI gpt-5.4-mini Responses API with six well-defined tools (get_player_stats, compare_players, find_matches, match_context, clutch_index, head_to_head) over a 34k-delivery IPL dataset, with tool_choice='required' on round 0 to force grounding. Cloudflare Worker streams responses via SSE. README is thorough (architecture diagram, tools table, setup). Demo at askcricket.ayushmakwana.com returns 200. Custom domain, structured JSON answer card with chart hints. Cleanly fits Data & Insights brief and the originality is real (clutch_index composite, phase-aware splits). One of the strongest batch-5 entries.",
     "demo_check": "2xx",
     "ai_evidence": "Azure OpenAI Responses API agent loop in src/agent.js with 6 function-calling tools in src/tools.js; src/azure.js wraps callAzureChat",
+    "rollback_state": "head-already-in-window",
     "rank": 1
-  },
-  {
-    "slug": "dwij-joshi__nova-habit-tracker",
-    "name": "Dwij Joshi",
-    "title": "Nova Habit Tracker",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 7,
-      "demo": 9,
-      "quality": 8,
-      "fit": 9,
-      "originality": 8
-    },
-    "total": 41,
-    "reason": "Most complete entry in the batch. Next.js + TypeScript + Firebase/Firestore with proper structure (src/app routes for galaxy, focus, coach, battles, achievements; components split into gamification/habits/social/ai/wellness). Real Gemini integration via @google/generative-ai SDK in src/app/api/chat/route.ts \u2014 stateful chat with user-context system prompt (level, XP, habits), conversation history, error handling. Live Vercel demo returned 200. Strong gamified-habit fit: XP/levels, focus rooms, leaderboard, habit battles, AI coach 'Nova'. Cosmic-RPG framing is genuinely original. Minor knocks: README is the default create-next-app boilerplate; AI is one chat endpoint rather than multi-step agent loop.",
-    "demo_check": "2xx",
-    "ai_evidence": "@google/generative-ai SDK; GoogleGenerativeAI + getGenerativeModel('gemini-pro') with multi-turn chat history in src/app/api/chat/route.ts",
-    "rank": 2
   },
   {
     "slug": "hadin-tai__crickintel-ai",
@@ -51,7 +34,8 @@
     "reason": "Genuinely agentic submission. backend/requirements.txt declares crewai, langchain-google-genai, langchain-groq, chromadb. backend/agents/ has insight_agent.py, commentary_agent.py, chatbot_agent.py \u2014 each instantiating CrewAI Agents with distinct roles (Match Analyst, Fan Engagement, etc.) on Gemini 1.5 Flash and Groq Llama. backend/analytics/ does deterministic ball-by-ball stats first, then hands off to LLMs (hybrid architecture as claimed). FastAPI backend + React/Vite frontend with Recharts; 76 files, clean README with setup. Only weakness is no hosted demo URL \u2014 but the architecture is clearly the strongest in the batch.",
     "demo_check": "no-url",
     "ai_evidence": "crewai + langchain-google-genai + langchain-groq in requirements.txt; multi-agent CrewAI definitions in backend/agents/insight_agent.py, commentary_agent.py, chatbot_agent.py",
-    "rank": 3
+    "rollback_state": "head-already-in-window",
+    "rank": 2
   },
   {
     "slug": "patel-jaykumar-mahendrabhai__neurosport",
@@ -69,25 +53,8 @@
     "reason": "Highest-scoring entry in the batch. Flutter app (web + android + ios + desktop) with a substantial Gemini 2.5 Flash integration in lib/ai/gemini_service.dart \u2014 streaming commentary (typewriter effect), win-probability estimation, fan-reaction roasting, prediction rating, plus a scenario simulator and fantasy assistant screen. Uses google_generative_ai SDK with structured prompt builders, integrates Cricbuzz API for live data. Multi-screen architecture (match_analysis, scenario_simulator, fan_zone, fantasy_assistant) shows breadth. README is thoughtful and problem-framed. No live URL and the form admits the AI 'may not work as the limit is reached'.",
     "demo_check": "no-url",
     "ai_evidence": "google_generative_ai (Gemini 2.5 Flash) in lib/ai/gemini_service.dart \u2014 generateContent + generateContentStream; secrets in lib/core/secrets.dart; used across match_analysis, scenario_simulator, fan_zone, live_commentary_ticker, app_providers",
-    "rank": 4
-  },
-  {
-    "slug": "aadi-shah__beyond-the-score",
-    "name": "Aadi Shah",
-    "title": "Beyond the Score",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 6,
-      "demo": 5,
-      "quality": 8,
-      "fit": 9,
-      "originality": 7
-    },
-    "total": 35,
-    "reason": "Solid React+Vite cricket analytics app with real IPL/WC CSV datasets, a NodeJS preprocessing pipeline (scripts/build-ipl-matches.mjs), and ~1.5k LOC across well-organized components (MatchAnalytics, VenueStats, HeadToHead, KeyMoments). Polished README with stack, structure, and quickstart. Real Gemini 2.5 Flash integration in src/components/MatchNarration.jsx for narrative insights, plus @google/genai in package.json \u2014 but it's a single AI call, not agentic, and the API key is hardcoded in source (security red flag). Strong fit for Data & Insights brief; no live demo URL, only run instructions, so demo gets partial credit.",
-    "demo_check": "no-url",
-    "ai_evidence": "@google/genai in package.json; direct fetch to generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash in MatchNarration.jsx (hardcoded API key)",
-    "rank": 5
+    "rollback_state": "head-already-in-window",
+    "rank": 3
   },
   {
     "slug": "jagat-jeevan-mahapatra__criciq-ai",
@@ -105,7 +72,8 @@
     "reason": "TanStack Start app generated via Lovable+Replit. Two server functions wire up Gemini 2.0 Flash: src/fns/gemini.ts (chat) and src/fns/ai-analysis.ts (match analysis), both using process.env.GEMINI_API_KEY and the v1beta REST endpoint with proper error handling and typed interfaces. Reasonable route structure (_app/dashboard, fantasy, explain, insights, matches, players, teams). Lovable demo (ball-wise-insight.lovable.app) returns 200; the Replit URL 404s. Code quality is decent but obviously scaffolded \u2014 heavy shadcn/ui component dump, mock-data.ts suggests not all features are live-data driven. Fit is good for Data & Insights but pitch line ('give me one') signals low effort on submission polish. Originality average \u2014 yet another cricket insights dashboard.",
     "demo_check": "2xx",
     "ai_evidence": "process.env.GEMINI_API_KEY; fetch to generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash in src/fns/gemini.ts and src/fns/ai-analysis.ts",
-    "rank": 6
+    "rollback_state": "head-already-in-window",
+    "rank": 4
   },
   {
     "slug": "modi-krish__produx",
@@ -123,7 +91,8 @@
     "reason": "Live demo at produx-orcin.vercel.app returns 200. Most substantial codebase in the batch: full MERN with Socket.io realtime, Mongoose models (User, Habit, Task, Friendship, Hobby, Message), separate controllers/routes for auth/habit/dashboard/gamification/social, JWT cookies, plus a manifest-v3 Chrome extension for 'Focus Guard'. Habit tracking, XP/levels, 21-day challenges, badges \u2014 squarely on-brief. But zero AI in product: no openai/anthropic/gemini/groq/genai in either client or server package.json, and the form itself admits AI was only used to 'translate vision to architecture' during dev. The Chrome-extension-as-accountability angle is a genuinely unusual axis.",
     "demo_check": "2xx",
     "ai_evidence": "no AI code in product \u2014 server/client package.json contain no LLM SDK; AI claimed only as a dev-time architecture aid",
-    "rank": 7
+    "rollback_state": "head-already-in-window",
+    "rank": 5
   },
   {
     "slug": "aarya-patel__cricbrain",
@@ -138,10 +107,11 @@
       "originality": 7
     },
     "total": 34,
-    "reason": "Solid fullstack MERN with a real Gemini 3.1 Flash-Lite integration in server/controllers/aiController.js \u2014 three distinct endpoints (commentary, insights, ELI5 explanation), persona-switching prompts, JSON-mode for structured outputs, and graceful mock-data fallbacks. Client/server split is clean (routes, controllers, data). 'Sledge Mode' (Analyst vs Fanatic personas) and Beginner Mode tooltips are genuinely fan-friendly framings. No live demo URL is the main weakness, and the AI flow is essentially one-shot calls rather than an agent loop. README is good and run instructions are clear.",
+    "reason": "Rolled-back HEAD already contains the full fullstack build: /client (React+Vite, ~7 components incl. AISummary, AIInsightModal, TermExplainer, PlayerCard) and /server (Express + @google/generative-ai ^0.24.1). server/controllers/aiController.js has three real Gemini 3.1 Flash-Lite endpoints (commentary with Analyst/Fanatic personas, insights in JSON mode, ELI5 explanation) with graceful mock fallbacks when genAI is null. README is detailed with architecture, routes, and quickstart. No live demo URL (form had none). Rolled-back state matches the submission's claims; not materially weaker than the post-event version.",
     "demo_check": "no-url",
-    "ai_evidence": "Gemini 3.1 Flash-Lite via @google/generative-ai in server/controllers/aiController.js \u2014 generateCommentary, generateInsights (JSON mode), generateExplanation; gemini config in server/config/gemini.js",
-    "rank": 8
+    "ai_evidence": "@google/generative-ai in server/package.json; gemini-3.1-flash-lite via getGenerativeModel in server/controllers/aiController.js (generateCommentary, generateInsights JSON-mode, generateExplanation); config in server/config/gemini.js",
+    "rollback_state": "needs-rollback",
+    "rank": 6
   },
   {
     "slug": "shivansh-darji__habit-warrior",
@@ -159,43 +129,8 @@
     "reason": "Genuinely creative angle \u2014 every habit is summoned as a 3D monster (slime/orc/dragon), and completing a habit literally strikes the enemy in a Three.js arena. Live GitHub Pages demo loads (200). Vanilla JS but well-decomposed (HabitStore / Game / UI layers across game.js, habits.js, ui.js, tracker.js, analytics.js, charts.js, sound.js), with transparent combat math, achievements, streak combo bonuses, and a WebAudio SFX synth. README is exceptional. The killer flaw for an Agentic-AI hackathon: no AI at all \u2014 'as builder' just means Cursor authored it. Pure originality + execution carry the score.",
     "demo_check": "2xx",
     "ai_evidence": "no AI code found; Cursor was used as code editor only",
-    "rank": 9
-  },
-  {
-    "slug": "yash-dave__statesense",
-    "name": "Yash Dave",
-    "title": "Statesense",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 7,
-      "demo": 3,
-      "quality": 7,
-      "fit": 9,
-      "originality": 7
-    },
-    "total": 33,
-    "reason": "React+Vite IPL dashboard with a real Groq integration (openai/gpt-oss-120b) in src/services/groqService.js \u2014 well-engineered system prompt that encodes IPL-specific knowledge (powerplay/death overs, NRR, DLS, dot-ball %), and multiple AI features (match narration, 'Why Lost' explainer, prediction). Graceful static fallback when the API key is missing. Good component structure (Match, Player, Prediction, WhyLost, WormChart, PointsTable, ShareCard). README is the default Vite template \u2014 biggest weakness alongside no live demo URL.",
-    "demo_check": "no-url",
-    "ai_evidence": "Groq API (openai/gpt-oss-120b) fetch in src/services/groqService.js \u2014 getMatchNarration, getWhyLost, plus referenced in WhyLostExplainer.jsx, PredictionCard.jsx, MatchDashboard.jsx, PointsTable.jsx, PlayerProfile.jsx",
-    "rank": 10
-  },
-  {
-    "slug": "zels-sorathiya__habitforge",
-    "name": "Zels Sorathiya",
-    "title": "HabitForge",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 7,
-      "demo": 4,
-      "quality": 7,
-      "fit": 9,
-      "originality": 6
-    },
-    "total": 33,
-    "reason": "One of only two repos in the batch with real AI integration: package.json declares @google/generative-ai ^0.24.1 and src/app/coach/page.tsx:87 instantiates `new GoogleGenerativeAI(GEMINI_KEY)` with `model.getGenerativeModel({ model: 'gemini-1.5-flash' })` and `model.startChat(...)`, feeding a system prompt built from the user's habits/streaks/XP. Full Next.js 14 app with dashboard, leaderboard, social, analytics, coach, design pages, Firebase backend, MUI/framer-motion. Has streaks (lib/streak.ts), XP (lib/xp.ts), AddHabitModal, Celebrations \u2014 every Gamified-Habit-Builder element on the brief is present. Knock on demo (no URL) and on quality (tsc_errors.log and build_output.log in repo hint at unresolved build issues), but the engineering is real.",
-    "demo_check": "no-url",
-    "ai_evidence": "@google/generative-ai in package.json; GoogleGenerativeAI + gemini-1.5-flash chat in src/app/coach/page.tsx:87-95",
-    "rank": 11
+    "rollback_state": "head-already-in-window",
+    "rank": 7
   },
   {
     "slug": "darshit-kotecha__habit-quest-epicdaily",
@@ -213,7 +148,8 @@
     "reason": "Cricket-themed habit tracker built with Vite/React + Express. server.ts:4 imports @google/genai and exposes /api/habit-tips that calls gemini-flash-latest for daily motivational tips (real single LLM call with caching + fallback). App.tsx is 1163 lines with real screens (Nets dashboard, Coach Academy, Career Path, Stadium). README is polished with screenshots and two AI Studio Cloud Run URLs (preview returns 302). Themed gamification (cricket form, debut\u2192legend) is creative. AI is light (one tips endpoint) rather than truly agentic, but the build itself is substantial.",
     "demo_check": "2xx",
     "ai_evidence": "@google/genai in package.json; gemini-flash-latest call in server.ts:22",
-    "rank": 12
+    "rollback_state": "head-already-in-window",
+    "rank": 8
   },
   {
     "slug": "yash-patel__habitquest",
@@ -231,25 +167,8 @@
     "reason": "MERN-ish backend (Express + Mongoose) with a real tool-calling agent in backend/controllers/aiController.js (230 lines): uses groq-sdk with a tools array (get_active_habits, create_habit, etc.) and a while-loop over response.tool_calls \u2014 genuinely agentic flow letting the chatbot create/edit/complete habits via function calling. Frontend (Vite+React) has Dashboard, HabitManagement, Focus, Leaderboard, Achievements, AICoach component, and ranks utility (gamification). 77 files, auth context, JWT middleware. No live demo URL and no top-level README, but the Groq tool-calling agent is the most legitimately agentic gamified-habit entry in the batch.",
     "demo_check": "no-url",
     "ai_evidence": "groq-sdk in backend/package.json; tool-calling loop with multi-tool definitions in backend/controllers/aiController.js",
-    "rank": 13
-  },
-  {
-    "slug": "shaantanu-yadav__nexplay-pro-analytics",
-    "name": "Shaantanu Yadav",
-    "title": "NexPlay - Pro Analytics",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 6,
-      "demo": 5,
-      "quality": 7,
-      "fit": 8,
-      "originality": 6
-    },
-    "total": 32,
-    "reason": "Full MERN structure with frontend/ (React+Vite, pages for Matches, MatchDetails, Players, ComparePlayers, Profile) and backend/ (Express, controllers/routes/models split, MySQL via mysql2, JWT auth, Socket.IO). aiService.js makes a single Gemini 2.5 Flash call to summarize MatchStats rows into a fan-friendly insight \u2014 real integration but one-shot, not agentic. No live demo URL submitted; partial credit for runnable structure and clear README in frontend. Backend .env is checked in (only contains DB config, no secret keys visible). Stack overreach in the form (lists OpenAI/Gemini/Sports APIs) \u2014 only Gemini is actually wired up. Solid Data & Insights fit but generic 'sports dashboard' framing.",
-    "demo_check": "no-url",
-    "ai_evidence": "@google/generative-ai used in backend/src/services/aiService.js; gemini-2.5-flash via GEMINI_API_KEY env var",
-    "rank": 14
+    "rollback_state": "head-already-in-window",
+    "rank": 9
   },
   {
     "slug": "deep-vadher__lifequest-ai",
@@ -264,10 +183,11 @@
       "originality": 7
     },
     "total": 32,
-    "reason": "Live demo at lifequestai.netlify.app/login returns 200. Project is visually polished \u2014 many pages (quests, world, boss, coach, skilltree, futureself, domain, stats, shadow mode, cinematic intro), heavy framer-motion, clean app-router structure. But the 'AI' is fake: app/coach/page.js ships a hardcoded aiResponses object keyed by intent (procrastination/motivation/habits/...), and `grep -rn 'fetch\\|axios'` across the entire app/ folder returns zero hits. No openai/gemini/anthropic SDK in package.json. So all 'AI narration' is canned strings. Strong cinematic UX and habit framing earn it solid fit + originality, but agentic score has to be near 1.",
+    "reason": "Rolled-back HEAD (`Final Demo Version with Responsiveness`) already contains all routes: quests, world, boss, coach, skilltree, futureself, domain, dashboard, stats, profile, plus cinematic components (AInarrator, CinematicIntro, ShadowMode, LevelUpCinematic). package.json has no AI SDK (no openai/gemini/anthropic). app/coach/page.js uses a hardcoded `aiResponses` object keyed by intent \u2014 the AI is canned strings, no fetch/axios calls. Live demo at lifequestai.netlify.app/login returns 200. Heavy framer-motion polish and RPG framing are real, but the agentic claim is essentially fake. Rolled-back state is consistent with the submission; not materially weaker.",
     "demo_check": "2xx",
-    "ai_evidence": "no AI code \u2014 aiResponses object in app/coach/page.js is hardcoded literal strings, zero fetch/axios calls in app/",
-    "rank": 15
+    "ai_evidence": "no AI code \u2014 hardcoded aiResponses literal in app/coach/page.js; no openai/gemini/anthropic SDK in package.json",
+    "rollback_state": "needs-rollback",
+    "rank": 10
   },
   {
     "slug": "kuldeepsinh-jhala__levelup-ai",
@@ -285,7 +205,8 @@
     "reason": "Three-service layout: BE (Express/SQLite habits API), BE-AI (separate Express AI proxy), FE (React+Vite+TS). BE-AI/ai/gemini.js calls @google/generative-ai with a multi-key rotation pool (up to 50 keys) for quota handling \u2014 production-minded touch. BE proxies via services/aiProxy.js to BE-AI for /ask-gemini. Real controllers (auth, habits, onboarding, ai, motivation), Mongoose/SQLite models, schemas, prompts/ folder. 121 files total. AI generates habit suggestions and a 'lifespan pending' dashboard from user data \u2014 creative framing. No live demo URL and no top-level README; AI flow is single-call rather than multi-agent.",
     "demo_check": "no-url",
     "ai_evidence": "@google/generative-ai used in BE-AI/ai/gemini.js (multi-key Gemini 2.0 Flash); proxied via BE/src/services/aiProxy.js",
-    "rank": 16
+    "rollback_state": "head-already-in-window",
+    "rank": 11
   },
   {
     "slug": "riyank-singh__ipl-ground-intelligence",
@@ -303,43 +224,8 @@
     "reason": "Best Data & Insights fit in the batch \u2014 real Cricsheet ball-by-ball ingestion via backend/app/parser.py building venue_intelligence (powerplay runs/wickets, toss\u2192win correlation) served by FastAPI through backend/app/api/routes.py and backend/app/services/analytics_service.py to a React/Tailwind frontend. Clean separation (core/datastore, utils/loader, services). requirements.txt is FastAPI+pydantic only, no LLM libs. Form is refreshingly honest: AI was used as a 'syntax compiler / vibe coding' during dev, not at runtime \u2014 so the agentic score has to reflect that. Demo is a Google Drive video (200). Ground-bias angle is a less-trodden cricket-analytics axis.",
     "demo_check": "video",
     "ai_evidence": "no AI runtime \u2014 only FastAPI/pydantic/uvicorn in requirements.txt; submitter explicitly states AI was a dev-time tool",
-    "rank": 17
-  },
-  {
-    "slug": "pratham-raval__criq",
-    "name": "Pratham Raval",
-    "title": "CRIQ",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 6,
-      "demo": 1,
-      "quality": 8,
-      "fit": 9,
-      "originality": 6
-    },
-    "total": 30,
-    "reason": "FastAPI backend (main.py + data.py over ball-by-ball CSV/JSON) and React+TS+Vite frontend with thoughtful pages (Home, MatchSummary, MatchAnalysis, Momentum, Team, Player, FanTools). frontend/src/utils/ai.ts calls Gemini 2.0 Flash directly with caching and a getMockResponse fallback when no key is set \u2014 used for AI match story, stat-explainer drawer, and FanIQ quiz generation. README is rich with screenshots and feature matrix. AI is a single-shot generative layer rather than agentic, and key is exposed via VITE_ env (client-side). No hosted demo. Strong analytics fit but originality is moderate \u2014 competent dashboard with AI narration.",
-    "demo_check": "no-url",
-    "ai_evidence": "Gemini 2.0 Flash via REST in frontend/src/utils/ai.ts; VITE_GEMINI_API_KEY in frontend/.env.example",
-    "rank": 18
-  },
-  {
-    "slug": "farhaanali-vohra__apple",
-    "name": "FarhaanAli Vohra",
-    "title": "Apple",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 6,
-      "demo": 3,
-      "quality": 7,
-      "fit": 7,
-      "originality": 7
-    },
-    "total": 30,
-    "reason": "Backend-heavy MERN with a real Nebius (DeepSeek V3.2) call in src/services/nlpService.js \u2014 parses free-text habit logs into structured {sentiment, effort, durationMinutes, focus, obstacles, tags} JSON, with a heuristic fallback if the API key is missing. Medallion architecture (Bronze/Silver/Gold log tiers) via Mongoose models is an unusual, mature touch. Repo only appears to contain the server (no client UI in the snapshot), which weakens the gamification claim \u2014 the XP/level mechanic referenced in the form is not visible in code. No demo URL.",
-    "demo_check": "no-url",
-    "ai_evidence": "Nebius DeepSeek V3.2 fetch call in src/services/nlpService.js (chat/completions endpoint, JSON-only system prompt); config in src/config.js",
-    "rank": 19
+    "rollback_state": "head-already-in-window",
+    "rank": 12
   },
   {
     "slug": "zishan-vhora__lockin",
@@ -354,10 +240,11 @@
       "originality": 7
     },
     "total": 30,
-    "reason": "By far the most product-complete habit builder in the batch: React + TanStack Start + Supabase (Auth/RLS/migrations), Radix UI, doodle aesthetic, Counter & Timer habit types, Shield system to protect streaks, Battleground 1v1 duels, achievements, friends, profile pages \u2014 75 src files plus three SQL migrations. Strong README with clear setup. No live demo URL submitted, which hurts. Importantly, no LLM/agentic code exists \u2014 the 'agentic' claim refers solely to using AI (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit. Great Gamified Habit Builder fit, weak Agentic-theme fit.",
+    "reason": "Rolled-back HEAD (`vercel`) already contains the full product: 74 src files (React 19 + TanStack Router/Start, Radix UI, Supabase), three SQL migrations under supabase/migrations including 20260516151500_advanced_features.sql, polished doodle-aesthetic README with setup steps, Counter/Timer habits, Shield system, Battleground duels. Tech stack matches the form exactly. No AI SDK or LLM code anywhere \u2014 the 'agentic' claim refers to using AI tools (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit as runtime AI. No live demo URL submitted. Rolled-back state matches the submission; not materially weaker than what was originally reviewed.",
     "demo_check": "no-url",
-    "ai_evidence": "no AI code found; @supabase/supabase-js is the only external service; 'Vibe Coding' was used as the build methodology, not a runtime feature",
-    "rank": 20
+    "ai_evidence": "no AI code found; @supabase/supabase-js is the only external service; AI assistants used only as build-time vibe-coding partners",
+    "rollback_state": "needs-rollback",
+    "rank": 13
   },
   {
     "slug": "daksh-thakurani__streaksmith",
@@ -375,43 +262,8 @@
     "reason": "Easily the most polished engineering in the batch \u2014 Next.js 16 + Prisma 7 + Postgres (Neon) + Bun, with proper auth (sessions, password lib), and well-isolated lib/ modules for streak, coins, badges, missions, habit-completion, dashboard, catalog. Habits/streaks/coins/badges/rewards all present \u2014 perfect Gamified-Habit-Builder fit. Demo-user bypass for evaluators is a thoughtful touch. The fatal weakness for an Agentic-AI hackathon: zero AI in the codebase, and the form admits AI was only used for architecting. No live URL, only docs.",
     "demo_check": "no-url",
     "ai_evidence": "no AI code found; form states 'used open code for architecture' only",
-    "rank": 21
-  },
-  {
-    "slug": "dhruv-mahant__data-insights",
-    "name": "Dhruv Mahant",
-    "title": "Data & Insights",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 6,
-      "demo": 3,
-      "quality": 7,
-      "fit": 6,
-      "originality": 4
-    },
-    "total": 26,
-    "reason": "Solid Express/TypeScript backend (sportlens-ai) with auth, models (Match/Player/Team/User/Analytics), controllers, services (ai, cache, impact, insight, momentum, prediction) and Dockerfile/docker-compose. Real OpenAI integration in src/services/ai.service.ts calling gpt-4o-mini, invoked from insight.service.ts with prompt-hash caching. No live demo URL submitted and form pitch is one bland line ('A stop solution for easy analysis of data'). Pure backend with no UI shown, so the user-facing 'insights' story is unproven. Architecture is professional but the AI usage is a single chat-completion call, not multi-step agentic.",
-    "demo_check": "no-url",
-    "ai_evidence": "openai SDK in src/config/openai.ts; chat.completions.create with gpt-4o-mini in src/services/ai.service.ts; called from insight.service.ts:64 and :102",
-    "rank": 22
-  },
-  {
-    "slug": "sarvesh-verma__gamified-habits",
-    "name": "Sarvesh Verma",
-    "title": "Gamified habits",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 1,
-      "demo": 8,
-      "quality": 5,
-      "fit": 8,
-      "originality": 4
-    },
-    "total": 26,
-    "reason": "Polished vanilla React + Tailwind v4 habit tracker ('Protocol'): XP, levels, all-or-nothing daily streak, 30-day GitHub-style consistency map, Arena leaderboard, confetti, audio. Storage is localStorage only. Deployed live at habittracker-eta-eight.vercel.app (200 OK), README is well-written with a clear pitch. Zero AI in code \u2014 only canvas-confetti and react. Honest about it in the form ('vibe coding to create the project'). Strong fit for Gamified Habit Builder mechanics, but the 'agentic' theme is essentially absent.",
-    "demo_check": "2xx",
-    "ai_evidence": "no AI code found; deps are react + canvas-confetti only",
-    "rank": 23
+    "rollback_state": "head-already-in-window",
+    "rank": 14
   },
   {
     "slug": "kalpya-shah__habitforge",
@@ -429,7 +281,8 @@
     "reason": "Live Vercel demo (https://habitforges-red.vercel.app, 200 OK) is the strongest asset. Codebase has ~15 React components (Login, TopHUD, HabitCard, Vault, AddHabitModal, HeroProfile, Analytics, RightCanvas with a canvasEngine util) and uses localStorage for persistence \u2014 a real attempt at gamified UI, not a template. However: AI was only used at authoring time (Gemini for prompts, Antigravity as editor) with no runtime AI integration, and the README is the unmodified Vite+React starter. Originality is low \u2014 generic XP/vault/hero framing without a distinct hook.",
     "demo_check": "2xx",
     "ai_evidence": "no AI runtime code; form mentions AI only as coding assistant (Gemini for brainstorming, Antigravity as editor)",
-    "rank": 24
+    "rollback_state": "head-already-in-window",
+    "rank": 15
   },
   {
     "slug": "vansh-shah__data-insight",
@@ -447,7 +300,8 @@
     "reason": "Lovable-generated TanStack Start app with full UI shell (live, matchups, players, fantasy, community, studio, grassroots routes) \u2014 74 files. Backend talks to Cricbuzz via RapidAPI (src/lib/cricbuzz.functions.ts) for real cricket data, but there is no LLM call anywhere in the code. Marketing copy on stadium-scope-pro.lovable.app (200 OK) advertises '5,200+ AI Insights/Day' and '98% Prediction Accuracy', neither of which is backed by the codebase. Form 'agentic' answer ('To Get and to Give Efficient prompt') is itself near-empty. Visually impressive, technically not agentic.",
     "demo_check": "2xx",
     "ai_evidence": "no AI code found; only RAPIDAPI_CRICBUZZ_KEY fetch in src/lib/cricbuzz.functions.ts",
-    "rank": 25
+    "rollback_state": "head-already-in-window",
+    "rank": 16
   },
   {
     "slug": "harsh-soni__habitquest",
@@ -465,43 +319,27 @@
     "reason": "Major penalty: 'Source code URL' is the same Lovable demo link, not a code repo \u2014 _clone_status is bad-url, so there is nothing to inspect. The Lovable demo (https://your-habit-ai.lovable.app/) does return 200 OK. Form description is extensive and lists AI Habit Coach features (adaptive recovery, contextual nudges, burnout detection) plus Gemini/OpenAI in the stack, but with no code we cannot verify any AI integration \u2014 likely a Lovable-generated MVP. Fit description aligns with the brief on paper but is unverifiable.",
     "demo_check": "2xx",
     "ai_evidence": "form-only \u2014 claims Gemini/OpenAI in stack; no repo available to verify",
-    "rank": 26
+    "rollback_state": "no-repo",
+    "rank": 17
   },
   {
-    "slug": "bhavya-shah__nexushabit",
-    "name": "Bhavya Shah",
-    "title": "NexusHabit",
+    "slug": "sarvesh-verma__gamified-habits",
+    "name": "Sarvesh Verma",
+    "title": "Gamified habits",
     "challenge": "Gamified Habit Builder",
     "scores": {
-      "agentic": 3,
-      "demo": 3,
+      "agentic": 1,
+      "demo": 4,
       "quality": 4,
-      "fit": 6,
+      "fit": 7,
       "originality": 4
     },
     "total": 20,
-    "reason": "Flat single-folder static site: index.html + style.css + styles.css (duplicate!) + app.js + ai-coach.js + supabase-config.js. README is one line ('Habit-tracker'). ai-coach.js wires up a Gemini 2.5 Flash fetch call, but GEMINI_API_KEY is literally the placeholder string 'YOUR_GEMINI_API_KEY_PLACEHOLDER' \u2014 the AI path never executes. An `api key details.jpg` is committed (concerning if it contains real credentials). No live demo. Habit-tracker concept matches the challenge but stops at basic streak UI. Feels like a quick build.",
+    "reason": "Rolled-back HEAD (`last fixes`) has src/components/{Arena,Habits,Navigation,Dashboard}.jsx plus src/utils/gameLogic.jsx \u2014 small but functional vanilla React + Tailwind habit tracker. Dependencies are just react + canvas-confetti, zero AI SDK. README is still the default Vite template (the polished 'Protocol' README was added post-event). No live demo URL submitted on the form. Habit/streak/leaderboard mechanics fit the brief decently, but agentic theme is absent. Rolled-back state is materially weaker: README is default scaffolding instead of the custom one the post-event repo had, hurting quality.",
     "demo_check": "no-url",
-    "ai_evidence": "Gemini fetch call in ai-coach.js, but API key is placeholder string (never actually invoked)",
-    "rank": 27
-  },
-  {
-    "slug": "atharva-rathod__realmforge",
-    "name": "Atharva Rathod",
-    "title": "REALMFORGE",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 2,
-      "demo": 1,
-      "quality": 4,
-      "fit": 6,
-      "originality": 7
-    },
-    "total": 20,
-    "reason": "The only repo content is realmforge_backup.zip (single 'Add files via upload' commit), so the live code never made it into git. Extracted contents show a Next.js 16 boilerplate with hand-coded pages (companion, dashboard, feed, habits, persona, map) but package.json has zero AI dependencies \u2014 no openai, gemini, anthropic, etc., despite the form claiming OpenAI/Supabase. Hardcoded mock profiles in companion/page.tsx. Submitter explicitly said 'Not yet live'. README is the default create-next-app stub. Concept (fantasy realm + companion attraction system tied to streaks) is genuinely creative, hence the originality bump, but execution is incomplete.",
-    "demo_check": "no-url",
-    "ai_evidence": "no AI code found (claimed OpenAI in form, but no SDK in package.json or grep hits)",
-    "rank": 28
+    "ai_evidence": "no AI code; deps are react + canvas-confetti only",
+    "rollback_state": "needs-rollback",
+    "rank": 18
   },
   {
     "slug": "harsh-mehta__cricketiq",
@@ -519,7 +357,8 @@
     "reason": "Form claims a RAG pipeline, but src/utils/ragEngine.js is a fake/simulated 'agent' \u2014 keyword-overlap 'cosine similarity', hardcoded if/else routing (live_match/prediction/player_stats), and pre-baked answer strings with simulated 800-1400ms latency. @google/generative-ai is listed in package.json but never imported anywhere in src/. All match data is static mock JSON. UI exists (Dashboard, PlayerAnalytics, FloatingChat) and looks polished, but the 'AI analyst' is a sham. No live demo URL.",
     "demo_check": "no-url",
     "ai_evidence": "@google/generative-ai in package.json but no GoogleGenerativeAI import in src/; ragEngine.js is keyword matching + hardcoded responses",
-    "rank": 29
+    "rollback_state": "head-already-in-window",
+    "rank": 19
   },
   {
     "slug": "keyur-parmar__nexus",
@@ -537,25 +376,8 @@
     "reason": "_clone_status=bad-url because 'Source code URL' is actually a Lovable hosted app (https://nexusaiii.lovable.app), not a git repo. No source to review. The Lovable URL itself does return 200 so users can at least see a deployed UI \u2014 giving partial demo credit. Form fields are minimal: pitch 'A gamified Habit Building Platform', no description, AI usage answered as 'Yes I did.' Stack listed only as 'Lovable Ui.' Marked 'No' for public sharing. Without inspectable code, agentic and quality stay low.",
     "demo_check": "2xx",
     "ai_evidence": "form-only (Lovable-generated app; no repo to inspect)",
-    "rank": 30
-  },
-  {
-    "slug": "shlok-tilokani__ipl-dashboard",
-    "name": "Shlok Tilokani",
-    "title": "IPL Dashboard",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 2,
-      "demo": 1,
-      "quality": 4,
-      "fit": 6,
-      "originality": 4
-    },
-    "total": 17,
-    "reason": "Three-tier Flask app: data_generator/generator.py simulates ball-by-ball feed, middle_layer/app.py (224 lines) computes pace/aggression metrics, frontend uses vanilla HTML/CSS/Highcharts. No AI library imported anywhere \u2014 submitter explicitly says the .ai/ folder (memory.md, skills.md, implementationplan.json) was for the coding agent that wrote the app, not in-app AI. So 'agentic' here means 'built with AI', not 'is AI'. README is detailed and the analytical framing (Pace of Play, Scoring Strategy) is decent, but the codebase is small (~487 LOC) and no live demo. Misses the AI/agentic theme almost entirely.",
-    "demo_check": "no-url",
-    "ai_evidence": "no AI code found; .ai/ folder is coding-agent context, not runtime AI",
-    "rank": 31
+    "rollback_state": "no-repo",
+    "rank": 20
   },
   {
     "slug": "dev-parikh__cricpulse",
@@ -573,7 +395,27 @@
     "reason": "_clone_status=fail \u2014 no repo available to review, so quality is automatic floor. Form says NextJS + FastAPI stack with Tavily and a cricket API for live match feed and analysis; that's an unusual choice (Tavily for search-augmented insight) and fits the Data & Insights brief on paper. But no demo URL, no inspectable code, and the 'how is it agentic' answer barely describes more than 'fetching live match feed.' Penalizing heavily for unverifiable code; mild credit for a coherent pitch and tool choice.",
     "demo_check": "no-url",
     "ai_evidence": "form-only (claims Tavily + cricket API; no repo to verify)",
-    "rank": 32
+    "rollback_state": "no-repo",
+    "rank": 21
+  },
+  {
+    "slug": "shlok-tilokani__ipl-dashboard",
+    "name": "Shlok Tilokani",
+    "title": "IPL Dashboard",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 3,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 16,
+    "reason": "Rolled-back HEAD already has the three-tier structure: data_generator/generator.py (103 LOC ball-by-ball sim), middle_layer/app.py (224 LOC Flask with pace/momentum/phase logic), frontend (HTML/CSS/JS, ~160 LOC). The .ai/ folder (memory.md, skills.md, implementationplan.json, handoff.md) is for the coding agent that built the app, not runtime AI. No AI imports anywhere. README is just `# GDG-APL-16052026` \u2014 one line; no run instructions present at deadline (the detailed README was added post-event). No live demo. Misses the agentic/AI theme almost entirely; rolled-back state is slightly weaker than the original pass on quality due to the minimal README.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; .ai/ folder is coding-agent context, not runtime AI",
+    "rollback_state": "needs-rollback",
+    "rank": 22
   },
   {
     "slug": "ashutosh-bhagat__apl-analytics",
@@ -591,7 +433,8 @@
     "reason": "Vite/React shell with a Node server (server/index.js) that proxies cricapi.com and serves mock standings/live-match data. Critically, src/ is empty \u2014 only the prebuilt dist/ bundle exists, so source review is impossible. No AI library is imported anywhere; the only 'AI' artifact is .claude/settings.local.json showing they used Claude Code as an IDE. Form admits AI was used 'for creating UI and statistical insights' (i.e., coding assistant, not in-app). No live demo URL, no README. Reasonable cricket-data scaffolding but the runtime app cannot be verified and there is zero agentic content.",
     "demo_check": "no-url",
     "ai_evidence": "no AI code found; only .claude/settings.local.json (Claude Code IDE config)",
-    "rank": 33
+    "rollback_state": "head-already-in-window",
+    "rank": 23
   },
   {
     "slug": "nipun-kulshrestha__andren",
@@ -609,25 +452,8 @@
     "reason": "Next.js 16 + Supabase + zustand scaffold with habits/dashboard/avatar/onboarding/profile/stats pages, but no AI usage anywhere in src/. README is the default create-next-app boilerplate. No OpenAI/Gemini/Anthropic imports, no fetch to any LLM endpoint, no /api routes at all. Form-text claims 'uses AI to gain knowledge about your information' but code shows none. Habit-tracker structure is there but feels incomplete and unpolished. No live demo URL.",
     "demo_check": "no-url",
     "ai_evidence": "no AI code found; deps are @supabase/supabase-js and zustand only",
-    "rank": 34
-  },
-  {
-    "slug": "harsh-kaptan__cricketiq-ai-cricket-intelligence-platform",
-    "name": "Harsh Kaptan",
-    "title": "CricketIQ AI Cricket Intelligence Platform",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 3,
-      "demo": 1,
-      "quality": 1,
-      "fit": 5,
-      "originality": 4
-    },
-    "total": 14,
-    "reason": "Clone status says 'ok' but the GitHub repo is actually empty \u2014 `git log --all` returns nothing, only .git/ exists on disk. No live demo URL provided. Form claims Groq API + Llama 3.3 70B Versatile and a Next.js/shadcn/Recharts frontend, but there is literally no code to verify any of it. The pitch (explaining momentum shifts and tactical decisions instead of raw stats) is reasonable and fits Data & Insights, but it overlaps heavily with multiple other batch-4 submissions (Trushil, Riyank) and there's nothing to differentiate.",
-    "demo_check": "no-url",
-    "ai_evidence": "form-only (Groq + Llama 3.3 70B claimed; empty repo, no code)",
-    "rank": 35
+    "rollback_state": "head-already-in-window",
+    "rank": 24
   },
   {
     "slug": "ishan-chavda__habitquest",
@@ -645,7 +471,8 @@
     "reason": "Submitter put the deployed URL 'HabitQuest.netlify.app' in the Source code URL field and left the Live demo field null \u2014 hence clone_status: bad-url, no repo on disk. The netlify URL itself does return 200, so something is deployed. Form is bare-bones: one-line pitch 'It is good', stack 'MERN', AI usage 'I useda for Q&A'. Nothing to inspect beyond that. Credit only for the deployment existing.",
     "demo_check": "2xx",
     "ai_evidence": "form-only ('used a for Q&A'); no repo, can't verify",
-    "rank": 36
+    "rollback_state": "no-repo",
+    "rank": 25
   },
   {
     "slug": "soni-jeet__habitforge",
@@ -663,7 +490,8 @@
     "reason": "Source code URL field literally says 'Can't deploy' \u2014 so clone_status: bad-url, nothing on disk. No live demo. Stack listed as just 'Node js'. 'How agentic' answer is the single word 'Antigravity' (a dev IDE, not a runtime AI integration). Pitch \u2014 Snapchat-streak-inspired dopamine loop with ambient-glass UI and real-world rewards \u2014 is the only thing with any spark, hence a small originality nudge. Otherwise no evidence of anything built.",
     "demo_check": "no-url",
     "ai_evidence": "form-only ('Antigravity' is a dev tool, not product AI); no repo",
-    "rank": 37
+    "rollback_state": "no-repo",
+    "rank": 26
   },
   {
     "slug": "naiteek__solo-leveling-habit-tracker",
@@ -681,25 +509,27 @@
     "reason": "_clone_status is bad-url \u2014 'Source code URL' was Sololeveling.Naiteekchoksi.com (a domain, not a repo), and curl on both http/https returns 000 (DNS/connection fails). No code to review. Form says AI is 'using n8n' and stack is 'Cursor, claude' \u2014 n8n could enable an agentic workflow but there is zero artifact to verify. The Solo Leveling anime theming is the only originality hook. Scored on form-only with heavy no-code/no-demo penalty.",
     "demo_check": "timeout",
     "ai_evidence": "form-only; 'n8n' workflow claimed but no repo to inspect",
-    "rank": 38
+    "rollback_state": "no-repo",
+    "rank": 27
   },
   {
-    "slug": "trushil-patel__cric-insight",
-    "name": "Trushil Patel",
-    "title": "Cric Insight",
-    "challenge": "Data & Insights",
+    "slug": "dwij-joshi__nova-habit-tracker",
+    "name": "Dwij Joshi",
+    "title": "Nova Habit Tracker",
+    "challenge": "Gamified Habit Builder",
     "scores": {
-      "agentic": 2,
-      "demo": 1,
+      "agentic": 1,
+      "demo": 9,
       "quality": 1,
-      "fit": 5,
-      "originality": 3
+      "fit": 1,
+      "originality": 1
     },
-    "total": 12,
-    "reason": "Empty repo \u2014 `git log --all` returns nothing despite clone marked 'ok' (the source URL itself is a /settings/access link, which is a private GitHub settings page and not a public repo). No demo URL. Form fields are nearly empty: 'What does it do?' is null, 'Anything else?' is null. Stack listed is generic React/Spring Boot/MySQL/AI APIs. Nothing here to evaluate beyond the one-line pitch, which is also essentially the same as CricketIQ.",
-    "demo_check": "no-url",
-    "ai_evidence": "form-only ('AI APIs' generic mention; empty repo, no code)",
-    "rank": 39
+    "total": 13,
+    "reason": "Rolled-back repo contains ONLY a default create-next-app README.md and nothing else \u2014 no package.json, no app/, no src/, no Firebase config, no AI code. The entire Next.js + TypeScript + Firebase + Gemini integration described in the submission was added in post-event commits. Live Vercel demo still returns 200 because Vercel is serving the post-deadline build, but the repo at 23:35 IST is effectively empty scaffolding. Rolled-back state is dramatically weaker than the submission described; substantive features and the Gemini chat endpoint (src/app/api/chat/route.ts) were added after the deadline.",
+    "demo_check": "2xx",
+    "ai_evidence": "rolled-back repo has only README.md; no code, no SDK, no AI integration present at deadline",
+    "rollback_state": "needs-rollback",
+    "rank": 28
   },
   {
     "slug": "nirav-lad__momentum-ai",
@@ -717,7 +547,8 @@
     "reason": "Clone status: fail (GitHub URL didn't resolve at clone time). No live demo URL. Form claims Next.js + Hugging Face free LLM + Firebase for AI-generated custom habits, which would be a legitimate agentic angle if there were any code to back it up. Submitter also opted out of public sharing ('Can we share your submission publicly?: No'). Scoring on form alone.",
     "demo_check": "no-url",
     "ai_evidence": "form-only (Hugging Face free LLM claimed; clone failed, no code)",
-    "rank": 40
+    "rollback_state": "no-repo",
+    "rank": 29
   },
   {
     "slug": "preet-bhanuprasad-patel__sportsiq",
@@ -735,7 +566,8 @@
     "reason": "_clone_status=bad-url \u2014 'Source code URL' field literally just contains the string 'SportsIQ', not a URL. No demo URL either. Form answers are minimal: no description, no 'judges should know' notes, AI usage = 'Used antigravity for building and Gpt for prompting.' Title fits the Data & Insights brief in concept (multi-sport analytics) but nothing is verifiable. Essentially a form-only submission.",
     "demo_check": "no-url",
     "ai_evidence": "form-only (no source URL provided)",
-    "rank": 41
+    "rollback_state": "no-repo",
+    "rank": 30
   },
   {
     "slug": "sara-bhuva__habitquest",
@@ -753,25 +585,8 @@
     "reason": "_clone_status is bad-url \u2014 'couldn't generate git link due to some issues' submitted as Source code URL. No repo, no live demo, no evidence of any code. Form claims gemini for prompts + Stitch + Antigravity for app development, but all of that is build-time AI-coding-assistant usage, not in-app agentic behavior. Pitch is a one-liner ('maintain streak.maintain habit'). Scored on form-only with full no-code penalty.",
     "demo_check": "no-url",
     "ai_evidence": "form-only; gemini/stitch/antigravity cited as build-time coding tools, no repo",
-    "rank": 42
-  },
-  {
-    "slug": "vraj-parmar__gamified-habit-builder",
-    "name": "Vraj Parmar",
-    "title": "Gamified habit builder",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 1,
-      "demo": 1,
-      "quality": 1,
-      "fit": 3,
-      "originality": 4
-    },
-    "total": 10,
-    "reason": "Source URL 'www.github.com/vrajce/gdghack' did clone but the repo is empty \u2014 only .git, no application code. Pitch is interesting on paper ('ZeroExcuse AI\u2026 intercepts your excuses, renegotiates daily goals, demands proof of work') which earns a small originality bump for the idea, but there's zero code to verify any of it. 'How is it agentic' answer is literally 'Used ai ide.' No demo URL. Without an implementation, this submission is effectively form-only.",
-    "demo_check": "no-url",
-    "ai_evidence": "no AI code found (empty repo)",
-    "rank": 43
+    "rollback_state": "no-repo",
+    "rank": 31
   },
   {
     "slug": "jaimin-suthar__gamified-habit-builder",
@@ -789,7 +604,27 @@
     "reason": "Clone failed (_clone_status=fail) so no code to review. Live demo at gamified-habit-builder.vercel.app returns 200 but the rendered page is essentially empty \u2014 only the title 'HabitForge | Gamified Habit Builder' with no functional UI, per fetch. Form answers are one-word ('Antigravity', 'Vercel, next js') and the pitch ('Solution find from shreemad bhagvat Geeta') doesn't explain the product. Major code-missing penalty applies.",
     "demo_check": "2xx",
     "ai_evidence": "form-only (clone failed, demo page is a near-empty template)",
-    "rank": 44
+    "rollback_state": "no-repo",
+    "rank": 32
+  },
+  {
+    "slug": "zels-sorathiya__habitforge",
+    "name": "Zels Sorathiya",
+    "title": "HabitForge",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 3,
+      "quality": 2,
+      "fit": 2,
+      "originality": 2
+    },
+    "total": 10,
+    "reason": "Rolled-back repo contains only `Initial commit from Create Next App` scaffolding: src/app/{layout.tsx,page.tsx,globals.css,page.module.css,fonts/}, default next.config.mjs, tsconfig.json, .eslintrc.json \u2014 no package.json present in working tree, no Firebase config, no MUI, no Gemini integration, no coach page, no habit/XP/streak code. Everything the form describes (Next.js 14 app, @google/generative-ai SDK, dashboard, leaderboard, analytics, coach with gemini-1.5-flash chat) was added in post-event commits. No live demo URL. Rolled-back state is dramatically weaker than the submission described; only template code exists at the 23:35 deadline.",
+    "demo_check": "no-url",
+    "ai_evidence": "rolled-back repo is default create-next-app scaffolding only; no AI SDK, no code at deadline",
+    "rollback_state": "needs-rollback",
+    "rank": 33
   },
   {
     "slug": "khushi-kachhadiya__lifequest",
@@ -807,7 +642,8 @@
     "reason": "No submission to evaluate: source code URL is literally 'Can't commit', no live demo URL, and the participant indicated their submission cannot be shared publicly. Stack listed only as 'Cloud'. The one-line pitch mentions streaks and avatar levels which would map to the brief, but with no code, no demo, and a minimal description, there is essentially nothing to score above floor. Antigravity/Claude were used as authoring tools per the form, not as runtime AI.",
     "demo_check": "no-url",
     "ai_evidence": "no repo; form mentions Antigravity/Claude only as authoring tools",
-    "rank": 45
+    "rollback_state": "no-repo",
+    "rank": 34
   },
   {
     "slug": "hasit-solanki__vibequest",
@@ -825,7 +661,8 @@
     "reason": "_clone_status is bad-url ('cant deploy' as Source code URL); no repo exists to review. Submitter also chose 'No' for public sharing. Form lists 'Used antigravity for vibe coding' as the AI usage and 'Nextjs + tailwind' as stack \u2014 no concrete agentic behavior described. No live demo URL, no code, no README, no evidence of anything beyond the project name. Scored on form fields only with major no-code penalty across all categories.",
     "demo_check": "no-url",
     "ai_evidence": "form-only; 'antigravity vibe coding' (coding-assistant usage, not runtime AI)",
-    "rank": 46
+    "rollback_state": "no-repo",
+    "rank": 35
   },
   {
     "slug": "utsav-chouhan__generate-sports-insights-for-everyone",
@@ -843,25 +680,8 @@
     "reason": "Source code URL is '-' and Live demo URL is '-'. Clone status bad-url, no repo at all. Form pitch is 'Sports data through graphs' and agentic answer is 'I used claude code' (i.e. the IDE, not an in-product agent). Stack listed as Python/Next.js but nothing to verify. Major code-missing penalty.",
     "demo_check": "no-url",
     "ai_evidence": "form-only; 'I used claude code' refers to the dev tool, not a runtime AI feature",
-    "rank": 47
-  },
-  {
-    "slug": "pandey-anand-avdhesh__game",
-    "name": "Pandey Anand Avdhesh",
-    "title": "game",
-    "challenge": "Gamified Habit Builder",
-    "scores": {
-      "agentic": 1,
-      "demo": 1,
-      "quality": 1,
-      "fit": 2,
-      "originality": 2
-    },
-    "total": 7,
-    "reason": "Repo is effectively empty \u2014 only a .git directory exists, no source files at all (despite _clone_status=ok). Form fields are equally thin: title 'game', pitch 'gamified productivity', no description, no demo URL, AI usage answered as 'Ai as model which enhance the game by user's interaction.' Stack lists TS/JS/React/Node/Antigravity but there is nothing in the repo to confirm any of it. Nothing to evaluate.",
-    "demo_check": "no-url",
-    "ai_evidence": "no AI code found (empty repo)",
-    "rank": 48
+    "rollback_state": "no-repo",
+    "rank": 36
   },
   {
     "slug": "roshan-variya__clash-battle",
@@ -879,6 +699,235 @@
     "reason": "Effectively a non-submission. Source code URL says 'Couldn't deploy due to technical error', no live demo, no description of what the project does, stack is just 'Antigravity', and the participant declined public sharing. One-line pitch is 'Amazing experience'. With no code, no demo, no functional description, and challenge-fit being entirely unverifiable for the Data & Insights track, this scores at the floor across every criterion.",
     "demo_check": "no-url",
     "ai_evidence": "no repo; form mentions 'vibe coding' with Antigravity only",
+    "rollback_state": "no-repo",
+    "rank": 37
+  },
+  {
+    "slug": "aadi-shah__beyond-the-score",
+    "name": "Aadi Shah",
+    "title": "Beyond the Score",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 38
+  },
+  {
+    "slug": "bhavya-shah__nexushabit",
+    "name": "Bhavya Shah",
+    "title": "NexusHabit",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 39
+  },
+  {
+    "slug": "pandey-anand-avdhesh__game",
+    "name": "Pandey Anand Avdhesh",
+    "title": "game",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 40
+  },
+  {
+    "slug": "shaantanu-yadav__nexplay-pro-analytics",
+    "name": "Shaantanu Yadav",
+    "title": "NexPlay - Pro Analytics",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 41
+  },
+  {
+    "slug": "vraj-parmar__gamified-habit-builder",
+    "name": "Vraj Parmar",
+    "title": "Gamified habit builder",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 42
+  },
+  {
+    "slug": "farhaanali-vohra__apple",
+    "name": "FarhaanAli Vohra",
+    "title": "Apple",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 43
+  },
+  {
+    "slug": "yash-dave__statesense",
+    "name": "Yash Dave",
+    "title": "Statesense",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 44
+  },
+  {
+    "slug": "pratham-raval__criq",
+    "name": "Pratham Raval",
+    "title": "CRIQ",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 45
+  },
+  {
+    "slug": "atharva-rathod__realmforge",
+    "name": "Atharva Rathod",
+    "title": "REALMFORGE",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 46
+  },
+  {
+    "slug": "harsh-kaptan__cricketiq-ai-cricket-intelligence-platform",
+    "name": "Harsh Kaptan",
+    "title": "CricketIQ AI Cricket Intelligence Platform",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 47
+  },
+  {
+    "slug": "trushil-patel__cric-insight",
+    "name": "Trushil Patel",
+    "title": "Cric Insight",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
+    "rank": 48
+  },
+  {
+    "slug": "dhruv-mahant__data-insights",
+    "name": "Dhruv Mahant",
+    "title": "Data & Insights",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Repository state at the 23:35 event deadline was empty \u2014 all commits arrived afterwards. Scored at the floor since no code was submitted within the event window.",
+    "demo_check": "no-url",
+    "ai_evidence": "no in-window code",
+    "rollback_state": "empty-at-deadline",
     "rank": 49
   },
   {
@@ -897,6 +946,7 @@
     "reason": "All form fields are single dots ('..', '.'). Source code URL is a Vercel deployment URL rather than a GitHub repo (clone status bad-url), and that URL returns 401 (Vercel deployment protection). Live demo field is also '..'. Marked 'No' for public sharing. No verifiable submission of any kind.",
     "demo_check": "404",
     "ai_evidence": "form-only and form is empty",
+    "rollback_state": "no-repo",
     "rank": 50
   }
 ]

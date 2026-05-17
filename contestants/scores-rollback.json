@@ -1,0 +1,121 @@
+[
+  {
+    "slug": "aarya-patel__cricbrain",
+    "name": "Aarya Patel",
+    "title": "CricBrain",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 7,
+      "demo": 3,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 34,
+    "reason": "Rolled-back HEAD already contains the full fullstack build: /client (React+Vite, ~7 components incl. AISummary, AIInsightModal, TermExplainer, PlayerCard) and /server (Express + @google/generative-ai ^0.24.1). server/controllers/aiController.js has three real Gemini 3.1 Flash-Lite endpoints (commentary with Analyst/Fanatic personas, insights in JSON mode, ELI5 explanation) with graceful mock fallbacks when genAI is null. README is detailed with architecture, routes, and quickstart. No live demo URL (form had none). Rolled-back state matches the submission's claims; not materially weaker than the post-event version.",
+    "demo_check": "no-url",
+    "ai_evidence": "@google/generative-ai in server/package.json; gemini-3.1-flash-lite via getGenerativeModel in server/controllers/aiController.js (generateCommentary, generateInsights JSON-mode, generateExplanation); config in server/config/gemini.js"
+  },
+  {
+    "slug": "deep-vadher__lifequest-ai",
+    "name": "Deep Vadher",
+    "title": "LifeQuest AI",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 9,
+      "quality": 7,
+      "fit": 7,
+      "originality": 7
+    },
+    "total": 32,
+    "reason": "Rolled-back HEAD (`Final Demo Version with Responsiveness`) already contains all routes: quests, world, boss, coach, skilltree, futureself, domain, dashboard, stats, profile, plus cinematic components (AInarrator, CinematicIntro, ShadowMode, LevelUpCinematic). package.json has no AI SDK (no openai/gemini/anthropic). app/coach/page.js uses a hardcoded `aiResponses` object keyed by intent — the AI is canned strings, no fetch/axios calls. Live demo at lifequestai.netlify.app/login returns 200. Heavy framer-motion polish and RPG framing are real, but the agentic claim is essentially fake. Rolled-back state is consistent with the submission; not materially weaker.",
+    "demo_check": "2xx",
+    "ai_evidence": "no AI code — hardcoded aiResponses literal in app/coach/page.js; no openai/gemini/anthropic SDK in package.json"
+  },
+  {
+    "slug": "dwij-joshi__nova-habit-tracker",
+    "name": "Dwij Joshi",
+    "title": "Nova Habit Tracker",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 9,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 13,
+    "reason": "Rolled-back repo contains ONLY a default create-next-app README.md and nothing else — no package.json, no app/, no src/, no Firebase config, no AI code. The entire Next.js + TypeScript + Firebase + Gemini integration described in the submission was added in post-event commits. Live Vercel demo still returns 200 because Vercel is serving the post-deadline build, but the repo at 23:35 IST is effectively empty scaffolding. Rolled-back state is dramatically weaker than the submission described; substantive features and the Gemini chat endpoint (src/app/api/chat/route.ts) were added after the deadline.",
+    "demo_check": "2xx",
+    "ai_evidence": "rolled-back repo has only README.md; no code, no SDK, no AI integration present at deadline"
+  },
+  {
+    "slug": "sarvesh-verma__gamified-habits",
+    "name": "Sarvesh verma",
+    "title": "Gamified habits",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 4,
+      "quality": 4,
+      "fit": 7,
+      "originality": 4
+    },
+    "total": 20,
+    "reason": "Rolled-back HEAD (`last fixes`) has src/components/{Arena,Habits,Navigation,Dashboard}.jsx plus src/utils/gameLogic.jsx — small but functional vanilla React + Tailwind habit tracker. Dependencies are just react + canvas-confetti, zero AI SDK. README is still the default Vite template (the polished 'Protocol' README was added post-event). No live demo URL submitted on the form. Habit/streak/leaderboard mechanics fit the brief decently, but agentic theme is absent. Rolled-back state is materially weaker: README is default scaffolding instead of the custom one the post-event repo had, hurting quality.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code; deps are react + canvas-confetti only"
+  },
+  {
+    "slug": "shlok-tilokani__ipl-dashboard",
+    "name": "Shlok Tilokani",
+    "title": "IPL Dashboard",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 2,
+      "demo": 1,
+      "quality": 3,
+      "fit": 6,
+      "originality": 4
+    },
+    "total": 16,
+    "reason": "Rolled-back HEAD already has the three-tier structure: data_generator/generator.py (103 LOC ball-by-ball sim), middle_layer/app.py (224 LOC Flask with pace/momentum/phase logic), frontend (HTML/CSS/JS, ~160 LOC). The .ai/ folder (memory.md, skills.md, implementationplan.json, handoff.md) is for the coding agent that built the app, not runtime AI. No AI imports anywhere. README is just `# GDG-APL-16052026` — one line; no run instructions present at deadline (the detailed README was added post-event). No live demo. Misses the agentic/AI theme almost entirely; rolled-back state is slightly weaker than the original pass on quality due to the minimal README.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; .ai/ folder is coding-agent context, not runtime AI"
+  },
+  {
+    "slug": "zels-sorathiya__habitforge",
+    "name": "Zels Sorathiya",
+    "title": "HabitForge",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 3,
+      "quality": 2,
+      "fit": 2,
+      "originality": 2
+    },
+    "total": 10,
+    "reason": "Rolled-back repo contains only `Initial commit from Create Next App` scaffolding: src/app/{layout.tsx,page.tsx,globals.css,page.module.css,fonts/}, default next.config.mjs, tsconfig.json, .eslintrc.json — no package.json present in working tree, no Firebase config, no MUI, no Gemini integration, no coach page, no habit/XP/streak code. Everything the form describes (Next.js 14 app, @google/generative-ai SDK, dashboard, leaderboard, analytics, coach with gemini-1.5-flash chat) was added in post-event commits. No live demo URL. Rolled-back state is dramatically weaker than the submission described; only template code exists at the 23:35 deadline.",
+    "demo_check": "no-url",
+    "ai_evidence": "rolled-back repo is default create-next-app scaffolding only; no AI SDK, no code at deadline"
+  },
+  {
+    "slug": "zishan-vhora__lockin",
+    "name": "Zishan Vhora",
+    "title": "Lockin",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 2,
+      "demo": 4,
+      "quality": 8,
+      "fit": 9,
+      "originality": 7
+    },
+    "total": 30,
+    "reason": "Rolled-back HEAD (`vercel`) already contains the full product: 74 src files (React 19 + TanStack Router/Start, Radix UI, Supabase), three SQL migrations under supabase/migrations including 20260516151500_advanced_features.sql, polished doodle-aesthetic README with setup steps, Counter/Timer habits, Shield system, Battleground duels. Tech stack matches the form exactly. No AI SDK or LLM code anywhere — the 'agentic' claim refers to using AI tools (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit as runtime AI. No live demo URL submitted. Rolled-back state matches the submission; not materially weaker than what was originally reviewed.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code found; @supabase/supabase-js is the only external service; AI assistants used only as build-time vibe-coding partners"
+  }
+]
