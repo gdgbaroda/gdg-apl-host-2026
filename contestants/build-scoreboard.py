@@ -19,6 +19,13 @@ if subs_path.exists():
     for s in json.loads(subs_path.read_text()):
         sub_by_slug[s['_slug']] = s
 
+# Commit timing analysis (if available)
+timing_path = ROOT / 'commit-timing.json'
+timing_by_slug = {}
+if timing_path.exists():
+    for t in json.loads(timing_path.read_text()):
+        timing_by_slug[t['slug']] = t
+
 # Honor the "Can we share your submission publicly?" consent. Anyone who
 # answered anything other than "Yes" is filtered out and the visible ranks
 # are renumbered 1..N.
@@ -107,6 +114,43 @@ def short_bullets(entry):
 def medal(rank):
     return '🥇' if rank == 1 else '🥈' if rank == 2 else '🥉' if rank == 3 else ''
 
+def fmt_span(minutes):
+    if minutes is None: return '—'
+    if minutes < 1: return '<1m'
+    if minutes < 60: return f'{int(minutes)}m'
+    h = minutes / 60
+    if h < 24: return f'{h:.1f}h'
+    return f'{h/24:.1f}d'
+
+VERDICT_LABEL = {
+    'OK': '✅ Active during event',
+    'SINGLE_COMMIT': '⚠️ Single commit at submission',
+    'NO_COMMITS': '⚠️ Repo has no commits',
+    'NO_REPO': '🚫 No public repo',
+    'PRE_EXISTING_ONLY': '🚨 No commits during event',
+    'PRE_EXISTING_THEN_TWEAKED': '🚨 History pre-dates the event',
+    'BROAD_TIMELINE': '⚠️ Activity spans multiple days',
+    'BULK_DUMP': '⚠️ Bulk push at submission',
+}
+
+def commit_summary(slug):
+    """Return a short string for the card, e.g. '📅 12 commits · 1.8h' or '— No repo'."""
+    t = timing_by_slug.get(slug)
+    if not t:
+        return None
+    v = t.get('verdict', '')
+    n = t.get('n_commits') or 0
+    span = t.get('span_minutes')
+    if v in ('NO_REPO', 'NO_COMMITS'):
+        return '📅 No commit history'
+    if v == 'SINGLE_COMMIT':
+        first = (t.get('first') or '')[:16].replace('T', ' ')
+        return f'📅 1 commit at {first}'
+    if v == 'PRE_EXISTING_THEN_TWEAKED':
+        first = (t.get('first') or '')[:10]
+        return f'🚨 {n} commits since {first}'
+    return f'📅 {n} commits · {fmt_span(span)}'
+
 def render_card(s):
     rank = s['rank']
     total = s['total']
@@ -116,6 +160,8 @@ def render_card(s):
     challenge = html.escape(s.get('challenge') or '')
     challenge_class = 'c-blue' if 'Habit' in (s.get('challenge') or '') else 'c-yellow'
     bullets_html = '\n'.join(f'          <li>{html.escape(b)}</li>' for b in short_bullets(s))
+    csum = commit_summary(s['slug'])
+    commit_html = f'<div class="commits-row">{html.escape(csum)}</div>' if csum else ''
     return f'''
       <article class="card" data-slug="{html.escape(s["slug"])}" tabindex="0" role="button" aria-label="View details for {title}">
         <div class="card-head">
@@ -131,6 +177,7 @@ def render_card(s):
         <ul class="bullets">
 {bullets_html}
         </ul>
+        {commit_html}
         <div class="scores">
           <span class="score-pill"><span class="score-label">AI</span><span class="score-val">{sc.get("agentic","?")}</span></span>
           <span class="score-pill"><span class="score-label">Demo</span><span class="score-val">{sc.get("demo","?")}</span></span>
@@ -144,6 +191,7 @@ def render_card(s):
 def render_modal_data(s):
     """Build the JS-friendly data object for the modal."""
     slug = s['slug']
+    t = timing_by_slug.get(slug) or {}
     return {
         'slug': slug,
         'rank': s['rank'],
@@ -162,6 +210,13 @@ def render_modal_data(s):
         'what': what_does_it_do(slug),
         'how_agentic': how_agentic(slug),
         'stack': stack(slug),
+        'commit_verdict': t.get('verdict'),
+        'commit_verdict_label': VERDICT_LABEL.get(t.get('verdict'), '—'),
+        'n_commits': t.get('n_commits'),
+        'first_commit': t.get('first'),
+        'last_commit': t.get('last'),
+        'span_minutes': t.get('span_minutes'),
+        'span_pretty': fmt_span(t.get('span_minutes')),
     }
 
 cards_html = '\n'.join(render_card(s) for s in ranking)

@@ -65,6 +65,8 @@
       <div class="evidence">
         <div class="ev"><span class="ev-label">AI evidence</span> <span class="ev-val">${escapeHtml(d.ai_evidence || '—')}</span></div>
         <div class="ev"><span class="ev-label">Demo check</span> <span class="ev-val">${demoTag}</span></div>
+        <div class="ev"><span class="ev-label">Commit timing</span> <span class="ev-val">${escapeHtml(d.commit_verdict_label || '—')}</span></div>
+        ${d.n_commits != null ? `<div class="ev"><span class="ev-label">Commits</span> <span class="ev-val">${d.n_commits} commit${d.n_commits === 1 ? '' : 's'}${d.first_commit ? ` · first ${escapeHtml(d.first_commit.replace('T', ' '))}` : ''}${d.last_commit && d.last_commit !== d.first_commit ? ` · last ${escapeHtml(d.last_commit.replace('T', ' '))}` : ''}${d.span_pretty && d.span_pretty !== '—' ? ` · span ${escapeHtml(d.span_pretty)}` : ''}</span></div>` : ''}
       </div>
 
       <h3>From the submission</h3>

@@ -175,6 +175,13 @@ body.no-scroll { overflow: hidden; }
   font-weight: 700;
   color: var(--fg);
 }
+.commits-row {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 0.55rem;
+  letter-spacing: 0.02em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 .card-cta {
   font-size: 0.72rem;
   color: var(--muted);
