@@ -154,6 +154,7 @@ VERDICT_LABEL = {
     'NO_REPO': '🚫 No public repo',
     'PRE_EXISTING_ONLY': '🚨 No commits during event',
     'PRE_EXISTING_THEN_TWEAKED': '🚨 History pre-dates the event',
+    'TEMPLATE_DERIVED': '🧩 Built on a scaffold/template (work in window)',
     'BROAD_TIMELINE': '⚠️ Activity spans multiple days',
     'BULK_DUMP': '⚠️ Bulk push at submission',
 }
@@ -174,6 +175,8 @@ def commit_summary(slug):
     if v == 'PRE_EXISTING_THEN_TWEAKED':
         first = (t.get('first') or '')[:10]
         return f'🚨 {n} commits since {first}'
+    if v == 'TEMPLATE_DERIVED':
+        return f'🧩 {n - 1} commits on top of a scaffold'
     return f'📅 {n} commits · {fmt_span(span)}'
 
 def render_card(s):

@@ -39,61 +39,77 @@ print(f"assumed event window: {event_window_start} → {event_end}")
 print()
 
 def git_log_iso(slug):
+    """Return list of (datetime, subject) for every commit on every ref."""
     repo = ROOT / slug
     if not repo.exists(): return None
     try:
         out = subprocess.run(
-            ['git', '-C', str(repo), 'log', '--all', '--pretty=format:%aI'],
+            ['git', '-C', str(repo), 'log', '--all', '--pretty=format:%aI%x09%s'],
             capture_output=True, text=True, timeout=20,
         )
         if out.returncode != 0: return None
-        lines = [ln.strip() for ln in out.stdout.strip().splitlines() if ln.strip()]
         commits = []
-        for ln in lines:
+        for ln in out.stdout.strip().splitlines():
+            if '\t' not in ln: continue
+            ts, msg = ln.split('\t', 1)
             try:
-                commits.append(dt.datetime.fromisoformat(ln).replace(tzinfo=None))
+                commits.append((dt.datetime.fromisoformat(ts).replace(tzinfo=None), msg.strip()))
             except Exception:
                 pass
         return commits
     except Exception:
         return None
 
-def analyze(slug, commits, window_start, window_end):
-    if not commits:
+def analyze(slug, commits_with_msg, window_start, window_end):
+    if not commits_with_msg:
         return {'slug': slug, 'verdict': 'NO_COMMITS', 'first': None, 'last': None,
-                'n_commits': 0, 'n_in_window': 0, 'span_minutes': 0}
-    commits_sorted = sorted(commits)
-    first, last = commits_sorted[0], commits_sorted[-1]
-    in_win = [c for c in commits_sorted if window_start - dt.timedelta(hours=12) <= c <= window_end + dt.timedelta(hours=12)]
+                'n_commits': 0, 'n_in_window': 0, 'span_minutes': 0, 'commits': []}
+    commits_sorted = sorted(commits_with_msg, key=lambda x: x[0])
+    times = [c[0] for c in commits_sorted]
+    first, last = times[0], times[-1]
+    in_win = [c for c in times if window_start - dt.timedelta(hours=12) <= c <= window_end + dt.timedelta(hours=12)]
     span = (last - first).total_seconds() / 60.0
-    n = len(commits_sorted)
+    n = len(times)
 
-    # Heuristic: pre-existing if first commit is >24h before event window start
     pre_existing = first < (window_start - dt.timedelta(hours=24))
-    # Bulk-dump heuristic: most commits within a 5-min window (squashed/single push)
+
+    # Template-derived: ONE old commit (acting as the scaffold seed),
+    # then everything else happens inside the event window.
+    template_seed = False
+    if pre_existing and n >= 2:
+        old = [c for c in times if c < (window_start - dt.timedelta(hours=24))]
+        new_in_win = [c for c in times if c >= (window_start - dt.timedelta(hours=24))]
+        if len(old) == 1 and len(new_in_win) >= 1:
+            template_seed = True
+            # Strengthen the signal if message obviously looks like a template
+            seed_msg = commits_sorted[0][1].lower()
+            if any(k in seed_msg for k in ['template:', 'scaffold', 'starter', 'boilerplate', 'init']):
+                template_seed = True  # explicit confirmation, already True
+
     bulk = False
     if n >= 3 and span < 5:
         bulk = True
     elif n >= 5:
-        # Cluster: are >70% of commits within the smallest 5-min window?
         biggest_cluster = 0
         for i in range(n):
             j = i
-            while j + 1 < n and (commits_sorted[j+1] - commits_sorted[i]).total_seconds() <= 5 * 60:
+            while j + 1 < n and (times[j+1] - times[i]).total_seconds() <= 5 * 60:
                 j += 1
             biggest_cluster = max(biggest_cluster, j - i + 1)
         if biggest_cluster / n > 0.7:
             bulk = True
 
-    if pre_existing and last < window_start:
-        verdict = 'PRE_EXISTING_ONLY'  # nothing committed during event at all
+    if template_seed:
+        verdict = 'TEMPLATE_DERIVED'
+    elif pre_existing and last < window_start:
+        verdict = 'PRE_EXISTING_ONLY'
     elif pre_existing:
-        verdict = 'PRE_EXISTING_THEN_TWEAKED'  # old base + some event-day changes
+        verdict = 'PRE_EXISTING_THEN_TWEAKED'
     elif n == 1:
         verdict = 'SINGLE_COMMIT'
     elif bulk:
         verdict = 'BULK_DUMP'
-    elif span > 60 * 12:  # more than 12 hours of activity
+    elif span > 60 * 12:
         verdict = 'BROAD_TIMELINE'
     else:
         verdict = 'OK'
@@ -102,9 +118,10 @@ def analyze(slug, commits, window_start, window_end):
         'slug': slug, 'verdict': verdict,
         'first': first.isoformat(timespec='minutes'),
         'last': last.isoformat(timespec='minutes'),
+        'first_msg': commits_sorted[0][1][:120],
         'n_commits': n, 'span_minutes': round(span, 1),
         'n_in_window': len(in_win),
-        'commits': [c.isoformat(timespec='minutes') for c in commits_sorted],
+        'commits': [c.isoformat(timespec='minutes') for c in times],
     }
 
 results = []
