@@ -1,7 +1,7 @@
 [
   {
     "slug": "bhavya-shah__nexushabit",
-    "verdict": "OK",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:35",
     "last": "2026-05-16T23:51",
     "first_msg": "Initial commit",
@@ -110,7 +110,7 @@
   },
   {
     "slug": "atharva-rathod__realmforge",
-    "verdict": "BROAD_TIMELINE",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:54",
     "last": "2026-05-17T14:56",
     "first_msg": "Add files via upload",
@@ -137,7 +137,7 @@
   },
   {
     "slug": "farhaanali-vohra__apple",
-    "verdict": "SINGLE_COMMIT",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:38",
     "last": "2026-05-16T23:38",
     "first_msg": "Add files via upload",
@@ -203,7 +203,7 @@
   },
   {
     "slug": "dhruv-mahant__data-insights",
-    "verdict": "SINGLE_COMMIT",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:35",
     "last": "2026-05-16T23:35",
     "first_msg": "Initial hackathon prototype - SportLens AI",
@@ -246,13 +246,13 @@
   },
   {
     "slug": "aadi-shah__beyond-the-score",
-    "verdict": "BROAD_TIMELINE",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:36",
     "last": "2026-05-17T12:09",
     "first_msg": "Add files via upload",
     "n_commits": 17,
     "span_minutes": 753.4,
-    "n_in_window": 16,
+    "n_in_window": 7,
     "commits": [
       "2026-05-16T23:36",
       "2026-05-16T23:47",
@@ -456,7 +456,7 @@
   },
   {
     "slug": "pratham-raval__criq",
-    "verdict": "OK",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:45",
     "last": "2026-05-17T10:43",
     "first_msg": "Project Files Added",
@@ -593,7 +593,7 @@
   },
   {
     "slug": "yash-dave__statesense",
-    "verdict": "SINGLE_COMMIT",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:49",
     "last": "2026-05-16T23:49",
     "first_msg": "Add files via upload",
@@ -606,7 +606,7 @@
   },
   {
     "slug": "shaantanu-yadav__nexplay-pro-analytics",
-    "verdict": "SINGLE_COMMIT",
+    "verdict": "POST_EVENT_ONLY",
     "first": "2026-05-16T23:52",
     "last": "2026-05-16T23:52",
     "first_msg": "first commit",
@@ -647,7 +647,7 @@
   },
   {
     "slug": "shlok-tilokani__ipl-dashboard",
-    "verdict": "OK",
+    "verdict": "BROAD_TIMELINE",
     "first": "2026-05-16T19:35",
     "last": "2026-05-17T01:01",
     "first_msg": "first commit",

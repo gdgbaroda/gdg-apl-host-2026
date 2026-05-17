@@ -30,7 +30,10 @@ if timing_path.exists():
 PENALTY = {
     'PRE_EXISTING_ONLY': -5,
     'PRE_EXISTING_THEN_TWEAKED': -5,
+    'POST_EVENT_ONLY': -5,
+    'BROAD_TIMELINE': -2,
     'SINGLE_COMMIT': -2,
+    'BULK_DUMP': -2,
 }
 
 def penalty_for(slug):
@@ -154,8 +157,9 @@ VERDICT_LABEL = {
     'NO_REPO': '🚫 No public repo',
     'PRE_EXISTING_ONLY': '🚨 No commits during event',
     'PRE_EXISTING_THEN_TWEAKED': '🚨 History pre-dates the event',
+    'POST_EVENT_ONLY': '🚨 All commits after event ended (23:35)',
     'TEMPLATE_DERIVED': '🧩 Built on a scaffold/template (work in window)',
-    'BROAD_TIMELINE': '⚠️ Activity spans multiple days',
+    'BROAD_TIMELINE': '⚠️ Substantial activity past event end',
     'BULK_DUMP': '⚠️ Bulk push at submission',
 }
 
@@ -177,6 +181,10 @@ def commit_summary(slug):
         return f'🚨 {n} commits since {first}'
     if v == 'TEMPLATE_DERIVED':
         return f'🧩 {n - 1} commits on top of a scaffold'
+    if v == 'POST_EVENT_ONLY':
+        return f'🚨 {n} commits, all after event end'
+    if v == 'BROAD_TIMELINE':
+        return f'⚠️ {n} commits · span {fmt_span(span)} (past event end)'
     return f'📅 {n} commits · {fmt_span(span)}'
 
 def render_card(s):

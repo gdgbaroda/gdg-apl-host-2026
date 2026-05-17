@@ -21,21 +21,11 @@ ROOT = pathlib.Path(__file__).parent
 subs = json.loads((ROOT / 'submissions.json').read_text())
 log = {r['slug']: r for r in json.loads((ROOT / '_clone-log.json').read_text())}
 
-# Estimate event window from submission timestamps
-ts_strings = [s.get('Timestamp') for s in subs if s.get('Timestamp')]
-ts_dts = []
-for s in ts_strings:
-    try:
-        ts_dts.append(dt.datetime.fromisoformat(s.replace('Z', '+00:00').split('+')[0]))
-    except Exception:
-        pass
-ts_dts.sort()
-event_end = ts_dts[-1] if ts_dts else None
-event_start_est = ts_dts[0] - dt.timedelta(hours=2) if ts_dts else None
-# Hackathon was 1 day; assume start window from ~6h before first submission
-event_window_start = (ts_dts[0] - dt.timedelta(hours=12)) if ts_dts else None
-print(f"submissions submitted between: {ts_dts[0]} → {ts_dts[-1]}")
-print(f"assumed event window: {event_window_start} → {event_end}")
+# Event window — hardcoded per the organizer. End is firm (23:35 on 5/16).
+# Start is estimated from the earliest commits across all repos.
+event_window_start = dt.datetime(2026, 5, 16, 18, 0)
+event_end = dt.datetime(2026, 5, 16, 23, 35)
+print(f"event window: {event_window_start} → {event_end}")
 print()
 
 def git_log_iso(slug):
@@ -99,18 +89,24 @@ def analyze(slug, commits_with_msg, window_start, window_end):
         if biggest_cluster / n > 0.7:
             bulk = True
 
+    # Strict cutoff: any commit past 23:35 counts as post-event.
+    all_after = all(c > window_end for c in times)
+    last_after = last > window_end + dt.timedelta(minutes=60)
+
     if template_seed:
         verdict = 'TEMPLATE_DERIVED'
     elif pre_existing and last < window_start:
         verdict = 'PRE_EXISTING_ONLY'
     elif pre_existing:
         verdict = 'PRE_EXISTING_THEN_TWEAKED'
+    elif all_after:
+        verdict = 'POST_EVENT_ONLY'    # every commit lands after event ended
     elif n == 1:
         verdict = 'SINGLE_COMMIT'
     elif bulk:
         verdict = 'BULK_DUMP'
-    elif span > 60 * 12:
-        verdict = 'BROAD_TIMELINE'
+    elif last_after:
+        verdict = 'BROAD_TIMELINE'     # work continued substantively past event end
     else:
         verdict = 'OK'
 
