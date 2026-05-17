@@ -117,5 +117,56 @@
     "reason": "Rolled-back HEAD (`vercel`) already contains the full product: 74 src files (React 19 + TanStack Router/Start, Radix UI, Supabase), three SQL migrations under supabase/migrations including 20260516151500_advanced_features.sql, polished doodle-aesthetic README with setup steps, Counter/Timer habits, Shield system, Battleground duels. Tech stack matches the form exactly. No AI SDK or LLM code anywhere — the 'agentic' claim refers to using AI tools (Antigravity/Claude/Stitch/Lovable) to write the app, which the rubric does not credit as runtime AI. No live demo URL submitted. Rolled-back state matches the submission; not materially weaker than what was originally reviewed.",
     "demo_check": "no-url",
     "ai_evidence": "no AI code found; @supabase/supabase-js is the only external service; AI assistants used only as build-time vibe-coding partners"
+  },
+  {
+    "slug": "bhavya-shah__nexushabit",
+    "name": "Bhavya Shah",
+    "title": "NexusHabit",
+    "challenge": "Gamified Habit Builder",
+    "scores": {
+      "agentic": 1,
+      "demo": 1,
+      "quality": 1,
+      "fit": 1,
+      "originality": 1
+    },
+    "total": 5,
+    "reason": "Rolled-back repo at the 23:49 deadline contains literally one file: a `README.md` consisting of a single line `# Habit-tracker`. No HTML/CSS/JS, no Supabase config, no Gemini integration, no chatbot, no habit/streak/XP code — nothing the submission describes exists at the deadline. The single rolled-back commit (`Initial commit`) is just the GitHub-generated repo scaffold. Submission was made at 23:57 (after the 23:49 cutoff), and only one post-deadline commit was dropped during rollback, meaning the contestant pushed effectively no code before the cutoff. Rolled-back state is dramatically weaker than the submission described — there is no project here to evaluate.",
+    "demo_check": "no-url",
+    "ai_evidence": "no AI code; repo contains only a one-line README at deadline"
+  },
+  {
+    "slug": "aadi-shah__beyond-the-score",
+    "name": "Aadi Shah",
+    "title": "Beyond the Score",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 3,
+      "demo": 2,
+      "quality": 2,
+      "fit": 5,
+      "originality": 4
+    },
+    "total": 16,
+    "reason": "Rolled-back HEAD (`Remove key`) is a flat dump of 16 JSX files (App.jsx, MatchScorecard, MatchAnalytics, MatchNarration, HeadToHead, VenueStats, etc.) in the repo root with no folder structure, no package.json, no vite/index.html, no public/, and crucially no `data/` directory — yet App.jsx imports from `./data/loadMatches`, `./data/loadPlayers`, `./data/glossary` and `./components/*`. The project is not runnable as-is at the deadline; 15 post-event commits were dropped, which presumably restructured it. MatchNarration.jsx contains a real Gemini 1.5 Flash fetch call but the API key constant is empty string and the file is the only AI integration. No live demo URL. Rolled-back state is materially weaker than the submission described.",
+    "demo_check": "no-url",
+    "ai_evidence": "Gemini 1.5 Flash REST call in MatchNarration.jsx (key constant empty); no package.json or SDK declared"
+  },
+  {
+    "slug": "pratham-raval__criq",
+    "name": "Pratham Raval",
+    "title": "CRIQ",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 7,
+      "demo": 5,
+      "quality": 9,
+      "fit": 10,
+      "originality": 8
+    },
+    "total": 39,
+    "reason": "Rolled-back HEAD (`Remove sensitive API key values from README`) already has the full stack present at the 23:49 deadline: backend/ FastAPI (main.py 177 LOC with 10+ routes — matches, summary, pressure, analysis, player stats, wagon wheel, matchup) plus backend/data.py (1041 LOC pandas analytics over IPL matches.csv/deliveries.csv); frontend/ React 18 + Vite + TS + Tailwind + d3 + recharts + zustand with pages (Home, MatchSummary, MatchAnalysis, Player, Team, FanTools) and 13 components (FanIQQuiz, WagonWheel, MomentumChart, PressureBar, WinProbChart, StatExplainer). frontend/src/utils/ai.ts wraps Gemini 2.0 Flash with caching and intelligent mock fallbacks, called from 5 surfaces (Home, MatchSummary, FanIQQuiz, MomentumChart, StatExplainer). Detailed 10KB README with quickstart. No live demo URL. Even after dropping 8 post-event commits, the in-window state is a polished, theme-fitting submission — not materially weaker than originally described.",
+    "demo_check": "no-url",
+    "ai_evidence": "Gemini 2.0 Flash REST integration in frontend/src/utils/ai.ts with cache + mock fallback; consumed by FanIQQuiz.tsx, MomentumChart.tsx, StatExplainer.tsx, Home.tsx, MatchSummary.tsx; backend .env reads GEMINI_API_KEY (python-dotenv)"
   }
 ]

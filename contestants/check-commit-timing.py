@@ -24,7 +24,7 @@ log = {r['slug']: r for r in json.loads((ROOT / '_clone-log.json').read_text())}
 # Event window — hardcoded per the organizer. End is firm (23:35 on 5/16).
 # Start is estimated from the earliest commits across all repos.
 event_window_start = dt.datetime(2026, 5, 16, 18, 0)
-event_end = dt.datetime(2026, 5, 16, 23, 35)
+event_end = dt.datetime(2026, 5, 16, 23, 49)
 print(f"event window: {event_window_start} → {event_end}")
 print()
 

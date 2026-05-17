@@ -34,7 +34,7 @@ if rollback_scores_file.exists():
 
 FLOOR = {'agentic': 1, 'demo': 1, 'quality': 1, 'fit': 1, 'originality': 1}
 FLOOR_REASON = (
-    "Repository state at the 23:35 event deadline was empty — all commits "
+    "Repository state at the 23:49 event deadline was empty — all commits "
     "arrived afterwards. Scored at the floor since no code was submitted "
     "within the event window."
 )

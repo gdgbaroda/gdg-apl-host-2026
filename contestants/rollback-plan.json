@@ -1,16 +1,16 @@
 [
   {
     "slug": "bhavya-shah__nexushabit",
-    "state": "empty-at-deadline",
+    "state": "needs-rollback",
     "current_head": "96ba47ab4057",
-    "rollback_sha": null
+    "rollback_sha": "8514e883ab48",
+    "commits_dropped": 1
   },
   {
     "slug": "aarya-patel__cricbrain",
-    "state": "needs-rollback",
+    "state": "head-already-in-window",
     "current_head": "c4d859a7be05",
-    "rollback_sha": "2b4c6070459f",
-    "commits_dropped": 1
+    "rollback_sha": "c4d859a7be05"
   },
   {
     "slug": "daksh-thakurani__streaksmith",
@@ -44,16 +44,15 @@
   },
   {
     "slug": "farhaanali-vohra__apple",
-    "state": "empty-at-deadline",
+    "state": "head-already-in-window",
     "current_head": "e9a8d36d653c",
-    "rollback_sha": null
+    "rollback_sha": "e9a8d36d653c"
   },
   {
     "slug": "deep-vadher__lifequest-ai",
-    "state": "needs-rollback",
+    "state": "head-already-in-window",
     "current_head": "602a8c49a455",
-    "rollback_sha": "dedd7fb8551d",
-    "commits_dropped": 1
+    "rollback_sha": "602a8c49a455"
   },
   {
     "slug": "harsh-soni__habitquest",
@@ -69,10 +68,9 @@
   },
   {
     "slug": "dwij-joshi__nova-habit-tracker",
-    "state": "needs-rollback",
+    "state": "head-already-in-window",
     "current_head": "c54609e09eb3",
-    "rollback_sha": "1c43caadd830",
-    "commits_dropped": 1
+    "rollback_sha": "c54609e09eb3"
   },
   {
     "slug": "harsh-kaptan__cricketiq-ai-cricket-intelligence-platform",
@@ -82,9 +80,9 @@
   },
   {
     "slug": "dhruv-mahant__data-insights",
-    "state": "empty-at-deadline",
+    "state": "head-already-in-window",
     "current_head": "7f3a4a0be3b1",
-    "rollback_sha": null
+    "rollback_sha": "7f3a4a0be3b1"
   },
   {
     "slug": "keyur-parmar__nexus",
@@ -110,9 +108,10 @@
   },
   {
     "slug": "aadi-shah__beyond-the-score",
-    "state": "empty-at-deadline",
+    "state": "needs-rollback",
     "current_head": "a37a5d4a4be7",
-    "rollback_sha": null
+    "rollback_sha": "1c941bdf8da1",
+    "commits_dropped": 15
   },
   {
     "slug": "jaimin-suthar__gamified-habit-builder",
@@ -202,9 +201,10 @@
   },
   {
     "slug": "pratham-raval__criq",
-    "state": "empty-at-deadline",
+    "state": "needs-rollback",
     "current_head": "777ce975a723",
-    "rollback_sha": null
+    "rollback_sha": "437ff163098f",
+    "commits_dropped": 8
   },
   {
     "slug": "sarvesh-verma__gamified-habits",
@@ -271,9 +271,8 @@
   },
   {
     "slug": "zishan-vhora__lockin",
-    "state": "needs-rollback",
+    "state": "head-already-in-window",
     "current_head": "f18e4727d9c9",
-    "rollback_sha": "12e146060698",
-    "commits_dropped": 1
+    "rollback_sha": "f18e4727d9c9"
   }
 ]

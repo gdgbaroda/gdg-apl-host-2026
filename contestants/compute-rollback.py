@@ -9,7 +9,7 @@ from collections import Counter
 
 ROOT = pathlib.Path(__file__).parent
 log = {r['slug']: r for r in json.loads((ROOT / '_clone-log.json').read_text())}
-CUTOFF = '2026-05-16 23:35:00 +0530'  # IST
+CUTOFF = '2026-05-16 23:49:00 +0530'  # IST
 
 def cmd(args):
     return subprocess.run(args, capture_output=True, text=True, timeout=20).stdout.strip()

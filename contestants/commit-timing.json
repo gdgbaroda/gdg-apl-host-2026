@@ -1,7 +1,7 @@
 [
   {
     "slug": "bhavya-shah__nexushabit",
-    "verdict": "POST_EVENT_ONLY",
+    "verdict": "OK",
     "first": "2026-05-16T23:35",
     "last": "2026-05-16T23:51",
     "first_msg": "Initial commit",
@@ -137,7 +137,7 @@
   },
   {
     "slug": "farhaanali-vohra__apple",
-    "verdict": "POST_EVENT_ONLY",
+    "verdict": "SINGLE_COMMIT",
     "first": "2026-05-16T23:38",
     "last": "2026-05-16T23:38",
     "first_msg": "Add files via upload",
@@ -203,7 +203,7 @@
   },
   {
     "slug": "dhruv-mahant__data-insights",
-    "verdict": "POST_EVENT_ONLY",
+    "verdict": "SINGLE_COMMIT",
     "first": "2026-05-16T23:35",
     "last": "2026-05-16T23:35",
     "first_msg": "Initial hackathon prototype - SportLens AI",
@@ -246,13 +246,13 @@
   },
   {
     "slug": "aadi-shah__beyond-the-score",
-    "verdict": "POST_EVENT_ONLY",
+    "verdict": "BROAD_TIMELINE",
     "first": "2026-05-16T23:36",
     "last": "2026-05-17T12:09",
     "first_msg": "Add files via upload",
     "n_commits": 17,
     "span_minutes": 753.4,
-    "n_in_window": 7,
+    "n_in_window": 10,
     "commits": [
       "2026-05-16T23:36",
       "2026-05-16T23:47",
@@ -456,7 +456,7 @@
   },
   {
     "slug": "pratham-raval__criq",
-    "verdict": "POST_EVENT_ONLY",
+    "verdict": "BROAD_TIMELINE",
     "first": "2026-05-16T23:45",
     "last": "2026-05-17T10:43",
     "first_msg": "Project Files Added",

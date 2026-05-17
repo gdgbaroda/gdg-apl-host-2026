@@ -51,7 +51,7 @@ def is_public(slug):
 withheld = [s for s in ranking_all if not is_public(s['slug'])]
 ranking = [s for s in ranking_all if is_public(s['slug'])]
 
-# Totals already reflect the as-of-23:35 state (finalize-ranking.py applied
+# Totals already reflect the as-of-23:49 state (finalize-ranking.py applied
 # floor scores to empty-at-deadline repos and used the re-vet for rolled-back
 # repos). No further penalty needed.
 for s in ranking:
@@ -94,7 +94,7 @@ def short_bullets(entry):
     # Special framing for repos that were empty at the event deadline
     if state == 'empty-at-deadline':
         return [
-            '🚨 No code committed by 23:35 (event deadline)',
+            '🚨 No code committed by 23:49 (event deadline)',
             '— All commits in the repo arrived after the event ended',
             '— Scored at the minimum floor',
         ]
@@ -165,7 +165,7 @@ VERDICT_LABEL = {
     'NO_REPO': '🚫 No public repo',
     'PRE_EXISTING_ONLY': '🚨 No commits during event',
     'PRE_EXISTING_THEN_TWEAKED': '🚨 History pre-dates the event',
-    'POST_EVENT_ONLY': '🚨 All commits after event ended (23:35)',
+    'POST_EVENT_ONLY': '🚨 All commits after event ended (23:49)',
     'TEMPLATE_DERIVED': '🧩 Built on a scaffold/template (work in window)',
     'BROAD_TIMELINE': '⚠️ Substantial activity past event end',
     'BULK_DUMP': '⚠️ Bulk push at submission',
@@ -208,6 +208,17 @@ def render_card(s):
     commit_html = f'<div class="commits-row">{html.escape(csum)}</div>' if csum else ''
     penalty = s.get('penalty', 0)
     penalty_html = f'<span class="penalty">({penalty})</span>' if penalty else ''
+    # Inline links so judges can jump straight to source / demo without
+    # opening the modal. Anchor clicks are guarded against bubbling into
+    # the card click handler in app.js.
+    repo_link = repo_url(s['slug'])
+    demo_link = demo_url(s['slug'])
+    link_parts = []
+    if repo_link:
+        link_parts.append(f'<a class="card-link" href="{html.escape(repo_link)}" target="_blank" rel="noopener">📦 Source</a>')
+    if demo_link and demo_link.lower().startswith(('http://', 'https://')):
+        link_parts.append(f'<a class="card-link" href="{html.escape(demo_link)}" target="_blank" rel="noopener">🟢 Demo</a>')
+    links_html = f'<div class="card-links">{"".join(link_parts)}</div>' if link_parts else ''
     return f'''
       <article class="card" data-slug="{html.escape(s["slug"])}" tabindex="0" role="button" aria-label="View details for {title}">
         <div class="card-head">
@@ -224,6 +235,7 @@ def render_card(s):
 {bullets_html}
         </ul>
         {commit_html}
+        {links_html}
         <div class="scores">
           <span class="score-pill"><span class="score-label">AI</span><span class="score-val">{sc.get("agentic","?")}</span></span>
           <span class="score-pill"><span class="score-label">Demo</span><span class="score-val">{sc.get("demo","?")}</span></span>

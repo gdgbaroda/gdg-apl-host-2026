@@ -6,7 +6,7 @@
 
   // Event window — used for the commit timeline shading.
   const WIN_START = new Date('2026-05-16T18:00:00').getTime();
-  const WIN_END   = new Date('2026-05-16T23:35:00').getTime();
+  const WIN_END   = new Date('2026-05-16T23:49:00').getTime();
   const TL_W = 560, TL_H = 60, TL_PAD = 24;
 
   function escapeHtml(s) {
@@ -149,6 +149,8 @@
   }
 
   document.addEventListener('click', (e) => {
+    // Anchor clicks inside a card should navigate, not open the modal.
+    if (e.target.closest('a.card-link')) return;
     const card = e.target.closest('.card');
     if (card && card.dataset.slug) { open(card.dataset.slug); return; }
     if (e.target.closest('[data-close]')) close();
