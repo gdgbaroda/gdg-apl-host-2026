@@ -57,15 +57,19 @@ const grid = document.getElementById("grid");
 const status = document.getElementById("status");
 const pending = Object.create(null);
 
-for (const e of EMOJIS) {
-  const b = document.createElement("button");
-  b.className = "btn";
-  b.type = "button";
-  b.textContent = e.glyph;
-  b.setAttribute("aria-label", e.id);
-  b.dataset.id = e.id;
-  b.addEventListener("pointerdown", () => press(e.id, b), { passive: true });
-  grid.appendChild(b);
+// Reactions UI is only rendered during live events. Skip if the DOM is absent.
+if (grid && status) {
+  for (const e of EMOJIS) {
+    const b = document.createElement("button");
+    b.className = "btn";
+    b.type = "button";
+    b.textContent = e.glyph;
+    b.setAttribute("aria-label", e.id);
+    b.dataset.id = e.id;
+    b.addEventListener("pointerdown", () => press(e.id, b), { passive: true });
+    grid.appendChild(b);
+  }
+  setInterval(flush, FLUSH_MS);
 }
 
 function press(id, btn) {
@@ -108,8 +112,7 @@ async function flush() {
 }
 
 function setStatus(text, live) {
+  if (!status) return;
   status.textContent = text;
   status.classList.toggle("live", !!live);
 }
-
-setInterval(flush, FLUSH_MS);

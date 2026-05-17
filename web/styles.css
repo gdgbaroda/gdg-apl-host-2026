@@ -61,6 +61,42 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* ----- Post-event notice ----- */
+.notice {
+  margin: 1.5rem 1.25rem 0;
+  padding: 1.5rem 1.25rem 1.4rem;
+  background: linear-gradient(180deg, rgba(66,133,244,0.08) 0%, rgba(20,20,20,0.0) 100%), var(--tile);
+  border-radius: 1.1rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.notice-tag {
+  display: inline-block;
+  font-family: "Google Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(52,168,83,0.15);
+  color: var(--green);
+  margin-bottom: 0.85rem;
+}
+.notice h2 {
+  font-family: "Google Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 0 0.55rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.notice p {
+  margin: 0;
+  color: #d7d8db;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 /* ----- Challenges (primary) ----- */
 .challenges {
   padding: 1.5rem 1.25rem 0;
