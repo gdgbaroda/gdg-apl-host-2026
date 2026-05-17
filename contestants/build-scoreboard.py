@@ -11,13 +11,25 @@ ROOT = pathlib.Path(__file__).parent
 WEB = ROOT.parent / 'web' / 'scoreboard'
 WEB.mkdir(parents=True, exist_ok=True)
 
-ranking = json.loads((ROOT / 'ranking.json').read_text())
-# submissions.json is gitignored but local — pull URLs from it.
+ranking_all = json.loads((ROOT / 'ranking.json').read_text())
+# submissions.json is gitignored but local — pull URLs + consent from it.
 subs_path = ROOT / 'submissions.json'
 sub_by_slug = {}
 if subs_path.exists():
     for s in json.loads(subs_path.read_text()):
         sub_by_slug[s['_slug']] = s
+
+# Honor the "Can we share your submission publicly?" consent. Anyone who
+# answered anything other than "Yes" is filtered out and the visible ranks
+# are renumbered 1..N.
+def is_public(slug):
+    consent = ((sub_by_slug.get(slug, {}) or {}).get('Can we share your submission publicly?') or '').strip().lower()
+    return consent == 'yes'
+
+withheld = [s for s in ranking_all if not is_public(s['slug'])]
+ranking = [s for s in ranking_all if is_public(s['slug'])]
+for i, s in enumerate(ranking, 1):
+    s['rank'] = i  # contiguous on the public page
 
 def repo_url(slug):
     raw = (sub_by_slug.get(slug, {}) or {}).get('Source code URL', '') or ''
@@ -177,7 +189,7 @@ html_out = f'''<!doctype html>
           <span class="dot dot-green"></span>
         </div>
         <h1>Scoreboard</h1>
-        <p class="subtitle">APL 2026 · {len(ranking)} submissions scored</p>
+        <p class="subtitle">APL 2026 · {len(ranking)} of {len(ranking_all)} submissions shown{f" · {len(withheld)} opted out of public listing" if withheld else ""}</p>
         <p class="rubric">Each project scored 1–10 on Agentic AI usage, working demo, code quality, challenge fit, originality — equal weight, max 50. Tap any card for full reasoning.</p>
       </header>
       <section class="cards">{cards_html}
