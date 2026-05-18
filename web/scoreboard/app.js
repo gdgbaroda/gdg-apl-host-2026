@@ -91,11 +91,19 @@
     const penaltyHtml = (d.penalty && d.penalty < 0)
       ? `<div class="penalty-note">Timing penalty <strong>${d.penalty}</strong> applied · raw total was ${d.original_total}</div>`
       : '';
+    const overrideHtml = d.override_delta
+      ? `<div class="override-note">
+           <div class="override-note-head">⚠️ ${escapeHtml(d.override_label || 'Adjustment')} · ${d.override_delta >= 0 ? '+' : ''}${d.override_delta}</div>
+           <div class="override-note-from">raw ${d.raw_total}/50 → adjusted to ${d.total}/50</div>
+           <p>${escapeHtml(d.override_reason || '')}</p>
+         </div>`
+      : '';
     body.innerHTML = `
       <div class="m-head">
         <div class="m-rank">${d.medal} #${d.rank}</div>
         <div class="m-total">${d.total}<span class="of">/50</span></div>
       </div>
+      ${overrideHtml}
       ${penaltyHtml}
       <h2 id="modal-title">${escapeHtml(d.title)}</h2>
       <div class="m-meta">

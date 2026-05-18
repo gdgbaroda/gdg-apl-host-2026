@@ -1,0 +1,9 @@
+{
+  "_comment": "Per-slug score adjustments applied after vetting. Each entry adds 'adjustment' (signed int) to the project's total. The reason is shown prominently on the public scoreboard card + modal — keep it concise and honest.",
+
+  "ayush-makwana__askcricket": {
+    "delta": -5,
+    "label": "Volunteer adjustment",
+    "reason": "Ayush served as an event volunteer during APL 2026 in addition to submitting a project. To preserve fairness for non-volunteer participants, a transparency adjustment of −5 is applied to his total. The judges' scoring of his project is unchanged — this disclosure exists so the conflict of interest is visible on the public scoreboard rather than hidden."
+  }
+}

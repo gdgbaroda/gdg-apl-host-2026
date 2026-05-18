@@ -209,6 +209,18 @@ def render_card(s):
     commit_html = f'<div class="commits-row">{html.escape(csum)}</div>' if csum else ''
     penalty = s.get('penalty', 0)
     penalty_html = f'<span class="penalty">({penalty})</span>' if penalty else ''
+    # Override notice (e.g. volunteer adjustment) — loud, above the title
+    override_html = ''
+    if s.get('override_delta'):
+        ov_delta = s['override_delta']
+        ov_label = html.escape(s.get('override_label', 'Adjustment'))
+        ov_raw = s.get('raw_total')
+        override_html = (
+            f'<div class="override">'
+            f'<span class="override-tag">⚠️ {ov_label} · {ov_delta:+d}</span>'
+            f'<span class="override-from">raw {ov_raw}/50 → adjusted to {s["total"]}/50</span>'
+            f'</div>'
+        )
     # Inline links so judges can jump straight to source / demo without
     # opening the modal. Anchor clicks are guarded against bubbling into
     # the card click handler in app.js.
@@ -221,7 +233,8 @@ def render_card(s):
         link_parts.append(f'<a class="card-link" href="{html.escape(demo_link)}" target="_blank" rel="noopener">🟢 Demo</a>')
     links_html = f'<div class="card-links">{"".join(link_parts)}</div>' if link_parts else ''
     return f'''
-      <article class="card" data-slug="{html.escape(s["slug"])}" tabindex="0" role="button" aria-label="View details for {title}">
+      <article class="card{' has-override' if override_html else ''}" data-slug="{html.escape(s["slug"])}" tabindex="0" role="button" aria-label="View details for {title}">
+        {override_html}
         <div class="card-head">
           <div class="rank">{medal(rank)} #{rank}</div>
           <div class="total">{total}<span class="of">/50</span>{penalty_html}</div>
@@ -279,6 +292,10 @@ def render_modal_data(s):
         'span_minutes': t.get('span_minutes'),
         'span_pretty': fmt_span(t.get('span_minutes')),
         'commits': t.get('commits') or [],
+        'override_delta': s.get('override_delta'),
+        'override_label': s.get('override_label'),
+        'override_reason': s.get('override_reason'),
+        'raw_total': s.get('raw_total'),
     }
 
 cards_html = '\n'.join(render_card(s) for s in ranking)

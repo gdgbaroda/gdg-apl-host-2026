@@ -33,6 +33,15 @@ if rollback_scores_file.exists():
     for s in json.loads(rollback_scores_file.read_text()):
         rollback[s['slug']] = s
 
+# Optional per-slug overrides (e.g. volunteer or judge conflict-of-interest disclosures)
+overrides_path = DATA_DIR / 'score-overrides.json'
+overrides = {}
+if overrides_path.exists():
+    overrides_raw = json.loads(overrides_path.read_text())
+    for k, v in overrides_raw.items():
+        if k.startswith('_'): continue
+        overrides[k] = v
+
 FLOOR = {'agentic': 1, 'demo': 1, 'quality': 1, 'fit': 1, 'originality': 1}
 _deadline = EVENT_WINDOW_END.strftime('%H:%M')
 FLOOR_REASON = (
@@ -60,6 +69,15 @@ for slug, orig in original.items():
             rec['demo_check'] = rollback[slug]['demo_check']
     # else: keep original
     rec['total'] = sum(rec['scores'].get(k, 0) for k in ('agentic','demo','quality','fit','originality'))
+
+    # Apply transparency overrides (volunteer / CoI / similar)
+    ov = overrides.get(slug)
+    if ov:
+        rec['raw_total'] = rec['total']
+        rec['override_delta'] = int(ov.get('delta', 0))
+        rec['override_label'] = ov.get('label', 'Adjustment')
+        rec['override_reason'] = ov.get('reason', '')
+        rec['total'] = rec['raw_total'] + rec['override_delta']
     final.append(rec)
 
 # Sort by total desc, tiebreak agentic+fit

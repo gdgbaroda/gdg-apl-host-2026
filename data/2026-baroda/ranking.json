@@ -1,24 +1,5 @@
 [
   {
-    "slug": "ayush-makwana__askcricket",
-    "name": "Ayush Makwana",
-    "title": "AskCricket",
-    "challenge": "Data & Insights",
-    "scores": {
-      "agentic": 9,
-      "demo": 9,
-      "quality": 9,
-      "fit": 10,
-      "originality": 8
-    },
-    "total": 45,
-    "reason": "Genuinely agentic: src/agent.js implements a multi-round (MAX_ROUNDS=5) async-generator loop that calls Azure OpenAI gpt-5.4-mini Responses API with six well-defined tools (get_player_stats, compare_players, find_matches, match_context, clutch_index, head_to_head) over a 34k-delivery IPL dataset, with tool_choice='required' on round 0 to force grounding. Cloudflare Worker streams responses via SSE. README is thorough (architecture diagram, tools table, setup). Demo at askcricket.ayushmakwana.com returns 200. Custom domain, structured JSON answer card with chart hints. Cleanly fits Data & Insights brief and the originality is real (clutch_index composite, phase-aware splits). One of the strongest batch-5 entries.",
-    "demo_check": "2xx",
-    "ai_evidence": "Azure OpenAI Responses API agent loop in src/agent.js with 6 function-calling tools in src/tools.js; src/azure.js wraps callAzureChat",
-    "rollback_state": "head-already-in-window",
-    "rank": 1
-  },
-  {
     "slug": "dwij-joshi__nova-habit-tracker",
     "name": "Dwij Joshi",
     "title": "Nova Habit Tracker",
@@ -35,6 +16,29 @@
     "demo_check": "2xx",
     "ai_evidence": "@google/generative-ai SDK; GoogleGenerativeAI + getGenerativeModel('gemini-pro') with multi-turn chat history in src/app/api/chat/route.ts",
     "rollback_state": "head-already-in-window",
+    "rank": 1
+  },
+  {
+    "slug": "ayush-makwana__askcricket",
+    "name": "Ayush Makwana",
+    "title": "AskCricket",
+    "challenge": "Data & Insights",
+    "scores": {
+      "agentic": 9,
+      "demo": 9,
+      "quality": 9,
+      "fit": 10,
+      "originality": 8
+    },
+    "total": 40,
+    "reason": "Genuinely agentic: src/agent.js implements a multi-round (MAX_ROUNDS=5) async-generator loop that calls Azure OpenAI gpt-5.4-mini Responses API with six well-defined tools (get_player_stats, compare_players, find_matches, match_context, clutch_index, head_to_head) over a 34k-delivery IPL dataset, with tool_choice='required' on round 0 to force grounding. Cloudflare Worker streams responses via SSE. README is thorough (architecture diagram, tools table, setup). Demo at askcricket.ayushmakwana.com returns 200. Custom domain, structured JSON answer card with chart hints. Cleanly fits Data & Insights brief and the originality is real (clutch_index composite, phase-aware splits). One of the strongest batch-5 entries.",
+    "demo_check": "2xx",
+    "ai_evidence": "Azure OpenAI Responses API agent loop in src/agent.js with 6 function-calling tools in src/tools.js; src/azure.js wraps callAzureChat",
+    "rollback_state": "head-already-in-window",
+    "raw_total": 45,
+    "override_delta": -5,
+    "override_label": "Volunteer adjustment",
+    "override_reason": "Ayush served as an event volunteer during APL 2026 in addition to submitting a project. To preserve fairness for non-volunteer participants, a transparency adjustment of \u22125 is applied to his total. The judges' scoring of his project is unchanged \u2014 this disclosure exists so the conflict of interest is visible on the public scoreboard rather than hidden.",
     "rank": 2
   },
   {
