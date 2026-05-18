@@ -1,4 +1,4 @@
-# APL 2026 — Final Ranking
+# Build with AI · Agentic Premier League — Final Ranking (2026)
 
 **50 submissions scored** across 5 criteria (each 1–10, equal weight).
 

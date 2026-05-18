@@ -16,15 +16,13 @@ Flags:
 """
 import json, pathlib, subprocess, datetime as dt
 from collections import Counter
+from event_config import DATA_DIR, EVENT_WINDOW_START, EVENT_WINDOW_END
 
 ROOT = pathlib.Path(__file__).parent
-subs = json.loads((ROOT / 'submissions.json').read_text())
 log = {r['slug']: r for r in json.loads((ROOT / '_clone-log.json').read_text())}
 
-# Event window — hardcoded per the organizer. End is firm (23:35 on 5/16).
-# Start is estimated from the earliest commits across all repos.
-event_window_start = dt.datetime(2026, 5, 16, 18, 0)
-event_end = dt.datetime(2026, 5, 16, 23, 49)
+event_window_start = EVENT_WINDOW_START
+event_end = EVENT_WINDOW_END
 print(f"event window: {event_window_start} → {event_end}")
 print()
 
@@ -128,7 +126,7 @@ for slug, r in log.items():
     commits = git_log_iso(slug)
     results.append(analyze(slug, commits, event_window_start, event_end))
 
-(ROOT / 'commit-timing.json').write_text(json.dumps(results, indent=2))
+(DATA_DIR / 'commit-timing.json').write_text(json.dumps(results, indent=2))
 
 print(f"{'Verdict':30s}  count")
 print('-' * 40)

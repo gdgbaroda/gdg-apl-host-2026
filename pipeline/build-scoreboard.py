@@ -6,13 +6,14 @@
 Single static HTML page, tiny inline JS for modal open/close.
 """
 import json, pathlib, html, re
+from event_config import DATA_DIR, REPO_ROOT
 
 ROOT = pathlib.Path(__file__).parent
-WEB = ROOT.parent / 'web' / 'scoreboard'
+WEB = REPO_ROOT / 'web' / 'scoreboard'
 WEB.mkdir(parents=True, exist_ok=True)
 
-ranking_all = json.loads((ROOT / 'ranking.json').read_text())
-# submissions.json is gitignored but local — pull URLs + consent from it.
+ranking_all = json.loads((DATA_DIR / 'ranking.json').read_text())
+# submissions.json stays in pipeline/ (PII, gitignored).
 subs_path = ROOT / 'submissions.json'
 sub_by_slug = {}
 if subs_path.exists():
@@ -20,7 +21,7 @@ if subs_path.exists():
         sub_by_slug[s['_slug']] = s
 
 # Commit timing analysis (if available)
-timing_path = ROOT / 'commit-timing.json'
+timing_path = DATA_DIR / 'commit-timing.json'
 timing_by_slug = {}
 if timing_path.exists():
     for t in json.loads(timing_path.read_text()):

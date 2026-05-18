@@ -2,14 +2,23 @@
 """Build web/preview/index.html — interactive homepage celebrating the APL event."""
 import json, pathlib, html, re, datetime as dt
 from collections import Counter
+from event_config import (
+    DATA_DIR, REPO_ROOT, EVENT_WINDOW_START, EVENT_WINDOW_END,
+    CHAPTER_NAME, EVENT_TITLE, EVENT_YEAR, QUOTES,
+)
 
 ROOT = pathlib.Path(__file__).parent
-OUT = ROOT.parent / 'web' / 'preview'
+# Build the homepage at /web/index.html (current event = current homepage).
+# Use --preview flag to build to /web/preview/ for review without disrupting prod.
+import sys
+PREVIEW = '--preview' in sys.argv
+OUT = REPO_ROOT / 'web' / ('preview' if PREVIEW else '')
 OUT.mkdir(parents=True, exist_ok=True)
+ASSET_PREFIX = '/preview' if PREVIEW else ''
 
 subs = json.loads((ROOT / 'submissions.json').read_text())
-ranking = json.loads((ROOT / 'ranking.json').read_text())
-timing = json.loads((ROOT / 'commit-timing.json').read_text())
+ranking = json.loads((DATA_DIR / 'ranking.json').read_text())
+timing = json.loads((DATA_DIR / 'commit-timing.json').read_text())
 sub_by_slug = {s['_slug']: s for s in subs}
 timing_by_slug = {t['slug']: t for t in timing}
 
@@ -28,9 +37,9 @@ public_count = len(public_ranking)
 challenge_counts = Counter(s.get('Which challenge?') or '?' for s in subs)
 empty_count = sum(1 for t in timing if t.get('verdict') in ('NO_COMMITS', 'POST_EVENT_ONLY'))
 
-# Count total commits inside the event window (18:00 – 23:49)
-WIN_START = dt.datetime(2026, 5, 16, 18, 0)
-WIN_END = dt.datetime(2026, 5, 16, 23, 49)
+# Count total commits inside the event window
+WIN_START = EVENT_WINDOW_START
+WIN_END = EVENT_WINDOW_END
 in_window_commits = []  # list of (datetime, slug, score)
 score_by_slug = {s['slug']: s.get('total', 0) for s in public_ranking}
 for t in timing:
@@ -104,14 +113,8 @@ for s in public_ranking:
 data_top = by_challenge.get('Data & Insights') or by_challenge.get('Both')
 habit_top = by_challenge.get('Gamified Habit Builder') or by_challenge.get('Both')
 
-# Quotes
-quotes = [
-    ('Deep', 'turn your real life into the greatest RPG ever played'),
-    ('Sarvesh', 'Gamify the grind.'),
-    ('Zishan', 'The high-stakes habit tracker where you duel your friends'),
-    ('Riyank', 'zero-latency engine reveals hidden stadium biases'),
-    ('Soni', 'dopamine loop of Snapchat streaks'),
-]
+# Quotes (from event.config.json — chapter-editable)
+quotes = [(q['who'], q['text']) for q in QUOTES]
 
 def medal(rank):
     return '🥇' if rank == 1 else '🥈' if rank == 2 else '🥉' if rank == 3 else ''
@@ -157,8 +160,11 @@ def render():
         award_cards.append(('Perfect Agentic 10/10', perfect_agentic.get('name'), perfect_agentic.get('title'),
                              'CrewAI multi-agent · Gemini 1.5 Flash · Groq Llama', '⚡'))
     if most_commits:
+        _hrs = int((EVENT_WINDOW_END - EVENT_WINDOW_START).total_seconds() // 3600)
+        _mins = int(((EVENT_WINDOW_END - EVENT_WINDOW_START).total_seconds() % 3600) // 60)
+        _duration_label = f'{_hrs}h {_mins}m'
         award_cards.append((f'Most Commits · {most_commits_n}', most_commits.get('name'), most_commits.get('title'),
-                             f'{most_commits_n} commits in the 5h 49m window — relentless', '🛠'))
+                             f'{most_commits_n} commits in the {_duration_label} window — relentless', '🛠'))
     if data_top:
         award_cards.append(('Top in Data & Insights', data_top.get('name'), data_top.get('title'),
                              f'{data_top["total"]}/50 · sharpest insights work', '📊'))
@@ -205,17 +211,25 @@ def render():
         labels += f'<text x="{x:.0f}" y="{tl_h - 4}" fill="#9aa0a6" font-size="10">{lbl}</text>'
 
     challenges_active = total_subs - empty_count
+    _dur_total_secs = (EVENT_WINDOW_END - EVENT_WINDOW_START).total_seconds()
+    _hrs = int(_dur_total_secs // 3600)
+    _mins = int((_dur_total_secs % 3600) // 60)
+    duration_label = f"{_hrs}h {_mins}m"
+    win_start_lbl = EVENT_WINDOW_START.strftime('%H:%M')
+    win_end_lbl   = EVENT_WINDOW_END.strftime('%H:%M')
+    page_title = f"{EVENT_TITLE} · {EVENT_YEAR}"
+    lead_line = f"{EVENT_TITLE} · {CHAPTER_NAME}"
     return f'''<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
-    <title>APL 2026 · The Final Whistle</title>
+    <title>{html.escape(page_title)}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@500;700&family=Google+Sans+Text:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="/preview/styles.css" />
+    <link rel="stylesheet" href="{ASSET_PREFIX}/styles.css" />
   </head>
   <body>
     <canvas id="emoji-canvas" aria-hidden="true"></canvas>
@@ -227,8 +241,8 @@ def render():
           <span class="dot dot-blue"></span><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
         </div>
         <h1>That's a wrap.</h1>
-        <p class="lead">Build with AI · Agentic Premier League · GDG Baroda</p>
-        <p class="tagline"><span class="tag-num">{total_subs}</span> builders · <span class="tag-num">{total_window_commits}</span> commits in <span class="tag-num">5h 49m</span></p>
+        <p class="lead">{html.escape(lead_line)}</p>
+        <p class="tagline"><span class="tag-num">{total_subs}</span> builders · <span class="tag-num">{total_window_commits}</span> commits in <span class="tag-num">{duration_label}</span></p>
         <div class="hero-cta">
           <a class="primary" href="/scoreboard/">View full scoreboard →</a>
         </div>
@@ -244,12 +258,12 @@ def render():
       <section class="section">
         <h2>The Podium</h2>
         <div class="podium">{podium_html}</div>
-        <p class="section-foot">Top three across all 50 submissions. <a href="/scoreboard/">Full ranking →</a></p>
+        <p class="section-foot">Top three across all {total_subs} submissions. <a href="/scoreboard/">Full ranking →</a></p>
       </section>
 
       <section class="section">
-        <h2>Five-Hour Heartbeat</h2>
-        <p class="section-lede">{total_window_commits} commits between 18:00 and 23:49. Each bar = 10 min.</p>
+        <h2>The {duration_label} Heartbeat</h2>
+        <p class="section-lede">{total_window_commits} commits between {win_start_lbl} and {win_end_lbl}. Each bar = 10 min.</p>
         <svg class="timeline" viewBox="0 0 {tl_w} {tl_h}" preserveAspectRatio="none" aria-label="Commit activity timeline">
           <line x1="{tl_pad}" x2="{tl_w - tl_pad}" y1="{tl_h - 18}" y2="{tl_h - 18}" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
           {bars}
@@ -290,13 +304,13 @@ def render():
       </section>
 
       <footer class="foot">
-        <p>GDG Baroda · APL 2026</p>
+        <p>{html.escape(CHAPTER_NAME)} · {EVENT_YEAR}</p>
         <p><a href="/scoreboard/">Full scoreboard →</a></p>
       </footer>
 
     </main>
 
-    <script src="/preview/app.js"></script>
+    <script src="{ASSET_PREFIX}/app.js"></script>
   </body>
 </html>
 '''

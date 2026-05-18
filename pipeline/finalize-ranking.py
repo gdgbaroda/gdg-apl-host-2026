@@ -14,27 +14,29 @@ Drops the timing penalty entirely — we're now scoring the in-window state dire
 Outputs ranking.json with contiguous ranks (1..N over public submissions).
 """
 import json, pathlib
+from event_config import DATA_DIR, EVENT_WINDOW_END
 
 ROOT = pathlib.Path(__file__).parent
-plan = {r['slug']: r for r in json.loads((ROOT / 'rollback-plan.json').read_text())}
+plan = {r['slug']: r for r in json.loads((DATA_DIR / 'rollback-plan.json').read_text())}
 subs = {s['_slug']: s for s in json.loads((ROOT / 'submissions.json').read_text())}
 
 # Original vetter scores
 original = {}
 for i in range(1, 6):
-    for s in json.loads((ROOT / f'scores-batch-{i}.json').read_text()):
+    for s in json.loads((DATA_DIR / f'scores-batch-{i}.json').read_text()):
         original[s['slug']] = s
 
 # Re-vet results
-rollback_scores_file = ROOT / 'scores-rollback.json'
+rollback_scores_file = DATA_DIR / 'scores-rollback.json'
 rollback = {}
 if rollback_scores_file.exists():
     for s in json.loads(rollback_scores_file.read_text()):
         rollback[s['slug']] = s
 
 FLOOR = {'agentic': 1, 'demo': 1, 'quality': 1, 'fit': 1, 'originality': 1}
+_deadline = EVENT_WINDOW_END.strftime('%H:%M')
 FLOOR_REASON = (
-    "Repository state at the 23:49 event deadline was empty — all commits "
+    f"Repository state at the {_deadline} event deadline was empty — all commits "
     "arrived afterwards. Scored at the floor since no code was submitted "
     "within the event window."
 )
@@ -68,7 +70,7 @@ final.sort(key=sort_key)
 for i, s in enumerate(final, 1):
     s['rank'] = i  # global rank across all 50 (we filter to public in the scoreboard renderer)
 
-(ROOT / 'ranking.json').write_text(json.dumps(final, indent=2))
+(DATA_DIR / 'ranking.json').write_text(json.dumps(final, indent=2))
 print(f'wrote ranking.json with {len(final)} records')
 print('top 10:')
 for s in final[:10]:

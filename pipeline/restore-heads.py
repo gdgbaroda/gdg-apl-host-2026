@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Restore rolled-back repos to their original HEAD (stored in rollback-plan.json)."""
 import json, subprocess, pathlib
+from event_config import DATA_DIR
 ROOT = pathlib.Path(__file__).parent
-plan = json.loads((ROOT / 'rollback-plan.json').read_text())
+plan = json.loads((DATA_DIR / 'rollback-plan.json').read_text())
 for r in plan:
     if r.get('state') != 'needs-rollback': continue
     slug = r['slug']

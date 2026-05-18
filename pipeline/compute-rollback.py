@@ -6,10 +6,15 @@ Outputs contestants/rollback-plan.json with per-slug info.
 """
 import json, subprocess, pathlib
 from collections import Counter
+from event_config import DATA_DIR, CONFIG
 
 ROOT = pathlib.Path(__file__).parent
 log = {r['slug']: r for r in json.loads((ROOT / '_clone-log.json').read_text())}
-CUTOFF = '2026-05-16 23:49:00 +0530'  # IST
+# event.config.json — naive datetime + timezone field formatted for `git --before`
+_tz = CONFIG['event']['window'].get('timezone', 'UTC')
+# git --before accepts ISO 8601 directly with offset; use IST default if no offset string supplied
+_offset = '+0530' if _tz == 'Asia/Kolkata' else '+0000'
+CUTOFF = CONFIG['event']['window']['end'].replace('T', ' ') + ' ' + _offset
 
 def cmd(args):
     return subprocess.run(args, capture_output=True, text=True, timeout=20).stdout.strip()
@@ -41,7 +46,7 @@ for slug, r in log.items():
             'commits_dropped': int(dropped) if dropped.isdigit() else None,
         })
 
-(ROOT / 'rollback-plan.json').write_text(json.dumps(results, indent=2))
+(DATA_DIR / 'rollback-plan.json').write_text(json.dumps(results, indent=2))
 print(Counter(r['state'] for r in results))
 print()
 for r in results:

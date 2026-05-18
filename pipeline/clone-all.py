@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Clone all submission repos shallowly into contestants/<slug>/.
-Logs successes / failures to contestants/_clone-log.json."""
+"""Clone all submission repos shallowly into pipeline/<slug>/.
+Logs successes / failures to pipeline/_clone-log.json (gitignored)."""
 import json, subprocess, pathlib, re, sys, concurrent.futures, time
 
 ROOT = pathlib.Path(__file__).parent

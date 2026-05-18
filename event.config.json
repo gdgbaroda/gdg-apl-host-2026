@@ -1,0 +1,63 @@
+{
+  "_comment": "Single source of truth for chapter-specific values. Fork this repo and edit this file. See docs/CHAPTER-GUIDE.md.",
+
+  "chapter": {
+    "name": "GDG Baroda",
+    "city": "Vadodara"
+  },
+
+  "event": {
+    "title": "Build with AI · Agentic Premier League",
+    "short_title": "APL",
+    "year": 2026,
+    "tagline_format": "{n_builders} builders · {n_commits} commits in {duration}",
+    "window": {
+      "start": "2026-05-16T18:00:00",
+      "end":   "2026-05-16T23:49:00",
+      "timezone": "Asia/Kolkata"
+    }
+  },
+
+  "challenges": [
+    {
+      "id": "habit-builder",
+      "color": "blue",
+      "title": "Gamified Habit Builder",
+      "prompt": "Design a platform that uses gamification to help users build and sustain positive habits. Focus on rewards, streaks, and progress tracking to drive engagement."
+    },
+    {
+      "id": "data-insights",
+      "color": "yellow",
+      "title": "Data & Insights",
+      "prompt": "Design a solution that translates complex match and player data into intuitive and actionable insights for fans. The system should simplify advanced statistics and present them in a way that enhances understanding, decision-making, and overall engagement with the sport."
+    }
+  ],
+
+  "urls": {
+    "web":  "https://apl.gdgbaroda.com",
+    "api":  "https://apl-api.gdgbaroda.com",
+    "form": "https://forms.gle/pmgdS2ndkWfXu3Vf7",
+    "repo": "https://github.com/gdgbaroda/gdg-apl-2026"
+  },
+
+  "github": {
+    "owner": "gdgbaroda",
+    "repo":  "gdg-apl-2026"
+  },
+
+  "scoring": {
+    "criteria":   ["agentic", "demo", "quality", "fit", "originality"],
+    "scale_max":  10,
+    "total_max":  50
+  },
+
+  "data_dir": "data/2026-baroda",
+
+  "featured_quotes": [
+    { "who": "Deep",    "text": "turn your real life into the greatest RPG ever played" },
+    { "who": "Sarvesh", "text": "Gamify the grind." },
+    { "who": "Zishan",  "text": "The high-stakes habit tracker where you duel your friends" },
+    { "who": "Riyank",  "text": "zero-latency engine reveals hidden stadium biases" },
+    { "who": "Soni",    "text": "dopamine loop of Snapchat streaks" }
+  ]
+}
