@@ -53,6 +53,20 @@
 
   "data_dir": "data/2026-baroda",
 
+  "volunteers": {
+    "_comment": "Participants who also volunteered as event staff. Each gets the configured delta applied to their final total and a loud transparency banner on the public scoreboard. The reason template supports {first_name} and {event_title}.",
+    "delta": -5,
+    "label": "Volunteer adjustment",
+    "reason_template": "{first_name} served as an event volunteer during {event_title} in addition to submitting a project. To preserve fairness for non-volunteer participants, a transparency adjustment of −5 is applied to this submission's total. The judges' scoring of the project is unchanged — this disclosure exists so the conflict of interest is visible on the public scoreboard rather than hidden.",
+    "slugs": [
+      "ayush-makwana__askcricket",
+      "shivansh-darji__habit-warrior",
+      "harsh-mehta__cricketiq",
+      "ashutosh-bhagat__apl-analytics",
+      "naiteek__solo-leveling-habit-tracker"
+    ]
+  },
+
   "featured_quotes": [
     { "who": "Deep",    "text": "turn your real life into the greatest RPG ever played" },
     { "who": "Sarvesh", "text": "Gamify the grind." },

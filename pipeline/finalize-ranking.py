@@ -14,7 +14,7 @@ Drops the timing penalty entirely — we're now scoring the in-window state dire
 Outputs ranking.json with contiguous ranks (1..N over public submissions).
 """
 import json, pathlib
-from event_config import DATA_DIR, EVENT_WINDOW_END
+from event_config import DATA_DIR, EVENT_WINDOW_END, EVENT_TITLE, VOLUNTEERS
 
 ROOT = pathlib.Path(__file__).parent
 plan = {r['slug']: r for r in json.loads((DATA_DIR / 'rollback-plan.json').read_text())}
@@ -33,9 +33,35 @@ if rollback_scores_file.exists():
     for s in json.loads(rollback_scores_file.read_text()):
         rollback[s['slug']] = s
 
-# Optional per-slug overrides (e.g. volunteer or judge conflict-of-interest disclosures)
-overrides_path = DATA_DIR / 'score-overrides.json'
+# Per-slug overrides come from two places:
+# (1) event.config.json → "volunteers" block. Bulk-applies the same delta to
+#     every listed slug using a templated reason. This is the common case.
+# (2) <data_dir>/score-overrides.json. One-off entries that don't fit the
+#     volunteer pattern (e.g. judge CoI, individual circumstances).
+# Entries from (2) win over (1) when slugs collide.
+
+def first_name_for(slug, original):
+    full = (original.get(slug, {}) or {}).get('name') or ''
+    return full.split()[0] if full else slug.split('__')[0].split('-')[0].title()
+
 overrides = {}
+
+# Volunteers block — materialise into per-slug entries with templated reason.
+if VOLUNTEERS and VOLUNTEERS.get('slugs'):
+    template = VOLUNTEERS.get('reason_template', '{first_name} (volunteer) — adjustment applied.')
+    label = VOLUNTEERS.get('label', 'Volunteer adjustment')
+    delta = int(VOLUNTEERS.get('delta', 0))
+    for slug in VOLUNTEERS['slugs']:
+        if slug.startswith('_'): continue
+        fn = first_name_for(slug, original)
+        overrides[slug] = {
+            'delta': delta,
+            'label': label,
+            'reason': template.format(first_name=fn, event_title=EVENT_TITLE),
+        }
+
+# Then layer per-event overrides (these override volunteer entries if both exist).
+overrides_path = DATA_DIR / 'score-overrides.json'
 if overrides_path.exists():
     overrides_raw = json.loads(overrides_path.read_text())
     for k, v in overrides_raw.items():

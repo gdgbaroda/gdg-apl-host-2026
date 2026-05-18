@@ -31,3 +31,4 @@ EVENT_TITLE  = CONFIG['event']['title']
 EVENT_YEAR   = CONFIG['event'].get('year', dt.date.today().year)
 CHALLENGES   = CONFIG['challenges']
 QUOTES       = CONFIG.get('featured_quotes', [])
+VOLUNTEERS   = CONFIG.get('volunteers') or {}
